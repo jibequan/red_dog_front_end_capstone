@@ -11,8 +11,9 @@ $black-dog: #000000;
   }
 }
 
-.element {
-  @include clearfix;
+header {
+  background-color: $red-dog;
+  height: 128px;
 }
 
 h1 {
@@ -21,9 +22,8 @@ h1 {
   font-size: 3em;
 }
 
-header {
-  background-color: $red-dog;
-  height: 128px;
+.element {
+  @include clearfix;
 }
 
 .header-text {
