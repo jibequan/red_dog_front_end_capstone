@@ -11,26 +11,41 @@ $black-dog: #000000;
   }
 }
 
-header {
-  background-color: $red-dog;
-  height: 128px;
-}
-
-h1 {
-  font-family: "prohibition";
-  color: white;
-  font-size: 6em;
-}
-
-ul {
-  font-family: "prohibition";
-  font-size: 3.5em;
-}
-
+//General styling
 .element {
   @include clearfix;
 }
 
+//header elements
+header{
+  background-color: $red-dog;
+  height: 128px;
+}
+
+header h1, p{
+  font-family: "prohibition";
+  color: white;
+}
+
+header h1 {
+  font-size: 6em;
+}
+
+header hr {
+  border-color: white;
+  border-width: .3em;
+}
+
+header p{
+  font-size: 2em;
+}
+
 .header-text {
   color: $black-dog;
+}
+
+//Nav elements
+ul {
+  font-family: "prohibition";
+  font-size: 3.5em;
 }
