@@ -15,9 +15,6 @@ $black-dog: #000000;
 .element {
   @include clearfix;
 }
-.container {
-  margin: 0;
-}
 
 //header elements
 header{
@@ -50,21 +47,17 @@ header p{
 //Nav elements
 nav {
   font-family: "prohibition";
-  font-size: 3.5em;
+  font-size: 3em;
   color: white;
-  // background-color: $red-dog;
-}
-
-ul.nav {
   margin-top: 10px;
-  margin-left: 10px;
-  height: 100%;
 }
 
-ul.nav li{
+ul.nav{
   background-color: $red-dog;
-  text-align: center;
-  margin: 5px 0 5px 0;
+}
+
+ul.nav div{
+  padding: 0;
 }
 
 main {
