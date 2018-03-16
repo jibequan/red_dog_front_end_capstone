@@ -1,0 +1,36 @@
+@import url("https://use.typekit.net/ius6gqc.css");
+
+$red-dog: #FF0202;
+$black-dog: #000000;
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+header {
+  background-color: $red-dog;
+  height: 128px;
+}
+
+h1 {
+  font-family: "prohibition";
+  color: white;
+  font-size: 6em;
+}
+
+ul {
+  font-family: "prohibition";
+  font-size: 3.5em;
+}
+
+.element {
+  @include clearfix;
+}
+
+.header-text {
+  color: $black-dog;
+}
