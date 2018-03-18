@@ -54,12 +54,21 @@ nav {
 
 ul.nav{
   background-color: $red-dog;
+  margin: 0
 }
 
-ul.nav div{
-  padding: 0;
+ul.nav li{
+  margin: 0;
 }
 
 main {
   margin-top: 10px;
+}
+
+main figure {
+  margin-bottom: .5rem;
+}
+
+section {
+  margin-bottom: 1em;
 }
