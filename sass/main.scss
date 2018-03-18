@@ -22,7 +22,7 @@ header{
   height: 128px;
 }
 
-header h1, p{
+header h1, header p{
   font-family: "prohibition";
   color: white;
 }
@@ -45,7 +45,30 @@ header p{
 }
 
 //Nav elements
-ul {
+nav {
   font-family: "prohibition";
-  font-size: 3.5em;
+  font-size: 3em;
+  color: white;
+  margin-top: 10px;
+}
+
+ul.nav{
+  background-color: $red-dog;
+  margin: 0
+}
+
+ul.nav li{
+  margin: 0;
+}
+
+main {
+  margin-top: 10px;
+}
+
+main figure {
+  margin-bottom: .5rem;
+}
+
+section {
+  margin-bottom: 1em;
 }
