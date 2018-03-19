@@ -54,6 +54,7 @@ header hr {
 
 //Nav elements
 .sidenav{
+  height: auto;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -75,7 +76,7 @@ header hr {
   border-bottom: 5px solid white;
 }
 
-#login, #bikes, #parts, #serivces, #rescue {
+#login, #bikes, #parts, #services, #rescue {
   border-top: 0;
   border-bottom: 5px solid white;
 }
@@ -92,6 +93,16 @@ header hr {
   width: 33.33%
 }
 
+.contact_info{
+  font-size: 1rem;
+  background-color: $black-dog;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+  overflow-x: auto;
+
+}
+
 //Aside Area
 aside {
   font-family: "prohibition";
@@ -101,19 +112,15 @@ aside {
 
 // Main Content Area
 main {
-  margin-top: 10px;
+  padding-top: 10px;
+  font-family: "industry"
 }
 #main_content {
   overflow: scroll;
 }
 
-p, figcaption {
-  font-family: "industry"
-}
-
-
 .figure {
-  margin: auto;
+  font-family: "industry";
   font-weight: 600;
 }
 
