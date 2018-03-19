@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-  <header class="container-fluid">
+  <header class="container-fluid sticky-top">
     <div class="row justify-content-between">
       <h1 class="col-sm-7">Red D<span class="header-text">ø</span>g M<span class="header-text">ø</span>ped</h1>
       <div class="col-sm-4 offset-sm-1">
@@ -19,42 +19,80 @@
     </div>
   </header>
 
-<!-- Navigation -->
-<div class="container-fluid">
+
+<div class="content container-fluid">
   <div class="row">
-    <nav class="col-sm-3">
-      <ul class="nav container">
-
-          <li class="nav-item">login</li>
-          <div class="col-sm-3">
-            <div class="col-4-" style="border: 1px solid white, height: 50px"></div>
-            <div class="col-4-"></div>
-            <div class="col-4-"></div>
+    <!-- Navigation -->
+    <nav class="col-sm-3 sidenav">
+      <ul class="nav">
+        <div class="row col-sm-12 justify-content-between">
+          <li class="nav-item col-sm-8" id="login">login</li>
+          <div class="col-sm-4 row lights">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
           </div>
-
-        <li class="nav-item">bikes</li>
-        <li class="nav-item">parts</li>
-        <li class="nav-item">service</li>
-        <li class="nav-item">rescue</li>
+        </div>
+        <div class="row col-sm-12 justify-content-between">
+          <li class="nav-item col-sm-8" id="bikes">bikes</li>
+          <div class="col-sm-4 row lights">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+          </div>
+        </div>
+          <div class="row col-sm-12 justify-content-between">
+            <li class="nav-item col-sm-8" id="parts">parts</li>
+            <div class="col-sm-4 row lights">
+              <div class="light"></div>
+              <div class="light"></div>
+              <div class="light"></div>
+            </div>
+          </div>
+        <div class="row col-sm-12 justify-content-between">
+          <li class="nav-item col-sm-8" id="services">service</li>
+          <div class="col-sm-4 row lights">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+          </div>
+        </div>
+        <div class="row col-sm-12 justify-content-between">
+          <li class="nav-item col-sm-8" id="rescue">rescue</li>
+          <div class="col-sm-4 row lights">
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+          </div>
+        </div>
       </ul>
     </nav>
+    <!-- Main Content -->
     <main class="col-sm-8">
-      <figure class="col-sm-12">
-        <img src="images/Indigan-Diablo.jpg"alt="Indigan Diablo" class="img-fluid">
-        <figcaption>This is a paragraph describing the photo above.</figcaption>
-      </figure>
-      <section class="row">
-        <p class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus finibus orci ac faucibus. Sed lacinia turpis quis mauris fermentum finibus vitae et odio. Pellentesque leo enim, vehicula ut arcu ut, facilisis maximus turpis. Suspendisse mattis fringilla pulvinar. Duis interdum massa justo, id fermentum leo vulputate ut.</p>
-        <div class="col-4">
-          <img src="images/ShredPed1.0.jpg" alt= "Shred Ped" class="img-thumbnail">
-        </div>
-      </section>
-      <section class="row">
-        <p class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus finibus orci ac faucibus. Sed lacinia turpis quis mauris fermentum finibus vitae et odio. Pellentesque leo enim, vehicula ut arcu ut, facilisis maximus turpis. Suspendisse mattis fringilla pulvinar. Duis interdum massa justo, id fermentum leo vulputate ut.</p>
-        <div class="col-4">
-          <img src="images/1976-yellow-puch-maxi-13.jpg" alt= "1976 Puch Maxi" class="img-thumbnail">
-        </div>
-      </section>
+      <div id="main_content">
+        <figure class="figure col-sm-12">
+          <img src="images/Indigan-Diablo.jpg"alt="Indigan Diablo" class="img-fluid">
+          <figcaption>This is a paragraph describing the photo above.</figcaption>
+        </figure>
+        <section class="row">
+          <p class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus finibus orci ac faucibus. Sed lacinia turpis quis mauris fermentum finibus vitae et odio. Pellentesque leo enim, vehicula ut arcu ut, facilisis maximus turpis. Suspendisse mattis fringilla pulvinar. Duis interdum massa justo, id fermentum leo vulputate ut.</p>
+          <div class="col-4">
+            <img src="images/ShredPed1.0.jpg" alt= "Shred Ped" class="img-thumbnail">
+          </div>
+        </section>
+        <section class="row">
+          <p class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus finibus orci ac faucibus. Sed lacinia turpis quis mauris fermentum finibus vitae et odio. Pellentesque leo enim, vehicula ut arcu ut, facilisis maximus turpis. Suspendisse mattis fringilla pulvinar. Duis interdum massa justo, id fermentum leo vulputate ut.</p>
+          <div class="col-4">
+            <img src="images/1976-yellow-puch-maxi-13.jpg" alt= "1976 Puch Maxi" class="img-thumbnail">
+          </div>
+        </section>
+        <section class="row">
+          <p class="col-sm-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas finibus finibus orci ac faucibus. Sed lacinia turpis quis mauris fermentum finibus vitae et odio. Pellentesque leo enim, vehicula ut arcu ut, facilisis maximus turpis. Suspendisse mattis fringilla pulvinar. Duis interdum massa justo, id fermentum leo vulputate ut.</p>
+          <div class="col-4">
+            <img src="images/1976-yellow-puch-maxi-13.jpg" alt= "1976 Puch Maxi" class="img-thumbnail">
+          </div>
+        </section>
+      </div>
     </main>
   </div>
 </div>

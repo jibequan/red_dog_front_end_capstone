@@ -45,30 +45,69 @@ header p{
 }
 
 //Nav elements
-nav {
+.sidenav{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0;
+  background-color: $red-dog;
+  color: white;
   font-family: "prohibition";
   font-size: 3em;
-  color: white;
-  margin-top: 10px;
 }
 
-ul.nav{
-  background-color: $red-dog;
-  margin: 0
+.nav>.row {
+  margin-left: 0px;
+  padding: 0;
 }
 
-ul.nav li{
+.nav-item {
+  padding: 0;
+  text-align: center;
+  border-bottom: 5px solid white;
+}
+
+#login, #bikes, #parts, #serivces, #rescue {
+  border-top: 0;
+  border-bottom: 5px solid white;
+}
+
+.lights {
   margin: 0;
+  padding: 0;
+  border-bottom: 5px solid white;
 }
 
+.light {
+  border-left: 5px solid white;
+  margin: 0;
+  width: 33.33%
+}
+
+// Main Content Area
 main {
   margin-top: 10px;
 }
+#main_content {
+  overflow: scroll;
+}
 
-main figure {
+p, figcaption {
+  font-family: "industry"
+}
+
+
+.figure {
   margin-bottom: .5rem;
+  padding: 0
+}
+
+figcaption {
+  font-weight: 600;
 }
 
 section {
   margin-bottom: 1em;
+  // padding-left: 10px;
+  // padding-right: 10px;
 }
