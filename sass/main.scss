@@ -67,6 +67,11 @@ header p{
   border-bottom: 5px solid white;
 }
 
+#login, #bikes, #parts, #serivces, #rescue {
+  border-top: 0;
+  border-bottom: 5px solid white;
+}
+
 .lights {
   margin: 0;
   padding: 0;
@@ -79,15 +84,11 @@ header p{
   width: 33.33%
 }
 
-#login, #bikes, #parts, #serivces, #rescue {
-  border-top: 0;
-  border-bottom: 5px solid white;
-}
-
-
 // Main Content Area
 main {
   margin-top: 10px;
+}
+#main_content {
   overflow: scroll;
 }
 
