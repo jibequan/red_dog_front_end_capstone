@@ -20,24 +20,32 @@ $black-dog: #000000;
 header{
   background-color: $red-dog;
   height: 128px;
-}
-
-header h1, header p{
   font-family: "prohibition";
-  color: white;
 }
 
-header h1 {
+header h1{
+  color: white;
   font-size: 6em;
+  margin: auto;
 }
 
 header hr {
   border-color: white;
   border-width: .3em;
+  margin: 0;
 }
 
-header p{
+#address p{
+  font-family: "prohibition";
   font-size: 2em;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+#address {
+  // padding-top: .5em;
+  margin: auto;
 }
 
 .header-text {
@@ -46,6 +54,7 @@ header p{
 
 //Nav elements
 .sidenav{
+  height: auto;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -67,7 +76,7 @@ header p{
   border-bottom: 5px solid white;
 }
 
-#login, #bikes, #parts, #serivces, #rescue {
+#login, #bikes, #parts, #services, #rescue {
   border-top: 0;
   border-bottom: 5px solid white;
 }
@@ -84,26 +93,39 @@ header p{
   width: 33.33%
 }
 
+.contact_info{
+  font-size: 1rem;
+  background-color: $black-dog;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+  overflow-x: auto;
+
+}
+
+//Aside Area
+aside {
+  font-family: "prohibition";
+  font-size: 1.5em;
+  color: $black-dog;
+}
+
 // Main Content Area
 main {
-  margin-top: 10px;
+  padding-top: 10px;
+  font-family: "industry"
 }
 #main_content {
   overflow: scroll;
 }
 
-p, figcaption {
-  font-family: "industry"
-}
-
-
 .figure {
-  margin-bottom: .5rem;
-  padding: 0
+  font-family: "industry";
+  font-weight: 600;
 }
 
-figcaption {
-  font-weight: 600;
+figure img {
+  // object-fit: cover;
 }
 
 section {
