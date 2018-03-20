@@ -122,6 +122,19 @@ main {
   padding-top: 10px;
   font-family: "industry"
 }
+
+main h3 {
+  font-family: "prohibition";
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+main p {
+  font-family: "industry";
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
 #main_content {
   overflow: scroll;
 }
