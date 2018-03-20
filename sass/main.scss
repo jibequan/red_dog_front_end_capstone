@@ -87,6 +87,13 @@ header hr {
   border-bottom: 5px solid white;
 }
 
+.item_selected {
+  margin: 0;
+  padding: 0;
+  border-bottom: 5px solid white;
+  background-color: $black-dog;
+}
+
 .light {
   border-left: 5px solid white;
   margin: 0;
@@ -115,6 +122,19 @@ main {
   padding-top: 10px;
   font-family: "industry"
 }
+
+main h3 {
+  font-family: "prohibition";
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+main p {
+  font-family: "industry";
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
 #main_content {
   overflow: scroll;
 }
