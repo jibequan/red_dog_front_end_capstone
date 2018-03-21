@@ -27,6 +27,16 @@ header h1{
   color: white;
   font-size: 6em;
   margin: auto;
+  // cursor: pointer;
+}
+
+h1 {
+   a{
+     text-decoration: none;
+     color: inherit;
+     &:hover {text-decoration: none;
+              color: inherit;}
+   }
 }
 
 header hr {
@@ -76,9 +86,10 @@ header hr {
   border-bottom: 5px solid white;
 }
 
-#login, #bikes, #parts, #services, #rescue {
+#login, #bikes, #parts, #service, #rescue {
   border-top: 0;
   border-bottom: 5px solid white;
+  cursor: pointer;
 }
 
 .lights {
