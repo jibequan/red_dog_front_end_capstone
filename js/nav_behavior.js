@@ -57,7 +57,8 @@ showContent.showParts = function() {
 showContent.showService = function() {
   //update with helper functions
   main_content.innerHTML = `<h3>Here are your bikes.<h3>
-  <p>You can additional bikes or request service for one already associated with your account.</p><div class="col-sm-12"></div>`;
+  <p>You can additional bikes or request service for one already associated with your account.</p>
+  <button type="button" class="btn btn-danger"id="add_bike">+Add bike</button>`;
 };
 
 showContent.showRescue = function() {

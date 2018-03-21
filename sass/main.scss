@@ -150,6 +150,15 @@ main p {
   overflow: scroll;
 }
 
+#add_bike {
+  background-color: $black-dog;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: .5rem;
+  margin: 1rem 1rem 1rem 0;
+}
+
 .figure {
   font-family: "industry";
   font-weight: 600;
