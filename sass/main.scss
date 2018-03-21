@@ -150,13 +150,18 @@ main p {
   overflow: scroll;
 }
 
-#add_bike {
+// #add_bike {
+//   background-color: $black-dog;
+//   border: none;
+//   color: white;
+//   font-size: 2rem;
+//   padding: .5rem .7rem .5rem .5rem;
+//   margin: 1rem 1rem 1rem 0;
+// }
+
+.btn-dark {
   background-color: $black-dog;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  padding: .5rem;
-  margin: 1rem 1rem 1rem 0;
+  font-family: "prohibition";
 }
 
 .figure {
