@@ -1,5 +1,8 @@
 "use strict";
 
+let $ = require('jquery'),
+    loginUser = require("./user");
+
 let showContent = {};
 
 let login = document.getElementById("login");
@@ -9,7 +12,16 @@ showContent.showLogin = function() {
   main_content.innerHTML = `<h3>Login to your account<h3>
   <p>See your bike repair history, request service, or request a roadside rescue.</p>
   <button type="button" class="btn btn-dark" id="googLogin">Sign In with Google</button>`;
-
+  $("#googLogin").click(function(){
+    console.log("clicked on Signin");
+    loginUser.logInGoogle()
+    .then((result) => {
+      console.log("result from login", result.user.uid);
+      login.setUser(result.user.uid);
+      // $("#login").addClass("is-hidden");
+      // $("#logout").removeClass("is-hidden");
+    });
+  });
 };
 
 showContent.showBikes = function() {
