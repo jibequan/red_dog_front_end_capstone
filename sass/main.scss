@@ -27,6 +27,16 @@ header h1{
   color: white;
   font-size: 6em;
   margin: auto;
+  // cursor: pointer;
+}
+
+h1 {
+   a{
+     text-decoration: none;
+     color: inherit;
+     &:hover {text-decoration: none;
+              color: inherit;}
+   }
 }
 
 header hr {
@@ -76,9 +86,10 @@ header hr {
   border-bottom: 5px solid white;
 }
 
-#login, #bikes, #parts, #services, #rescue {
+#login, #bikes, #parts, #service, #rescue {
   border-top: 0;
   border-bottom: 5px solid white;
+  cursor: pointer;
 }
 
 .lights {
@@ -136,7 +147,25 @@ main p {
 }
 
 #main_content {
-  overflow: scroll;
+  padding-bottom: 2rem;
+}
+
+.form-row, .form-group, .custom-file {
+  margin-bottom: 1rem;
+}
+
+.form-row label, .form-group label {
+  margin-bottom: .125rem;
+}
+
+.btn-dark {
+  background-color: $black-dog;
+  font-family: "prohibition";
+}
+
+.btn-danger {
+  background-color: $red-dog;
+  font-family: "prohibition";
 }
 
 .figure {

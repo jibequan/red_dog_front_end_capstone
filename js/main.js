@@ -4,7 +4,7 @@ console.log("Hello main.js");
 
 let $ = require('jquery'),
     login = require("./user"),
-    blackout= require("./nav_behavior"),
+    nav_behavior= require("./nav_behavior"),
     popDom= require("./dom_builder");
 
 let main_area = document.getElementById("main_content");
@@ -15,37 +15,26 @@ let bikesNav = document.getElementById("bikes");
 let partsNav = document.getElementById("parts");
 let rescueNav= document.getElementById("rescue");
 
-$("#googLogin").click(function(){
-  console.log("clicked on Signin");
-  login.logInGoogle()
-  .then((result) => {
-    console.log("result from login", result.user.uid);
-    login.setUser(result.user.uid);
-    $("#login").addClass("is-hidden");
-    $("#logout").removeClass("is-hidden");
-  });
-});
-
 nav.addEventListener("click", (e) => {
-  blackout.navSelected(e);
+  nav_behavior.navSelected(e);
 });
 
 loginNav.addEventListener("click", () => {
-  popDom.showContent.showLogin();
+  nav_behavior.showContent.showLogin();
 });
 
 bikesNav.addEventListener("click", () => {
-  popDom.showContent.showBikes();
+  nav_behavior.showContent.showBikes();
 });
 
 partsNav.addEventListener("click", () => {
-  popDom.showContent.showParts();
+  nav_behavior.showContent.showParts();
 });
 
 serviceNav.addEventListener("click", () => {
-  popDom.showContent.showService();
+  nav_behavior.showContent.showService();
 });
 
 rescueNav.addEventListener("click", () => {
-  popDom.showContent.showRescue();
+  nav_behavior.showContent.showRescue();
 });
