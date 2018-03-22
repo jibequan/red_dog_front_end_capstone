@@ -147,20 +147,24 @@ main p {
 }
 
 #main_content {
-  overflow: scroll;
+  padding-bottom: 2rem;
 }
 
-// #add_bike {
-//   background-color: $black-dog;
-//   border: none;
-//   color: white;
-//   font-size: 2rem;
-//   padding: .5rem .7rem .5rem .5rem;
-//   margin: 1rem 1rem 1rem 0;
-// }
+.form-row, .form-group, .custom-file {
+  margin-bottom: 1rem;
+}
+
+.form-row label, .form-group label {
+  margin-bottom: .125rem;
+}
 
 .btn-dark {
   background-color: $black-dog;
+  font-family: "prohibition";
+}
+
+.btn-danger {
+  background-color: $red-dog;
   font-family: "prohibition";
 }
 
