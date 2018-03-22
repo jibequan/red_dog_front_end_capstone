@@ -1,7 +1,8 @@
 "use strict";
 
 let login = require("./user"),
-    $ = require("jquery");
+    $ = require("jquery"),
+    bikeForm = require("./forms");
 
 let loginDiv = document.getElementById("login");
 let main_content = document.getElementById("main_content");
@@ -58,7 +59,11 @@ showContent.showService = function() {
   //update with helper functions
   main_content.innerHTML = `<h3>Here are your bikes.<h3>
   <p>You can additional bikes or request service for one already associated with your account.</p>
-  <button type="button" class="btn btn-danger"id="add_bike">+Add bike</button>`;
+  <button type="button" class="btn btn-dark" id="add_bike">+Add bike</button>`;
+  let addBike = document.getElementById("add_bike");
+  addBike.addEventListener("click", ()=>{
+    bikeForm.showForm();
+  });
 };
 
 showContent.showRescue = function() {
