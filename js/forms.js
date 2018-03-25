@@ -1,9 +1,13 @@
 "use strict";
 
-function showForm(){
+function showGuestForm(){
   let main_area = document.getElementById("main_content");
   main_area.innerHTML =
-  `<form>
+  `<h3>Setup Service for your bike</h3>
+  <p class="subheading">Just provide us with your contact information and some for your bike and we'll get things going.
+  </p>
+  <p>Step 1 -> <span>Step 2 -> </span><span class="disabled">Step 3</span></p>
+  <form>
       <fieldset>
         <legend>Contact Information</legend>
 <!-- First and Last Name -->
@@ -86,8 +90,8 @@ function showForm(){
         </fieldset>
         <!-- Add Bike/Submit Button -->
           <button type="submit" class="btn btn-danger" value="CANCEL">Cancel</button>
-          <button type="submit" class="btn btn-dark" value="ADD BIKE">Add Bike</button>          
+          <button type="submit" class="btn btn-dark" value="ADD BIKE">Add Bike</button>
       </form>`;
 }
 
-module.exports = {showForm};
+module.exports = {showGuestForm};
