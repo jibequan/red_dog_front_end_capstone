@@ -14,7 +14,7 @@ function loadBikes() {
   //Once the data is back, format it and make it ready for the DOM
   .then((bikeData) => {
     template.makeBikeGrid(bikeData);
-  })
+  });
 }
 
 module.exports = {};
