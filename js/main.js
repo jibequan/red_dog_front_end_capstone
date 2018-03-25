@@ -9,18 +9,14 @@ let $ = require('jquery'),
 
 let main_area = document.getElementById("main_content");
 let nav = document.getElementById("nav_list");
-let loginNav = document.getElementById("login");
-let serviceNav = document.getElementById("service");
 let bikesNav = document.getElementById("bikes");
 let partsNav = document.getElementById("parts");
+let serviceNav = document.getElementById("service");
 let rescueNav= document.getElementById("rescue");
+let armyNav = document.getElementById("army");
 
 nav.addEventListener("click", (e) => {
   nav_behavior.navSelected(e);
-});
-
-loginNav.addEventListener("click", () => {
-  nav_behavior.showContent.showLogin();
 });
 
 bikesNav.addEventListener("click", () => {
@@ -37,4 +33,8 @@ serviceNav.addEventListener("click", () => {
 
 rescueNav.addEventListener("click", () => {
   nav_behavior.showContent.showRescue();
+});
+
+armyNav.addEventListener("click", () => {
+  nav_behavior.showContent.showArmy();
 });
