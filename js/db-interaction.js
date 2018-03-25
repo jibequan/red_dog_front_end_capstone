@@ -13,4 +13,8 @@ function getBikes(user) {
   });
 }
 
+function addBike() {
+  
+}
+
 module.exports = {};
