@@ -2,7 +2,8 @@
 
 let login = require("./user"),
     $ = require("jquery"),
-    forms = require("./forms");
+    forms = require("./forms"),
+    popDOM = require("./dom_builder");
 
 let loginDiv = document.getElementById("login");
 let main_content = document.getElementById("main_content");
@@ -56,24 +57,13 @@ showContent.showService = function() {
     .then((result) => {
       console.log("result from login", result.user.uid);
       login.setUser(result.user.uid);
-      showContent.showMyBikes();
+      popDOM.content.showMyBikes();
     });
   });
   $("#guestLogin").click(function(){
     console.log("clicked on Guest Signin");
     forms.showGuestForm();
     });
-};
-
-showContent.showMyBikes = function() {
-  //update with helper functions
-  main_content.innerHTML = `<h3>Here are your bikes.</h3>
-  <p class="subheading">You can additional bikes or request service for one already associated with your account.</p>
-  <button type="button" class="btn btn-dark" id="add_bike">+Add bike</button>`;
-  let addBike = document.getElementById("add_bike");
-  addBike.addEventListener("click", ()=>{
-    forms.showGuestForm();
-  });
 };
 
 showContent.showRescue = function() {
