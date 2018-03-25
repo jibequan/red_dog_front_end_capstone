@@ -1,6 +1,7 @@
 @import url("https://use.typekit.net/ius6gqc.css");
 
 $red-dog: #FF0202;
+$grey-dog: #BFBFBF;
 $black-dog: #000000;
 
 @mixin clearfix() {
@@ -27,7 +28,6 @@ header h1{
   color: white;
   font-size: 6em;
   margin: auto;
-  // cursor: pointer;
 }
 
 h1 {
@@ -54,7 +54,6 @@ header hr {
 }
 
 #address {
-  // padding-top: .5em;
   margin: auto;
 }
 
@@ -65,9 +64,9 @@ header hr {
 //Nav elements
 .sidenav{
   height: auto;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-top: .5rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
   padding: 0;
   background-color: $red-dog;
   color: white;
@@ -76,49 +75,34 @@ header hr {
 }
 
 .nav>.row {
-  margin-left: 0px;
+  margin-left: 0;
+  margin-right: 0;
   padding: 0;
+  border-bottom: .5rem solid white;
+  cursor: pointer;
 }
 
 .nav-item {
+  margin: 0;
   padding: 0;
   text-align: center;
-  border-bottom: 5px solid white;
-}
-
-#login, #bikes, #parts, #service, #rescue {
-  border-top: 0;
-  border-bottom: 5px solid white;
-  cursor: pointer;
 }
 
 .lights {
   margin: 0;
   padding: 0;
-  border-bottom: 5px solid white;
 }
 
 .item_selected {
   margin: 0;
   padding: 0;
-  border-bottom: 5px solid white;
   background-color: $black-dog;
 }
 
 .light {
-  border-left: 5px solid white;
+  border-left: .5rem solid white;
   margin: 0;
   width: 33.33%
-}
-
-.contact_info{
-  font-size: 1rem;
-  background-color: $black-dog;
-  color: white;
-  padding: 1rem;
-  margin: 1rem;
-  overflow-x: auto;
-
 }
 
 //Aside Area
@@ -128,28 +112,51 @@ aside {
   color: $black-dog;
 }
 
+.contact_info{
+  font-size: 1rem;
+  background-color: $black-dog;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+  overflow-x: auto;
+}
+
 // Main Content Area
 main {
-  padding-top: 10px;
-  font-family: "industry"
+  margin: .5rem .5rem 0 .5rem;
+  padding: 0 0 2rem 0;
+  font-family: "industry";
+  color: $black-dog;
+  font-size: 1rem;
+
 }
 
 main h3 {
   font-family: "prohibition";
   font-size: 2rem;
-  margin-bottom: 0;
+  margin-bottom: .5rem;
+}
+
+.subheading {
+  font-family: "industry";
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 main p {
+  margin-bottom: .5rem;
+}
+
+.figure {
   font-family: "industry";
-  font-size: 1rem;
-  margin-bottom: 0;
+  font-weight: 600;
 }
 
-#main_content {
-  padding-bottom: 2rem;
+section {
+  margin-bottom: 1em;
 }
 
+//Form Elements
 .form-row, .form-group, .custom-file {
   margin-bottom: 1rem;
 }
@@ -158,27 +165,20 @@ main p {
   margin-bottom: .125rem;
 }
 
+//Buttons
+.btn {
+  margin-bottom: 1rem;
+  font-family: "prohibition"
+}
+
 .btn-dark {
   background-color: $black-dog;
-  font-family: "prohibition";
 }
 
 .btn-danger {
   background-color: $red-dog;
-  font-family: "prohibition";
 }
 
-.figure {
-  font-family: "industry";
-  font-weight: 600;
-}
-
-figure img {
-  // object-fit: cover;
-}
-
-section {
-  margin-bottom: 1em;
-  // padding-left: 10px;
-  // padding-right: 10px;
+.disabled {
+  color: $grey-dog;
 }
