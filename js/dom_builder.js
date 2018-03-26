@@ -30,11 +30,12 @@ content.showService = () => {
   </p>
   <button type="button" class="btn btn-dark" id="guestLogin">Sign In as Guest</button>`;
   $("#googLogin").click(function(){
-    // console.log("clicked on Google Signin");
     user.logInGoogle()
     .then((result) => {
       console.log("result from login", result.user);
       user.setUser(result.user);
+      let newUser = db.createUser();
+      db.addUser(newUser);
       console.log("my name", user.getUser().displayName);
       content.showMyBikes();
     });

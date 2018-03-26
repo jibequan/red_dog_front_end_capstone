@@ -6,7 +6,7 @@ let $ = require('jquery'),
 
 // console.log("Hello db-interaction");
 
-function createUser () {
+function createUser() {
   let newUser = {};
   newUser.uid = user.getUser().uid;
   newUser.fullName = user.getUser().displayName;
@@ -21,6 +21,7 @@ function addUser(user) {
     data: JSON.stringify(user),
     dataType: 'json'
   }).done((uid) => {
+    console.log("And now for something completely different.", uid);
     return uid;
   });
 }
