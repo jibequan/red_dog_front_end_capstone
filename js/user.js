@@ -14,7 +14,6 @@ function logOut(){
 
 function setUser(val){
 	currentUser = val;
-	// console.log("This is the current user.", currentUser);
 }
 
 function getUser() {
@@ -22,12 +21,12 @@ function getUser() {
 }
 
 firebase.auth().onAuthStateChanged(function(user){
-	// console.log("onAuthStateChanged", user);
+	console.log("onAuthStateChanged", user);
 	if (user){
 		currentUser = user.uid;
 	}else{
 		currentUser = null;
-		// console.log("NO USER LOGGED IN");
+		console.log("NO USER LOGGED IN");
 	}
 });
 
