@@ -1,5 +1,7 @@
 "use strict";
 
+let db = require("./db-interaction");
+
 function showGuestForm(){
   let main_area = document.getElementById("main_content");
   main_area.innerHTML =
@@ -132,9 +134,13 @@ function showBikeForm(){
             </div>
         </fieldset>
         <!-- Add Bike/Submit Button -->
-          <button type="submit" class="btn btn-danger" value="CANCEL">Cancel</button>
-          <button type="submit" class="btn btn-dark" id="add_bike" value="ADD BIKE">Add Bike</button>
+          <button type="button" class="btn btn-danger" value="CANCEL">Cancel</button>
+          <button type="button" class="btn btn-dark" id="add_bike" value="ADD BIKE">Add Bike</button>
       </form>`;
+      document.getElementById("add_bike").addEventListener("click", () => {
+        let bike_object = db.createBike();
+        db.addBike(bike_object);
+      });
 }
 
 function showTimeForm() {
@@ -151,8 +157,7 @@ function showTimeForm() {
       <a class="dropdown-item" href="#">Dropoff</a>
       <a class="dropdown-item" href="#">Pickup</a>
     </div>
-</div>`;
-
+  </div>`;
 }
 
 module.exports = {showGuestForm, showBikeForm, showTimeForm};
