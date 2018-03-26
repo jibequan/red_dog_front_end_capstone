@@ -1,8 +1,9 @@
 "use strict";
 
-let login = require("./user"),
+let user = require("./user"),
     $ = require("jquery"),
     forms = require("./forms"),
+    db = require("./db-interaction"),
     popDOM = require("./dom_builder");
 
 let loginDiv = document.getElementById("login");
@@ -52,11 +53,14 @@ showContent.showService = function() {
   </p>
   <button type="button" class="btn btn-dark" id="guestLogin">Sign In as Guest</button>`;
   $("#googLogin").click(function(){
-    console.log("clicked on Google Signin");
-    login.logInGoogle()
+    // console.log("clicked on Google Signin");
+    user.logInGoogle()
     .then((result) => {
-      console.log("result from login", result.user.uid);
-      login.setUser(result.user.uid);
+      console.log("result from login", result.user);
+      user.setUser(result.user);
+      console.log("my name", user.getUser().displayName);
+      let newUser = db.createUser();
+      db.addUser(newUser);
       popDOM.content.showMyBikes();
     });
   });

@@ -1,20 +1,52 @@
 "use strict";
 
 let $ = require('jquery'),
-    firebase = require("./fb-config");
+    firebase = require("./fb-config"),
+    user = require("./user");
 
-console.log("Hello db-interaction");
+// console.log("Hello db-interaction");
 
-function getBikes(user) {
+function createUser () {
+  let newUser = {};
+  newUser.uid = user.getUser().uid;
+  newUser.fullName = user.getUser().displayName;
+  newUser.email = user.getUser().email;
+  return newUser;
+}
+
+function addUser(user) {
   return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${user}"`
-  }).done((bikeData) => {
-    return bikeData;
+    url: `${firebase.getFBsettings().databaseURL}/users.json`,
+    type: 'POST',
+    data: JSON.stringify(user),
+    dataType: 'json'
+  }).done((uid) => {
+    return uid;
   });
 }
 
-function addBike() {
-  
+function createBike() {
+  let newBike = {};
+  newBike.uid = user.getUser();
+  newBike.nickname = document.getElementById("bike-nickname").value;
+  newBike.photo = document.getElementById("customFile").value;
+  newBike.year = document.getElementById("bike-year").value;
+  newBike.make = document.getElementById("bike-make").value;
+  newBike.model = document.getElementById("bike-model").value;
+  newBike.comments = document.getElementById("bike-comments").value;
+  return newBike;
 }
 
-module.exports = {};
+function addBike(bike) {
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/bikes.json`,
+    type: 'POST',
+    data: JSON.stringify(bike),
+    dataType: 'json'
+  }).done((bid) => {
+    return bid;
+  });
+}
+
+
+module.exports = {createBike, addBike, createUser, addUser};
