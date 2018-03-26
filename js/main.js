@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("Hello main.js");
+// console.log("Hello main.js");
 
 let $ = require('jquery'),
     login = require("./user"),
