@@ -131,6 +131,10 @@ main {
 
 }
 
+#main_content {
+  margin: 0;
+}
+
 main h3 {
   font-family: "prohibition";
   font-size: 2rem;
@@ -177,6 +181,12 @@ section {
 
 .btn-danger {
   background-color: $red-dog;
+}
+
+.btn-secondary {
+  border: none;
+  color: $black-dog;
+  background-color: $grey-dog;
 }
 
 .disabled {
