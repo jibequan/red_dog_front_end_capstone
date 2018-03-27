@@ -2,10 +2,8 @@
 
 // console.log("Hello main.js");
 
-let $ = require('jquery'),
-    login = require("./user"),
-    nav_behavior= require("./nav_behavior"),
-    popDom= require("./dom_builder");
+let nav_behavior= require("./nav_behavior"),
+    popDOM= require("./dom_builder");
 
 let main_area = document.getElementById("main_content");
 let nav = document.getElementById("nav_list");
@@ -20,21 +18,21 @@ nav.addEventListener("click", (e) => {
 });
 
 bikesNav.addEventListener("click", () => {
-  nav_behavior.showContent.showBikes();
+  popDOM.content.showBikes();
 });
 
 partsNav.addEventListener("click", () => {
-  nav_behavior.showContent.showParts();
+  popDOM.content.showParts();
 });
 
 serviceNav.addEventListener("click", () => {
-  nav_behavior.showContent.showService();
+  popDOM.content.showService();
 });
 
 rescueNav.addEventListener("click", () => {
-  nav_behavior.showContent.showRescue();
+  popDOM.content.showRescue();
 });
 
 armyNav.addEventListener("click", () => {
-  nav_behavior.showContent.showArmy();
+  popDOM.content.showArmy();
 });
