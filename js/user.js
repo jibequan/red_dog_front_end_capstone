@@ -2,8 +2,15 @@
 let firebase = require("./fb-config"),
 	provider = new firebase.auth.GoogleAuthProvider(),
 	currentUser = null,
-	completeUser = null;
+	completeUser = {
+		fbID: null
+	};
 
+function makeCompleteUser(currentUser) {
+	completeUser.name = currentUser.displayName;
+	completeUser.email = currentUser.email;
+	completeUser.uid = currentUser.uid;
+}
 
 function logInGoogle() {
   return firebase.auth().signInWithPopup(provider);
@@ -21,18 +28,20 @@ function setUserFbUglyId(fUglyID) {
 	completeUser.fbID = fUglyID;
 }
 
-function getUserFbUglyId() {
-	return completeUser.fbID;
+function getCompleteUser() {
+	console.log("Here is your completed user with NEW fbID!", completeUser);
+	return completeUser;
 }
 
 firebase.auth().onAuthStateChanged(function(user){
 	console.log("onAuthStateChanged", user);
 	if (user){
 		currentUser = user;
+		makeCompleteUser(currentUser);
 	}else{
 		currentUser = null;
 		console.log("NO USER LOGGED IN");
 	}
 });
 
-module.exports = {logInGoogle, logOut, getUser, setUserFbUglyId, getUserFbUglyId};
+module.exports = {logInGoogle, logOut, getUser, setUserFbUglyId, getCompleteUser};
