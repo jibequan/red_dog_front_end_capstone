@@ -6,23 +6,54 @@ let $ = require('jquery'),
 
 // console.log("Hello db-interaction");
 
+function askFBForInfo(uid) {
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
+  }).done((resolve) => {
+    return resolve;
+  }).fail((error) => {
+    return error;
+  });
+}
+
+function checkFB(uid) {
+  askFBForInfo(uid)
+  .then((result) => {
+    let data = Object.values(result);
+    if (data.length === 0){
+      addUser(createUser())
+      .then((result) => {
+        user.setUserFbUglyId(result.name);
+        user.getCompleteUser();
+        console.log("went through the top");
+        //Show empty bike form
+      });
+  } else {
+    user.setUserFbUglyId(Object.keys(result)[0]);
+    user.getCompleteUser();
+    console.log("went through the bottom");
+    //show bikes passing in FUglyID
+    }
+  });
+}
+
 function createUser() {
+  let info = user.getUser();
   let newUser = {};
-  newUser.uid = user.getUser().uid;
+  newUser.uid = info.uid;
   newUser.fullName = user.getUser().displayName;
   newUser.email = user.getUser().email;
   return newUser;
 }
 
-function addUser(user) {
+function addUser(newUser) {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json`,
     type: 'POST',
-    data: JSON.stringify(user),
+    data: JSON.stringify(newUser),
     dataType: 'json'
-  }).done((uid) => {
-    console.log("And now for something completely different.", uid);
-    return uid;
+  }).done((fbID) => {
+    return fbID;
   });
 }
 
@@ -49,5 +80,35 @@ function addBike(bike) {
   });
 }
 
+// function getBikes(uid) {
+//   return $.ajax({
+//     url: `${firebase.getFBsettings().databaseURL}/bikes.json/${uid}`,
+//     type: 'GET',
+//   }).done((something) => {
+//     console.log("This is something", something);
+//     return something;
+//   });
+// }
 
-module.exports = {createBike, addBike, createUser, addUser};
+let getBikes = (uid) => {
+    return new Promise((resolve, reject) => {
+    let bikesXHR = new XMLHttpRequest();
+
+    bikesXHR.addEventListener("load", function() {
+      let data = JSON.parse(this.responseText);
+      // console.log("data in call", data);
+      resolve(data);
+    });
+
+    bikesXHR.addEventListener("error", function(){
+      var error = bikesXHR.statusText;
+      reject(error);
+    });
+
+    bikesXHR.open("GET", `${firebase.getFBsettings().databaseURL}/bikes.json/orderBy="${uid}"`);
+    bikesXHR.send();
+  });
+};
+
+
+module.exports = {createBike, addBike, createUser, addUser, askFBForInfo, checkFB, getBikes};

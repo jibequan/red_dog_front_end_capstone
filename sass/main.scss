@@ -160,6 +160,24 @@ section {
   margin-bottom: 1em;
 }
 
+.card-body {
+  padding: 0;
+}
+
+h5.card-title {
+  font-weight: 600;
+}
+
+.list-group {
+  margin-bottom: 1rem;
+}
+
+.list-group-item {
+  font-size: .75rem;
+  padding: .5rem;
+  cursor: pointer;
+}
+
 //Form Elements
 .form-row, .form-group, .custom-file {
   margin-bottom: 1rem;
