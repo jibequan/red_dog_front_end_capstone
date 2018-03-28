@@ -4,7 +4,7 @@ let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
     forms = require("./forms"),
-    dom = require("./dom_builder");
+    show = require("./show_bikes");
 
 function askFBForInfo(uid) {
   return $.ajax({
@@ -33,7 +33,7 @@ function checkFB(uid) {
     getBikes(user.getCompleteUser().uid)
     .then((data) => {
       console.log("This is the data", data);
-      dom.showMyBikes(data.data);
+      show.showMyBikes(data);
       });
     console.log("went through the bottom");
     }
