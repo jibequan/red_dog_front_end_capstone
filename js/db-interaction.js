@@ -3,9 +3,8 @@
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
-    forms = require("./forms");
-
-// console.log("Hello db-interaction");
+    forms = require("./forms"),
+    dom = require("./dom_builder");
 
 function askFBForInfo(uid) {
   return $.ajax({
@@ -31,7 +30,11 @@ function checkFB(uid) {
       });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
-    getBikes(user.getCompleteUser().uid);
+    getBikes(user.getCompleteUser().uid)
+    .then((data) => {
+      console.log("This is the data", data);
+      dom.showMyBikes(data.data);
+      });
     console.log("went through the bottom");
     }
   });
@@ -81,7 +84,6 @@ function addBike(bike) {
   });
 }
 
-
 let getBikes = (uid) => {
     console.log("What is this?", uid);
     return new Promise((resolve, reject) => {
@@ -89,7 +91,7 @@ let getBikes = (uid) => {
 
     bikesXHR.addEventListener("load", function() {
       let data = JSON.parse(this.responseText);
-      console.log("data in call", data);
+      // console.log("data in call", data);
       resolve(data);
     });
 

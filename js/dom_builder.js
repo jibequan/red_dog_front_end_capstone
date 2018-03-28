@@ -43,19 +43,18 @@ content.showService = () => {
     });
 };
 
-content.showMyBikes = () => {
-  main_content.innerHTML = `<h3>Hey ${user.getUser().displayName}. Here are your bikes.</h3>
+function showMyBikes(bikes_data) {
+  console.log("Did you get here?");
+  main_content.innerHTML = `<h3>Hey ${user.getCompleteUser().displayName}. Here are your bikes.</h3>
   <p class="subheading">You can additional bikes or request service for one already associated with your account.</p>
   <button type="button" class="btn btn-dark" id="add_bike">+ Add bike</button>
   <div id="gallery" class="row"></div>`;
-  //ask FB for user's bikes using their FBUglyID using user.getUserFbUglyId
-
-  makeBikeGrid();
+  makeBikeGrid(bikes_data);
   let addBike = document.getElementById("add_bike");
   addBike.addEventListener("click", ()=>{
     forms.showBikeForm();
   });
-};
+}
 
 content.showRescue = () => {
   //update with helper functions
@@ -68,11 +67,12 @@ content.showArmy = () => {
   <p>Maybe an API?</p>`;
 };
 
-function makeBikeGrid() {
+function makeBikeGrid(bikes_data) {
+  for (let bike in bikes_data) {
   document.getElementById("gallery").innerHTML = `<div class="card col-sm-6">
-    <img class="card-img-top" src="images/ShredPed1.0.jpg" alt="Card image cap">
+    <img class="card-img-top" src="${bike.photo}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">"Nickname" | Year | Make | Model</h5>
+      <h5 class="card-title">"${bike.nickname}" | ${bike.year} | ${bike.make} | ${bike.model}</h5>
       <p class="card-text">Repair History</p>
       <div class="list-group">
         <a href="#" class="list-group-item">02/14/2018: Cleaned carberator, new chain, fixed signal</a>
@@ -82,6 +82,7 @@ function makeBikeGrid() {
       <a href="#" class="btn btn-dark">Request Service</a>
     </div>
   </div>`;
+  }
 }
 
-module.exports = {content};
+module.exports = {content, showMyBikes};
