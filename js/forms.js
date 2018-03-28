@@ -138,8 +138,8 @@ function showBikeForm(){
           <button type="button" class="btn btn-dark" id="add_bike" value="ADD BIKE">Add Bike</button>
       </form>`;
       document.getElementById("add_bike").addEventListener("click", () => {
-        let bike_object = db.createBike();
-        db.addBike(bike_object);
+        console.log("Did you get here?");
+        db.addBike(db.createBike());
       });
 }
 

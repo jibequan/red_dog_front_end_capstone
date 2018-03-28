@@ -2,7 +2,8 @@
 
 let $ = require('jquery'),
     firebase = require("./fb-config"),
-    user = require("./user");
+    user = require("./user"),
+    forms = require("./forms");
 
 // console.log("Hello db-interaction");
 
@@ -24,7 +25,8 @@ function checkFB(uid) {
       addUser(createUser())
       .then((result) => {
         user.setUserFbUglyId(result.name);
-        getBikes(user.getCompleteUser().uid);
+        // getBikes(user.getCompleteUser().uid);
+        forms.showBikeForm();
         console.log("went through the top");
       });
   } else {
@@ -57,7 +59,7 @@ function addUser(newUser) {
 
 function createBike() {
   let newBike = {};
-  newBike.uid = user.getUser();
+  newBike.uid = user.getCompleteUser().uid;
   newBike.nickname = document.getElementById("bike-nickname").value;
   newBike.photo = document.getElementById("customFile").value;
   newBike.year = document.getElementById("bike-year").value;
