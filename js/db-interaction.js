@@ -24,15 +24,13 @@ function checkFB(uid) {
       addUser(createUser())
       .then((result) => {
         user.setUserFbUglyId(result.name);
-        user.getCompleteUser();
+        getBikes(user.getCompleteUser().uid);
         console.log("went through the top");
-        //Show empty bike form
       });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
-    user.getCompleteUser();
+    getBikes(user.getCompleteUser().uid);
     console.log("went through the bottom");
-    //show bikes passing in FUglyID
     }
   });
 }
@@ -76,27 +74,20 @@ function addBike(bike) {
     data: JSON.stringify(bike),
     dataType: 'json'
   }).done((bid) => {
+    console.log(bid);
     return bid;
   });
 }
 
-// function getBikes(uid) {
-//   return $.ajax({
-//     url: `${firebase.getFBsettings().databaseURL}/bikes.json/${uid}`,
-//     type: 'GET',
-//   }).done((something) => {
-//     console.log("This is something", something);
-//     return something;
-//   });
-// }
 
 let getBikes = (uid) => {
+    console.log("What is this?", uid);
     return new Promise((resolve, reject) => {
     let bikesXHR = new XMLHttpRequest();
 
     bikesXHR.addEventListener("load", function() {
       let data = JSON.parse(this.responseText);
-      // console.log("data in call", data);
+      console.log("data in call", data);
       resolve(data);
     });
 
@@ -105,7 +96,7 @@ let getBikes = (uid) => {
       reject(error);
     });
 
-    bikesXHR.open("GET", `${firebase.getFBsettings().databaseURL}/bikes.json/orderBy="${uid}"`);
+    bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${uid}"`);
     bikesXHR.send();
   });
 };

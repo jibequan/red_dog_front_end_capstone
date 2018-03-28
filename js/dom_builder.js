@@ -33,11 +33,10 @@ content.showService = () => {
     user.logInGoogle()
     .then((result) => {
       db.checkFB(result.user.uid);
-      // user.getUserFbUglyId();
-      // db.getBikes();
-      // content.showMyBikes();
     });
-  });
+
+    });
+
   $("#guestLogin").click(function(){
     console.log("clicked on Guest Signin");
     forms.showGuestForm();
