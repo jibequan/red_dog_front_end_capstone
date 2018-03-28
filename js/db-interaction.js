@@ -18,19 +18,21 @@ function askFBForInfo(uid) {
 
 function checkFB(uid) {
   askFBForInfo(uid)
-  .then((result) => {//result will be the product of the previous line
-    // user.setUserFbUglyId(result);
+  .then((result) => {
     let data = Object.values(result);
     if (data.length === 0){
       addUser(createUser())
       .then((result) => {
-        console.log("Show the user an empty bike gallery.", result);
-        user.setUserFbUglyId(result);
+        user.setUserFbUglyId(result.name);
+        user.getCompleteUser();
+        console.log("went through the top");
         //Show empty bike form
       });
   } else {
-    return user.getUserFbUglyId();
-    //show bikes passing in FUglyID via getUserFbUglyId
+    user.setUserFbUglyId(Object.keys(result)[0]);
+    user.getCompleteUser();
+    console.log("went through the bottom");
+    //show bikes passing in FUglyID
     }
   });
 }
