@@ -2,7 +2,7 @@
 
 let forms = require("./forms"),
     user= require("./user"),
-    $ = require ('jquery');
+    ab = require("./add_Bikes");
 
 
 let main_content = document.getElementById("main_content");
@@ -35,7 +35,7 @@ function showMyBikes(bikes_data) {
   makeBikeGrid(bikes_data);
   let addBike = document.getElementById("add_bike");
   addBike.addEventListener("click", ()=>{
-    forms.showBikeForm();
+    ab.showBikeForm();
   });
 }
 
