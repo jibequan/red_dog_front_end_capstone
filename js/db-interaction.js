@@ -35,9 +35,9 @@ function checkFB(uid) {
       console.log("This is the data", data);
       show.showMyBikes(data);
       });
-    console.log("went through the bottom");
     }
-  });
+    console.log("went through the bottom");
+    });
 }
 
 function createUser() {
