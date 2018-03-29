@@ -4,7 +4,8 @@ let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
     forms = require("./forms"),
-    show = require("./show_bikes");
+    show = require("./show_bikes"),
+    ab = require("./add_Bikes");
 
 function askFBForInfo(uid) {
   return $.ajax({
@@ -24,9 +25,7 @@ function checkFB(uid) {
       addUser(createUser())
       .then((result) => {
         user.setUserFbUglyId(result.name);
-        // getBikes(user.getCompleteUser().uid);
-        forms.showBikeForm();
-        console.log("went through the top");
+        ab.showBikeForm();
       });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
@@ -36,8 +35,7 @@ function checkFB(uid) {
       show.showMyBikes(data);
       });
     }
-    console.log("went through the bottom");
-    });
+  });
 }
 
 function createUser() {
@@ -60,30 +58,6 @@ function addUser(newUser) {
   });
 }
 
-function createBike() {
-  let newBike = {};
-  newBike.uid = user.getCompleteUser().uid;
-  newBike.nickname = document.getElementById("bike-nickname").value;
-  newBike.photo = document.getElementById("customFile").value;
-  newBike.year = document.getElementById("bike-year").value;
-  newBike.make = document.getElementById("bike-make").value;
-  newBike.model = document.getElementById("bike-model").value;
-  newBike.comments = document.getElementById("bike-comments").value;
-  return newBike;
-}
-
-function addBike(bike) {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/bikes.json`,
-    type: 'POST',
-    data: JSON.stringify(bike),
-    dataType: 'json'
-  }).done((bid) => {
-    console.log(bid);
-    return bid;
-  });
-}
-
 let getBikes = (uid) => {
     console.log("What is this?", uid);
     return new Promise((resolve, reject) => {
@@ -91,7 +65,6 @@ let getBikes = (uid) => {
 
     bikesXHR.addEventListener("load", function() {
       let data = JSON.parse(this.responseText);
-      // console.log("data in call", data);
       resolve(data);
     });
 
@@ -106,4 +79,4 @@ let getBikes = (uid) => {
 };
 
 
-module.exports = {createBike, addBike, createUser, addUser, askFBForInfo, checkFB, getBikes};
+module.exports = {createUser, addUser, askFBForInfo, checkFB, getBikes};
