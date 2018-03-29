@@ -2,9 +2,9 @@
 
 let $ = require('jquery'),
     firebase = require("./fb-config"),
-    user = require("./user");
-
-// console.log("Hello db-interaction");
+    user = require("./user"),
+    forms = require("./forms"),
+    show = require("./show_bikes");
 
 function askFBForInfo(uid) {
   return $.ajax({
@@ -24,17 +24,20 @@ function checkFB(uid) {
       addUser(createUser())
       .then((result) => {
         user.setUserFbUglyId(result.name);
-        user.getCompleteUser();
+        // getBikes(user.getCompleteUser().uid);
+        forms.showBikeForm();
         console.log("went through the top");
-        //Show empty bike form
       });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
-    user.getCompleteUser();
-    console.log("went through the bottom");
-    //show bikes passing in FUglyID
+    getBikes(user.getCompleteUser().uid)
+    .then((data) => {
+      console.log("This is the data", data);
+      show.showMyBikes(data);
+      });
     }
-  });
+    console.log("went through the bottom");
+    });
 }
 
 function createUser() {
@@ -59,7 +62,7 @@ function addUser(newUser) {
 
 function createBike() {
   let newBike = {};
-  newBike.uid = user.getUser();
+  newBike.uid = user.getCompleteUser().uid;
   newBike.nickname = document.getElementById("bike-nickname").value;
   newBike.photo = document.getElementById("customFile").value;
   newBike.year = document.getElementById("bike-year").value;
@@ -76,21 +79,13 @@ function addBike(bike) {
     data: JSON.stringify(bike),
     dataType: 'json'
   }).done((bid) => {
+    console.log(bid);
     return bid;
   });
 }
 
-// function getBikes(uid) {
-//   return $.ajax({
-//     url: `${firebase.getFBsettings().databaseURL}/bikes.json/${uid}`,
-//     type: 'GET',
-//   }).done((something) => {
-//     console.log("This is something", something);
-//     return something;
-//   });
-// }
-
 let getBikes = (uid) => {
+    console.log("What is this?", uid);
     return new Promise((resolve, reject) => {
     let bikesXHR = new XMLHttpRequest();
 
@@ -105,7 +100,7 @@ let getBikes = (uid) => {
       reject(error);
     });
 
-    bikesXHR.open("GET", `${firebase.getFBsettings().databaseURL}/bikes.json/orderBy="${uid}"`);
+    bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${uid}"`);
     bikesXHR.send();
   });
 };
