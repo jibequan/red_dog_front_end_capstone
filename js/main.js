@@ -7,7 +7,8 @@ let $ = require("jquery"),
 	user = require("./user"),
 	db = require("./db-interaction"),
 	sb = require("./show_bikes"),
-    dom = require("./dom_builder");
+    dom = require("./dom_builder"),
+    response = require("./response");
 
 let main_area = document.getElementById("main_content"),
 	nav = document.getElementById("nav_list"),
@@ -50,3 +51,11 @@ $(document).on("click", "#show_bikes", () => {
 		sb.showMyBikes(data);
 	});
 });
+
+$(document).on("click", ".delete_bike", (event) => {
+	console.log("hello?");
+	let bid = event.target.parentNode.parentNode.id;
+	db.deleteBike(bid);
+	response.bikeRemoved();
+	});
+
