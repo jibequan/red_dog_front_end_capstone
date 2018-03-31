@@ -2,7 +2,11 @@
 
 console.log("Hello main.js");
 
-let nav_behavior= require("./nav_behavior"),
+let $ = require("jquery"),
+	nav_behavior= require("./nav_behavior"),
+	user = require("./user"),
+	db = require("./db-interaction"),
+	sb = require("./show_bikes"),
     dom = require("./dom_builder");
 
 let main_area = document.getElementById("main_content"),
@@ -36,4 +40,13 @@ rescueNav.addEventListener("click", () => {
 
 armyNav.addEventListener("click", () => {
   dom.content.showArmy();
+});
+
+$(document).on("click", "#show_bikes", () => {
+	console.log("Did this work?");
+	let currentUser = user.getCompleteUser().uid;
+	db.getBikes(currentUser)
+	.then((data) => {
+		sb.showMyBikes(data);
+	});
 });

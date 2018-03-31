@@ -4,7 +4,6 @@ console.log("Hello show_bikes");
 
 let user = require("./user"),
     db = require("./db-interaction"),
-    ab = require("./add_bikes"),
     forms = require("./bike_forms");
 
 let main_content = document.getElementById("main_content");
@@ -48,7 +47,7 @@ let deleteButtons = () => {
     document.querySelectorAll(".delete_bike").forEach((item) => {
       item.addEventListener("click", (event) => {
         let bikeID = (event.target.parentNode.parentNode.id);
-        ab.deleteBike(bikeID);
+        db.deleteBike(bikeID);
       });
     });
 };

@@ -5,6 +5,7 @@ console.log("Hello dom_builder");
 let $ = require("jquery"),
     user = require ("./user"),
     db = require("./db-interaction"),
+    sb = require("./show_bikes"),
     forms = require("./bike_forms");
 
 let main_content = document.getElementById("main_content");
@@ -31,18 +32,24 @@ content.showService = () => {
   <p>Not on the best terms with the Googs? Not problem. You can still sign up for service as a guest. We’ve got you either way.
   </p>
   <button type="button" class="btn btn-dark" id="guestLogin">Sign In as Guest</button>`;
+  
   $("#googLogin").click(function(){
     user.logInGoogle()
     .then((result) => {
-      db.makeUser.checkFB(result.user.uid);
+      db.checkFB(result.user.uid);
+      db.getBikes(result.user.uid)
+      .then((data)=> {
+        // No user data? Change boilerplate text.
+        sb.showMyBikes(data);
+      });
     });
   });
 
   $("#guestLogin").click(function(){
-    console.log("clicked on Guest Signin");
-    forms.showGuestForm();
-  });
-};
+      console.log("clicked on Guest Signin");
+      forms.showGuestForm();
+    });
+  };
 
 content.showRescue = () => {
   //update with helper functions
