@@ -1,38 +1,39 @@
 "use strict";
 
-// console.log("Hello main.js");
+console.log("Hello main.js");
 
 let nav_behavior= require("./nav_behavior"),
-    popDOM= require("./dom_builder");
+    dom = require("./dom_builder");
 
-let main_area = document.getElementById("main_content");
-let nav = document.getElementById("nav_list");
-let bikesNav = document.getElementById("bikes");
-let partsNav = document.getElementById("parts");
-let serviceNav = document.getElementById("service");
-let rescueNav= document.getElementById("rescue");
-let armyNav = document.getElementById("army");
+let main_area = document.getElementById("main_content"),
+	nav = document.getElementById("nav_list"),
+	bikesNav = document.getElementById("bikes"),
+	partsNav = document.getElementById("parts"),
+	serviceNav = document.getElementById("service"),
+	rescueNav= document.getElementById("rescue"),
+	armyNav = document.getElementById("army");
+
 
 nav.addEventListener("click", (e) => {
   nav_behavior.navSelected(e);
 });
 
 bikesNav.addEventListener("click", () => {
-  popDOM.content.showBikes();
+  dom.content.showBikes();
 });
 
 partsNav.addEventListener("click", () => {
-  popDOM.content.showParts();
+  dom.content.showParts();
 });
 
 serviceNav.addEventListener("click", () => {
-  popDOM.content.showService();
+  dom.content.showService();
 });
 
 rescueNav.addEventListener("click", () => {
-  popDOM.content.showRescue();
+  dom.content.showRescue();
 });
 
 armyNav.addEventListener("click", () => {
-  popDOM.content.showArmy();
+  dom.content.showArmy();
 });

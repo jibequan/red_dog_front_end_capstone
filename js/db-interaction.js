@@ -1,12 +1,20 @@
 "use strict";
 
+console.log("Hello db-interaction");
+
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
-    forms = require("./forms"),
-    show = require("./show_bikes");
+    sb = require("./show_bikes"),
+    forms = require("./bike_forms");
+    
 
-function askFBForInfo(uid) {
+let main_content = document.getElementById("main_content");
+
+let makeUser = {};
+let makeBike = {};
+
+makeUser.askFBForInfo = (uid) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
   }).done((resolve) => {
@@ -14,42 +22,37 @@ function askFBForInfo(uid) {
   }).fail((error) => {
     return error;
   });
-}
+};
 
-function checkFB(uid) {
-  askFBForInfo(uid)
+makeUser.checkFB = (uid) => {
+  makeUser.askFBForInfo(uid)
   .then((result) => {
     let data = Object.values(result);
     if (data.length === 0){
-      addUser(createUser())
-      .then((result) => {
+      makeUser.addUser(makeUser.createUser())
+        .then((result) => {
         user.setUserFbUglyId(result.name);
-        // getBikes(user.getCompleteUser().uid);
         forms.showBikeForm();
-        console.log("went through the top");
-      });
+        });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
-    getBikes(user.getCompleteUser().uid)
-    .then((data) => {
-      console.log("This is the data", data);
-      show.showMyBikes(data);
-      });
+    makeBike.getBikes(user.getCompleteUser().uid)
+      .then((data) => {
+      sb.showMyBikes(data);
+      });   
     }
-    console.log("went through the bottom");
-    });
-}
+  });
+};
 
-function createUser() {
-  let info = user.getUser();
+makeUser.createUser = () => {
   let newUser = {};
-  newUser.uid = info.uid;
+  newUser.uid = user.getUser().uid;
   newUser.fullName = user.getUser().displayName;
   newUser.email = user.getUser().email;
   return newUser;
-}
+};
 
-function addUser(newUser) {
+makeUser.addUser = (newUser) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json`,
     type: 'POST',
@@ -58,40 +61,15 @@ function addUser(newUser) {
   }).done((fbID) => {
     return fbID;
   });
-}
+};
 
-function createBike() {
-  let newBike = {};
-  newBike.uid = user.getCompleteUser().uid;
-  newBike.nickname = document.getElementById("bike-nickname").value;
-  newBike.photo = document.getElementById("customFile").value;
-  newBike.year = document.getElementById("bike-year").value;
-  newBike.make = document.getElementById("bike-make").value;
-  newBike.model = document.getElementById("bike-model").value;
-  newBike.comments = document.getElementById("bike-comments").value;
-  return newBike;
-}
 
-function addBike(bike) {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/bikes.json`,
-    type: 'POST',
-    data: JSON.stringify(bike),
-    dataType: 'json'
-  }).done((bid) => {
-    console.log(bid);
-    return bid;
-  });
-}
-
-let getBikes = (uid) => {
-    console.log("What is this?", uid);
+makeBike.getBikes = (uid) => {
     return new Promise((resolve, reject) => {
     let bikesXHR = new XMLHttpRequest();
 
     bikesXHR.addEventListener("load", function() {
       let data = JSON.parse(this.responseText);
-      // console.log("data in call", data);
       resolve(data);
     });
 
@@ -106,4 +84,4 @@ let getBikes = (uid) => {
 };
 
 
-module.exports = {createBike, addBike, createUser, addUser, askFBForInfo, checkFB, getBikes};
+module.exports = {makeUser, makeBike};

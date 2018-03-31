@@ -1,9 +1,9 @@
 "use strict";
 
-let forms = require("./forms"),
-    user= require("./user"),
-    $ = require ('jquery');
+console.log("Hello show_bikes");
 
+let user = require("./user");
+let forms = require("./bike_forms");
 
 let main_content = document.getElementById("main_content");
 
@@ -33,10 +33,11 @@ function showMyBikes(bikes_data) {
   <button type="button" class="btn btn-dark" id="add_bike">+ Add bike</button>
   <div id="gallery" class="row"></div>`;
   makeBikeGrid(bikes_data);
-  let addBike = document.getElementById("add_bike");
-  addBike.addEventListener("click", ()=>{
+  let add_button = document.getElementById("add_bike");
+  add_button.addEventListener("click", () => {
     forms.showBikeForm();
   });
 }
 
-module.exports = {showMyBikes};
+module.exports = {makeBikeGrid, showMyBikes};
+
