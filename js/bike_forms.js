@@ -4,12 +4,11 @@ console.log("Hello bike_forms");
 
 let user = require("./user"),
     ab = require("./add_bikes"),
-    sb = require("./show_bikes"),
     response = require("./response");
 
 function showBikeForm() {
-  let main_area = document.getElementById("main_content");
-  main_area.innerHTML =
+  let main_content = document.getElementById("main_content");
+  main_content.innerHTML =
   `<h3>Add A Bike to Your Account</h3>
   <p class="subheading">New ride? Sweet! Just add it in here to make service simple should you ever need it.
   </p>
@@ -50,14 +49,14 @@ function showBikeForm() {
       ab.addBike(ab.createBike())
       .then((result) => {
         ab.addBikeId(result);
-        response.bikeAdded();      
-      });     
+      });
+      response.bikeAdded();
     });
 }
 
 function showGuestForm() {
-  let main_area = document.getElementById("main_content");
-  main_area.innerHTML =
+  let main_content = document.getElementById("main_content");
+  main_content.innerHTML =
   `<h3>Setup Service for your bike</h3>
   <p class="subheading">Just provide us with your contact information and some for your bike and we'll get things going.
   </p>
@@ -150,9 +149,8 @@ function showGuestForm() {
   document.getElementById("save_guest_bike").addEventListener("click", () => {
     ab.addBike(ab.createBike())
     .then((result) => {
-      ab.addBikeId(result);      
+      ab.addBikeId(result);     
     });
-    response.bikeAdded();
   });
 }
 
