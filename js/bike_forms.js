@@ -3,7 +3,7 @@
 console.log("Hello bike_forms");
 
 let user = require("./user"),
-    ab = require("./add_bikes"),
+    db = require("./db-interaction"),
     response = require("./response");
 
 function showBikeForm() {
@@ -46,12 +46,12 @@ function showBikeForm() {
     </form>`;
     let save_button = document.getElementById("save_bike");
     save_button.addEventListener("click", () => {
-      ab.addBike(ab.createBike())
+      db.addBike(db.createBike())
       .then((result) => {
-        ab.addBikeId(result);
+        db.addBikeId(result);
       });
       response.bikeAdded();
-    });
+      });
 }
 
 function showGuestForm() {
@@ -147,9 +147,9 @@ function showGuestForm() {
           <button type="button" id="save_guest_bike" class="btn btn-dark" value="ADD BIKE">Add Bike</button>
       </form>`;
   document.getElementById("save_guest_bike").addEventListener("click", () => {
-    ab.addBike(ab.createBike())
+    db.addBike(db.createBike())
     .then((result) => {
-      ab.addBikeId(result);     
+      db.addBikeId(result);     
     });
   });
 }
