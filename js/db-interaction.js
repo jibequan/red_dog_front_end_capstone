@@ -1,13 +1,20 @@
 "use strict";
 
+console.log("Hello db-interaction");
+
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
-    forms = require("./forms"),
-    show = require("./show_bikes"),
-    ab = require("./add_Bikes");
+    sb = require("./show_bikes"),
+    forms = require("./bike_forms");
+    
 
-function askFBForInfo(uid) {
+let main_content = document.getElementById("main_content");
+
+let makeUser = {};
+let makeBike = {};
+
+makeUser.askFBForInfo = (uid) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
   }).done((resolve) => {
@@ -15,39 +22,37 @@ function askFBForInfo(uid) {
   }).fail((error) => {
     return error;
   });
-}
+};
 
-function checkFB(uid) {
-  askFBForInfo(uid)
+makeUser.checkFB = (uid) => {
+  makeUser.askFBForInfo(uid)
   .then((result) => {
     let data = Object.values(result);
     if (data.length === 0){
-      addUser(createUser())
-      .then((result) => {
+      makeUser.addUser(makeUser.createUser())
+        .then((result) => {
         user.setUserFbUglyId(result.name);
-        ab.showBikeForm();
-      });
+        forms.showBikeForm();
+        });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
-    getBikes(user.getCompleteUser().uid)
-    .then((data) => {
-      console.log("This is the data", data);
-      show.showMyBikes(data);
-      });
+    makeBike.getBikes(user.getCompleteUser().uid)
+      .then((data) => {
+      sb.showMyBikes(data);
+      });   
     }
   });
-}
+};
 
-function createUser() {
-  let info = user.getUser();
+makeUser.createUser = () => {
   let newUser = {};
-  newUser.uid = info.uid;
+  newUser.uid = user.getUser().uid;
   newUser.fullName = user.getUser().displayName;
   newUser.email = user.getUser().email;
   return newUser;
-}
+};
 
-function addUser(newUser) {
+makeUser.addUser = (newUser) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json`,
     type: 'POST',
@@ -56,10 +61,10 @@ function addUser(newUser) {
   }).done((fbID) => {
     return fbID;
   });
-}
+};
 
-let getBikes = (uid) => {
-    console.log("What is this?", uid);
+
+makeBike.getBikes = (uid) => {
     return new Promise((resolve, reject) => {
     let bikesXHR = new XMLHttpRequest();
 
@@ -79,4 +84,4 @@ let getBikes = (uid) => {
 };
 
 
-module.exports = {createUser, addUser, askFBForInfo, checkFB, getBikes};
+module.exports = {makeUser, makeBike};

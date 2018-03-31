@@ -33,13 +33,13 @@ function getCompleteUser() {
 }
 
 firebase.auth().onAuthStateChanged(function(user){
-	console.log("onAuthStateChanged", user);
+	// console.log("onAuthStateChanged", user);
 	if (user){
 		currentUser = user;
 		makeCompleteUser(currentUser);
 	}else{
 		currentUser = null;
-		console.log("NO USER LOGGED IN");
+		// console.log("NO USER LOGGED IN");
 	}
 });
 
