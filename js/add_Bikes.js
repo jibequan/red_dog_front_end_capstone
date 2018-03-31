@@ -45,4 +45,14 @@ function addBikeId(result) {
   });
 }
 
-module.exports = {createBike, addBike, addBikeId};
+function deleteBike(bike_Id) {
+  $.ajax({
+      url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
+      method: "DELETE"
+  }).done((data) => {
+    return data;
+  });
+}
+
+
+module.exports = {createBike, addBike, addBikeId, deleteBike};
