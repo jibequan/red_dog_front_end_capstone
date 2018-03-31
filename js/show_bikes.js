@@ -12,7 +12,7 @@ function makeBikeGrid(bikes_data) {
   console.log(bikes_data);
   let keys = Object.keys(bikes_data);
   keys.forEach((item) => {        
-    let bike_card = `<div id="${bikes_data[item].bike_Id}"class="card col-sm-6">
+    let bike_card = `<div id="${bikes_data[item].bike_Id}"class="card col-sm-5 justify-content-around">
       <img class="card-img-top" src="${bikes_data[item].photo}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>
@@ -36,22 +36,11 @@ function showMyBikes(bikes_data) {
   <button type="button" class="btn btn-dark" id="add_bike">+ Add bike</button>
   <div id="gallery" class="row"></div>`;
   makeBikeGrid(bikes_data);
-  deleteButtons();
   let add_button = document.getElementById("add_bike");
   add_button.addEventListener("click", () => {
     forms.showBikeForm();
   });
 }
-
-let deleteButtons = () => {
-    document.querySelectorAll(".delete_bike").forEach((item) => {
-      item.addEventListener("click", (event) => {
-        let bikeID = (event.target.parentNode.parentNode.id);
-        db.deleteBike(bikeID);
-      });
-    });
-};
-
 
 
 
