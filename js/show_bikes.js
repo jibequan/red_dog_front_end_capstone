@@ -11,18 +11,18 @@ function makeBikeGrid(bikes_data) {
   let keys = Object.keys(bikes_data);
   keys.forEach((item) => {        
     let bike_card = `<div id="${bikes_data[item].bike_Id}"class="card col-sm-5 justify-content-around">
-      <img class="card-img-top" src="${bikes_data[item].photo}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>
-        <p class="card-text">Repair History</p>
-        <div class="list-group">
-          <a href="#" class="list-group-item">02/14/2018: Cleaned carberator, new chain, fixed signal</a>
-        </div>
-        <a href="#" class="btn btn-danger delete_bike">Delete</a>
-        <a href="#" class="btn btn-secondary edit_bike">Edit</a>
-        <a href="#" id="service${bikes_data[item].bike_Id}" class="btn btn-dark">Request Service</a>
-      </div>
-    </div>`;
+                      <img class="card-img-top" src="${bikes_data[item].photo}" alt="Photo of your moped/scooter">
+                      <div class="card-body">
+                        <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>
+                        <p class="card-text">Repair History</p>
+                        <div class="list-group">
+                          <a href="#" class="list-group-item">02/14/2018: Cleaned carberator, new chain, fixed signal</a>
+                        </div>
+                        <a href="#" class="btn btn-danger delete_bike">Delete</a>
+                        <a href="#" class="btn btn-secondary edit_bike">Edit</a>
+                        <a href="#" class="btn btn-dark service_bike">Request Service</a>
+                      </div>
+                    </div>`;
     let gallery = document.getElementById("gallery");
     gallery.innerHTML+= bike_card;
   });
@@ -36,6 +36,25 @@ function showMyBikes(bikes_data) {
   makeBikeGrid(bikes_data);
 }
 
+let showRequestBike = (bike) => {
+  main_content.innerHTML = `<h3>Need us to take a look at your ride?</h3>
+                            <p class="subheading">Fill out the information below and we can cook up a quote for you.</p>
+                            <div id="gallery" class="row"></div>`;
+
+  let bike_card = `<div id="${bike.bike_Id}"class="card col-sm-6" style="margin: 0; border: none">
+                    <h5 class="card-title">"${bike.nickname}" | ${bike.year} | ${bike.make} | ${bike.model}</h5>
+                    <img class="card-img-top" src="${bike.photo}" alt="Photo of your moped/scooter">
+                    <div class="card-body" style="border: 1px solid rgba(0, 0, 0, .125); padding: 0 1rem 0 1rem; border-radius: .25rem;">
+                      <p class="card-text">Repair History</p>
+                      <div class="list-group">
+                        <a href="#" class="list-group-item">02/14/2018: Cleaned carberator, new chain, fixed signal</a>
+                      </div>
+                    </div>
+                  </div>`;
+
+  let gallery = document.getElementById("gallery");
+  gallery.innerHTML = bike_card;
+};
 
 
-module.exports = {makeBikeGrid, showMyBikes};
+module.exports = {makeBikeGrid, showMyBikes, showRequestBike};
