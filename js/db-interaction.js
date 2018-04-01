@@ -73,6 +73,25 @@ let getBikes = (uid) => {
   });
 };
 
+let requestBike = (bike_Id) => {
+    return new Promise((resolve, reject) => {
+    let bikesXHR = new XMLHttpRequest();
+
+    bikesXHR.addEventListener("load", function() {
+      let data = JSON.parse(this.responseText);
+      resolve(data);
+    });
+
+    bikesXHR.addEventListener("error", function(){
+      var error = bikesXHR.statusText;
+      reject(error);
+    });
+
+    bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`);
+    bikesXHR.send();
+  });
+};
+
 let createBike = () => {
   let newBike = {};
   newBike.uid = user.getCompleteUser().uid;
@@ -144,14 +163,14 @@ let createEdits = () => {
 };
 
 let editBike = (bike_Id, editBike) => {
-return $.ajax({
-  url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
-  type: 'PATCH',
-  data: JSON.stringify(editBike),
-  dataType: 'json'
-}).done((result) => {
-  return result;
-  });
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
+    type: 'PATCH',
+    data: JSON.stringify(editBike),
+    dataType: 'json'
+  }).done((result) => {
+    return result;
+    });
 };
 
 let deleteBike = (bike_Id) => {
@@ -163,4 +182,4 @@ let deleteBike = (bike_Id) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, getBikes, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike};
+module.exports = {askFBForInfo, checkFB, createUser, addUser, getBikes, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike, requestBike};
