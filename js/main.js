@@ -83,6 +83,14 @@ $(document).on("click", "#cancel_changes", () => {
 	});
 });
 
+$(document).on("click", ".cancel", () => {
+	let currentUser = user.getCompleteUser().uid;
+	db.getBikes(currentUser)
+	.then((data) => {
+		sb.showMyBikes(data);
+	});
+});
+
 $(document).on("click", ".delete_bike", (event) => {
 	let bikeID = db.getBikeID(event);
 	db.deleteBike(bikeID);
@@ -92,4 +100,13 @@ $(document).on("click", ".delete_bike", (event) => {
 $(document).on("click", ".edit_bike", (event) => {
 	forms.showEditBikeForm();
 	bid = db.getBikeID(event);
+});
+
+$(document).on("click", ".service_bike", (event) => {
+	bid = db.getBikeID(event);
+	db.requestBike(bid)
+	.then((result) => {
+		sb.showRequestBike(result);
+		forms.requestServiceForm();
+	});
 });
