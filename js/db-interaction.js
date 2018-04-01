@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("Hello db-interaction");
+// console.log("Hello db-interaction");
 
 let $ = require('jquery'),
     firebase = require("./fb-config"),
@@ -101,7 +101,7 @@ let addBikeId = (result) => {
   let obj = {
     "bike_Id" : bike_Id
   };
-  console.log("This is the obj", obj);    
+    
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
     type: 'PATCH',
@@ -109,6 +109,48 @@ let addBikeId = (result) => {
     dataType: 'json'
   }).done((result) => {
     return result;
+  });
+};
+
+let getBikeID = (event) => {
+  let bid = event.target.parentNode.parentNode.id;
+  return bid;
+};
+
+let createEdits = () => {
+  let editBike = {};
+
+  if (document.getElementById("bike-nickname").value !== "") {
+    editBike.nickname = document.getElementById("bike-nickname").value;
+  }
+
+    if (document.getElementById("customFile").value !== "") {
+    editBike.photo = document.getElementById("customFile").value;
+  }
+
+    if (document.getElementById("bike-year").value !== "") {
+    editBike.year = document.getElementById("bike-year").value;
+  }
+
+    if (document.getElementById("bike-make").value !== "") {
+    editBike.make = document.getElementById("bike-make").value;
+  }
+
+    if (document.getElementById("bike-model").value !== "") {
+    editBike.model = document.getElementById("bike-model").value;
+  }
+
+  return editBike;
+};
+
+let editBike = (bike_Id, editBike) => {
+return $.ajax({
+  url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
+  type: 'PATCH',
+  data: JSON.stringify(editBike),
+  dataType: 'json'
+}).done((result) => {
+  return result;
   });
 };
 
@@ -121,4 +163,4 @@ let deleteBike = (bike_Id) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, getBikes, createBike, addBike, addBikeId, deleteBike};
+module.exports = {askFBForInfo, checkFB, createUser, addUser, getBikes, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike};
