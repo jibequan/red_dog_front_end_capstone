@@ -1,10 +1,12 @@
 "use strict";
 
-console.log("Hello bike_forms");
+// console.log("Hello bike_forms");
 
 let user = require("./user"),
     db = require("./db-interaction"),
     response = require("./response");
+
+let currentUser = user.getCompleteUser();
 
 function showBikeForm() {
   let main_content = document.getElementById("main_content");
@@ -44,14 +46,6 @@ function showBikeForm() {
           <button type="button" class="btn btn-danger" value="CANCEL">Cancel</button>
           <button type="button" class="btn btn-dark" id="save_bike" value="ADD BIKE">Add Bike</button>
     </form>`;
-    let save_button = document.getElementById("save_bike");
-    save_button.addEventListener("click", () => {
-      db.addBike(db.createBike())
-      .then((result) => {
-        db.addBikeId(result);
-      });
-      response.bikeAdded();
-      });
 }
 
 function showGuestForm() {
@@ -60,7 +54,7 @@ function showGuestForm() {
   `<h3>Setup Service for your bike</h3>
   <p class="subheading">Just provide us with your contact information and some for your bike and we'll get things going.
   </p>
-  <p>Step 1 -> <span>Step 2 -> </span><span class="disabled">Step 3</span></p>
+  <p>Step 1 -> <span class="disabled">Step 2 -> </span><span class="disabled">Step 3</span></p>
   <form>
       <fieldset>
         <legend>Contact Information</legend>
@@ -146,12 +140,6 @@ function showGuestForm() {
           <button type="button" class="btn btn-danger" value="CANCEL">Cancel</button>
           <button type="button" id="save_guest_bike" class="btn btn-dark" value="ADD BIKE">Add Bike</button>
       </form>`;
-  document.getElementById("save_guest_bike").addEventListener("click", () => {
-    db.addBike(db.createBike())
-    .then((result) => {
-      db.addBikeId(result);     
-    });
-  });
 }
 
 function showTimeForm() {
@@ -171,4 +159,40 @@ function showTimeForm() {
   </div>`;
 }
 
-module.exports = {showGuestForm, showBikeForm, showTimeForm};
+function showEditBikeForm() {
+  let main_content = document.getElementById("main_content");
+  main_content.innerHTML =
+  `<h3>Update the Info Associated with your Bike.</h3>
+  <p class="subheading">Just change what you like.
+  </p>
+    <form>
+      <fieldset>
+        <legend>Bike Information</legend>
+            <div class="form-group">
+              <label for="bike-nickname">Nickname</label>
+              <input id="bike-nickname" class="form-control" type="text" placeholder="">
+            </div>
+            <div class="custom-file">
+              <label class="custom-file-label" for="customFile">New pic of your whip?</label>
+              <input type="file" class="custom-file-input" id="customFile">
+            </div>
+            <div class="form-group">
+                <label for="bike-year">Year</label>
+                <input id="bike-year" class="form-control" type="text" placeholder="Year">
+            </div>
+            <div class="form-group">
+              <label for="bike-make">Make</label>
+              <input id="bike-make" class="form-control" type="text" placeholder="Make">
+            </div>
+            <div class="form-group">
+              <label for="bike-model">Model</label>
+              <input id="bike-model" class="form-control" type="text" placeholder="Model">
+            </div>
+      </fieldset>
+        <!-- Add Bike/Submit Button -->
+          <button type="button" class="btn btn-danger" id="cancel_changes" value="Cancel">Cancel</button>
+          <button type="button" class="btn btn-dark" id="save_changes" value="Save Changes">Save Changes</button>
+    </form>`;
+}
+
+module.exports = {showGuestForm, showBikeForm, showTimeForm, showEditBikeForm};
