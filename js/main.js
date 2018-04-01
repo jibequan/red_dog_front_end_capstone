@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("Hello main.js");
+// console.log("Hello main.js");
 
 let $ = require("jquery"),
 	nav_behavior= require("./nav_behavior"),
@@ -8,6 +8,7 @@ let $ = require("jquery"),
 	db = require("./db-interaction"),
 	sb = require("./show_bikes"),
     dom = require("./dom_builder"),
+    forms = require("./bike_forms"),
     response = require("./response");
 
 let main_area = document.getElementById("main_content"),
@@ -43,8 +44,38 @@ armyNav.addEventListener("click", () => {
   dom.content.showArmy();
 });
 
+var bid;
+
 $(document).on("click", "#show_bikes", () => {
-	console.log("Did this work?");
+	let currentUser = user.getCompleteUser().uid;
+	db.getBikes(currentUser)
+	.then((data) => {
+		sb.showMyBikes(data);
+	});
+});
+
+$(document).on("click", "#add_bike", () => {
+	forms.showBikeForm();
+});
+
+$(document).on("click", "#save_bike", () => {
+	db.addBike(db.createBike())
+	.then((result) => {
+		db.addBikeId(result);
+	});
+	response.bikeAdded();
+});
+
+$(document).on("click", "#save_changes", () => {
+	let editBike = db.createEdits();
+	db.editBike(bid, editBike)
+	.then((result) => {
+		return result;
+	});
+	response.bikeUpdated();
+});
+
+$(document).on("click", "#cancel_changes", () => {
 	let currentUser = user.getCompleteUser().uid;
 	db.getBikes(currentUser)
 	.then((data) => {
@@ -53,9 +84,12 @@ $(document).on("click", "#show_bikes", () => {
 });
 
 $(document).on("click", ".delete_bike", (event) => {
-	console.log("hello?");
-	let bid = event.target.parentNode.parentNode.id;
-	db.deleteBike(bid);
+	let bikeID = db.getBikeID(event);
+	db.deleteBike(bikeID);
 	response.bikeRemoved();
-	});
+});
 
+$(document).on("click", ".edit_bike", (event) => {
+	forms.showEditBikeForm();
+	bid = db.getBikeID(event);
+});
