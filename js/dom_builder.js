@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("Hello dom_builder");
+// console.log("Hello dom_builder");
 
 let $ = require("jquery"),
     user = require ("./user"),
