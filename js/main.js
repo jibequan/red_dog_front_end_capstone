@@ -122,5 +122,8 @@ $(document).on("click", ".submit_repair", (event) => {
 		db.addRepairId(result);
 		response.requestReceived();
 	});
+});
 
+$(document).on("click", ".guest_submit_repair", (event) => {
+	response.requestReceivedGuest();
 });
