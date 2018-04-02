@@ -31,7 +31,7 @@ content.showService = () => {
   <button type="button" class="btn btn-dark" id="googLogin">Sign In with Google</button>
   <p>Not on the best terms with the Googs? Not problem. You can still sign up for service as a guest. We’ve got you either way.
   </p>
-  <button type="button" class="btn btn-dark" id="guestLogin">Sign In as Guest</button>`;
+  <button type="button" class="btn btn-dark" id="guestLogin">Continue as Guest</button>`;
   
   $("#googLogin").click(function(){
     user.logInGoogle()
