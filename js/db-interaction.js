@@ -162,6 +162,46 @@ let createEdits = () => {
   return editBike;
 };
 
+let createUpdatedUser = () => {
+  let additionalUserInfo = {};
+
+  if((document.getElementById("contact-area-code").value !== "") && (document.getElementById("contact-m-number").value !== "")) {
+    additionalUserInfo.phone = document.getElementById("contact-area-code").value + document.getElementById("contact-m-number").value;
+  }
+
+  if (document.getElementById("contact-address").value !== "") {
+    additionalUserInfo.address1 = document.getElementById("contact-address").value;
+  }
+
+  if (document.getElementById("contact-sec-address").value !== "") {
+    additionalUserInfo.address2 = document.getElementById("contact-sec-address").value;
+  }
+
+  if (document.getElementById("contact-city").value !== "") {
+    additionalUserInfo.city = document.getElementById("contact-city").value;
+  }
+
+  if (document.getElementById("contact-state").value !== "") {
+    additionalUserInfo.state = document.getElementById("contact-state").value;
+  }
+
+  if (document.getElementById("contact-postal").value !== "") {
+    additionalUserInfo.postal = document.getElementById("contact-postal").value;
+  }
+  return additionalUserInfo;
+};
+
+let updateUser = (uid, userObj) => {
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/users/${uid}.json`,
+    type: 'PATCH',
+    data: JSON.stringify(userObj),
+    dataType: 'json'
+  }).done((result) => {
+    return result;
+  });
+};
+
 let editBike = (bike_Id, editBike) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
@@ -182,4 +222,43 @@ let deleteBike = (bike_Id) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, getBikes, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike, requestBike};
+let createRepair = (bid) => {
+  let newRepair = {
+    bike_Id: bid,
+    uid: user.getCompleteUser().uid,
+  };
+
+  if (document.getElementById("bike-comments").value !== "") {
+    newRepair.issue = document.getElementById("bike-comments").value;
+  }
+  return newRepair;
+};
+
+let addRepairId = (result) => {
+  let repair_Id = result.name;
+  let obj = {
+    "repair_Id" : repair_Id
+  };
+    
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/repairs/${repair_Id}.json`,
+    type: 'PATCH',
+    data: JSON.stringify(obj),
+    dataType: 'json'
+  }).done((result) => {
+    return result;
+  });
+};
+
+let addRepair = (repairObj) => {
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/repairs.json`,
+    type: 'POST',
+    data: JSON.stringify(repairObj),
+    dataType: 'json'
+  }).done((result) => {
+    return result;
+  });
+};
+
+module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
