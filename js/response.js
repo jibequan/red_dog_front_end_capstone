@@ -28,4 +28,12 @@ let bikeUpdated = () => {
 	</div>`;
 };
 
-module.exports = {bikeAdded, bikeRemoved, bikeUpdated};
+let requestReceived = () => {
+  main_content.innerHTML = `<div class="col-sm-10">
+    <h3>Your response has been succesfully sent.</h3>
+    <p class="subheading">We'll get back to you shortly with a quote and arrange a time to pickup your bike for service.</p>
+    <button type="button" class="btn btn-dark" id="show_bikes">Back to My Bikes</button>
+  </div>`;
+};
+
+module.exports = {bikeAdded, bikeRemoved, bikeUpdated, requestReceived};
