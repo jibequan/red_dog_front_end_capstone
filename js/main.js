@@ -110,3 +110,17 @@ $(document).on("click", ".service_bike", (event) => {
 		forms.requestServiceForm();
 	});
 });
+
+$(document).on("click", ".submit_repair", (event) => {
+	let updatedUser = db.createUpdatedUser();
+	db.updateUser(user.getCompleteUser().fbID, updatedUser)
+	.then((result) => {
+		return result;
+	});
+	db.addRepair(db.createRepair(bid))
+	.then((result) => {
+		db.addRepairId(result);
+		response.requestReceived();
+	});
+
+});
