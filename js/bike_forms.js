@@ -130,7 +130,7 @@ let showGuestForm = () => {
         </fieldset>
   <!-- Add Bike/Submit Button -->
           <button type="button" class="btn btn-danger" value="CANCEL">Cancel</button>
-          <button type="button" id="save_guest_bike" class="btn btn-dark" value="ADD BIKE">Submit</button>
+          <button type="button" class="btn btn-dark guest_submit_repair">Submit</button>
       </form>`;
 };
 
