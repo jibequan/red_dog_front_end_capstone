@@ -112,14 +112,6 @@ let showGuestForm = () => {
       <fieldset>
         <legend>Bike Information</legend>
             <div class="form-group">
-              <label for="bike-nickname">Nickname</label>
-              <input id="bike-nickname" class="form-control" type="text" placeholder="Nickname">
-            </div>
-            <div class="custom-file">
-              <label class="custom-file-label" for="customFile">Upload image of your bike</label>
-              <input type="file" class="custom-file-input" id="customFile">
-            </div>
-            <div class="form-group">
                 <label for="bike-year">Year</label>
                 <input id="bike-year" class="form-control" type="text" placeholder="Year">
             </div>
@@ -132,13 +124,13 @@ let showGuestForm = () => {
               <input id="bike-model" class="form-control" type="text" placeholder="Model">
             </div>
             <div class="form-group">
-              <label for="bike-comments">Comments</label>
-              <textarea id="bike-comments" class="form-control" rows="3" placeholder="Comments"></textarea>
+              <label for="bike-comments">What's the issue?</label>
+              <textarea id="bike-comments" class="form-control" rows="3" placeholder=""></textarea>
             </div>
         </fieldset>
   <!-- Add Bike/Submit Button -->
           <button type="button" class="btn btn-danger" value="CANCEL">Cancel</button>
-          <button type="button" id="save_guest_bike" class="btn btn-dark" value="ADD BIKE">Add Bike</button>
+          <button type="button" id="save_guest_bike" class="btn btn-dark" value="ADD BIKE">Submit</button>
       </form>`;
 };
 
@@ -236,11 +228,17 @@ let requestServiceForm = () => {
                       <!-- State or Province -->
                                   <div class="form-row">
                                     <div class="col">
+                                      <label for="contact-city">City</label>
+                                      <input id="contact-city" class="form-control" type="address" placeholder="City">
+                                    </div>
+                                    <div class="col">
                                       <label for="contact-state">State or Province</label>
                                       <input id="contact-state" class="form-control" type="address" placeholder="State or Province">
                                     </div>
+                                </div>
                       <!-- Postal Code -->
-                                  <div class="col">
+                                <div class="form-row">
+                                  <div class="col-sm-6">
                                     <label for="contact-postal">ZIP or Postal Code</label>
                                     <input id="contact-postal" class="form-control" type="address" placeholder="ZIP or Postal Code">
                                   </div>
