@@ -11,7 +11,7 @@ function makeBikeGrid(bikes_data) {
   let keys = Object.keys(bikes_data);
   keys.forEach((item) => {        
     let bike_card = `<div id="${bikes_data[item].bike_Id}"class="card col-sm-5 justify-content-around">
-                      <img class="card-img-top" src="${bikes_data[item].photo}" alt="Photo of your moped/scooter">
+                      <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">
                       <div class="card-body">
                         <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>
                         <p class="card-text">Repair History</p>
@@ -43,7 +43,7 @@ let showRequestBike = (bike) => {
 
   let bike_card = `<div id="${bike.bike_Id}"class="card col-sm-6" style="margin: 0; border: none">
                     <h5 class="card-title">"${bike.nickname}" | ${bike.year} | ${bike.make} | ${bike.model}</h5>
-                    <img class="card-img-top" src="${bike.photo}" alt="Photo of your moped/scooter">
+                    <img class="card-img-top" src="http://via.placeholder.com/300x200" alt="Photo of your moped/scooter">
                     <div class="card-body" style="border: 1px solid rgba(0, 0, 0, .125); padding: 0 1rem 0 1rem; border-radius: .25rem;">
                       <p class="card-text">Repair History</p>
                       <div class="list-group">
