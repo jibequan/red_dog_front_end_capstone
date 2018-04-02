@@ -226,6 +226,7 @@ let createRepair = (bid) => {
   let newRepair = {
     bike_Id: bid,
     uid: user.getCompleteUser().uid,
+    in_queue: false
   };
 
   if (document.getElementById("bike-comments").value !== "") {
