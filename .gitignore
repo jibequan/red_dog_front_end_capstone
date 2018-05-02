@@ -4,4 +4,4 @@ css/
 dist/
 lib/node_modules/
 js/fb-key.js
-package-lock.json
+lib/package-lock.json
