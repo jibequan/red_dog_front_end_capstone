@@ -4,18 +4,48 @@ $red-dog: #FF0202;
 $grey-dog: #BFBFBF;
 $black-dog: #000000;
 
-@mixin clearfix() {
-  &::after {
-    display: block;
-    content: "";
-    clear: both;
-  }
+//General styling
+
+.l-container {
+  margin: 0 2rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 1rem;
 }
 
-//General styling
-.element {
-  @include clearfix;
+.nav {
+  grid-column: 1;
 }
+
+.nav__list{
+}
+
+.nav__item {
+  display: grid;
+  grid-template-columns: 75% 1fr 1fr 1fr;
+  grid-column-gap: .5rem;
+}
+
+.nav__item-label, .nav__item-light {
+  background-color: $red-dog;
+  grid-column: span 1;
+}
+
+.nav__item-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+}
+
+.nav__item-label p {
+  font-family: "Prohibition", sans-serif;
+  font-size: 4rem;
+  color: white;
+  margin: 0;
+}
+
+
 
 //header elements
 header{
@@ -82,11 +112,7 @@ header hr {
   cursor: pointer;
 }
 
-.nav-item {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
+
 
 .lights {
   margin: 0;

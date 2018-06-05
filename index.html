@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Red Dog Moped</title>
-<link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
@@ -11,72 +11,37 @@
   <header class="container-fluid sticky-top">
     <div class="row justify-content-between">
       <h1 class="col-sm-7"><a href="/">Red D<span class="header-text">ø</span>g M<span class="header-text">ø</span>ped</a></h1>
-      <div class="col-sm-4 offset-sm-1" id="address">
+      <!-- <div class="col-sm-4 offset-sm-1" id="address">
         <p>321 E. Trinity Lane</p>
         <div class="col-sm-12">
           <hr>
         </div>
         <p>Nashville, TN 37207</p>
-      </div>
+      </div> -->
     </div>
   </header>
 
 
-<div class="content container-fluid">
-  <div class="row">
+<div class="l-container">
+
     <!-- Navigation -->
-    <nav class="col-sm-3 sidenav">
-      <ul class="nav" id="nav_list">
-        <div class="row col-sm-12 justify-content-between" id="bikes">
-          <li class="nav-item col-sm-8">Bikes</li>
-          <div class="col-sm-4 row lights">
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
-          </div>
-        </div>
-          <div class="row col-sm-12 justify-content-between"  id="parts">
-            <li class="nav-item col-sm-8">Parts</li>
-            <div class="col-sm-4 row lights">
-              <div class="light"></div>
-              <div class="light"></div>
-              <div class="light"></div>
-            </div>
-          </div>
-        <div class="row col-sm-12 justify-content-between" id="service">
-          <li class="nav-item col-sm-8">Service</li>
-          <div class="col-sm-4 row lights">
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
-          </div>
-        </div>
-        <div class="row col-sm-12 justify-content-between" id="rescue">
-          <li class="nav-item col-sm-8">Rescue</li>
-          <div class="col-sm-4 row lights">
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
-          </div>
-        </div>
-        <div class="row col-sm-12 justify-content-between" id="army">
-          <li class="nav-item col-sm-8">Army</li>
-          <div class="col-sm-4 row lights">
-            <div class="light"></div>
-            <div class="light"></div>
-            <div class="light"></div>
-          </div>
-        </div>
+    <nav>
+      <ul>
+        <li class="nav__item">
+          <div class="nav__item-label"><p>Bikes</p></div>
+          <div class="nav__item-light"></div>
+          <div class="nav__item-light"></div>
+          <div class="nav__item-light"></div>
+        </li>
+        <li>Parts</li>
+        <li>Service</li>
+        <li>Rescue</li>
+        <li>Army</li>
       </ul>
-      <div class="contact_info">
-        <p>Phone: (615) 555-1212</p>
-        <p>Email: questions@reddogmoped.com</p>
-        <p>Twitter: @reddogmoped</p>
-        <p>Facebook: @reddogmoped</p>
-      </div>
     </nav>
+
     <!-- Main Content -->
-    <main class="col-sm">
+    <!-- <main class="main">
       <div id="main_content" class="col-sm-10 offset-sm-1">
         <figure class="figure col-sm-auto">
           <img src="images/Indigan-Diablo.jpg" alt="Indigan Diablo" class="img-fluid">
@@ -101,9 +66,8 @@
           </div>
         </section>
       </div>
-    </main>
-  </div>
-</div>
+    </main> -->
+</div> <!--l-container-->
 
   <script src="dist/app.js"></script>
 </body>
