@@ -4,16 +4,21 @@ $red-dog: #FF0202;
 $grey-dog: #BFBFBF;
 $black-dog: #000000;
 
-//General styling
+body {
+  margin: 0;
+}
 
+//Layout
 .l-container {
   width: 100%;
+  height: 100vh;
   margin: 0 2rem 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1rem;
 }
 
+//Nav elements
 .nav {
   grid-column: 1;
 }
@@ -96,45 +101,12 @@ header hr {
   color: $black-dog;
 }
 
-//Nav elements
-.sidenav{
-  height: auto;
-  margin-top: .5rem;
-  margin-left: .5rem;
-  margin-right: .5rem;
-  padding: 0;
-  background-color: $red-dog;
-  color: white;
-  font-family: "prohibition";
-  font-size: 3em;
-}
-
-.nav>.row {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
-  border-bottom: .5rem solid white;
-  cursor: pointer;
-}
-
-
-
-.lights {
-  margin: 0;
-  padding: 0;
-}
-
 .item_selected {
   margin: 0;
   padding: 0;
   background-color: $black-dog;
 }
 
-.light {
-  border-left: .5rem solid white;
-  margin: 0;
-  width: 33.33%
-}
 
 //Aside Area
 aside {
@@ -153,18 +125,64 @@ aside {
 }
 
 // Main Content Area
-main {
-  margin: .5rem .5rem 0 .5rem;
-  padding: 0 0 2rem 0;
-  font-family: "industry";
-  color: $black-dog;
-  font-size: 1rem;
-
+.main {
+  grid-column: 2 / span 2;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: .5rem;
+  margin-right: 2rem;
+  padding-top: 1rem;
 }
 
-#main_content {
+.main__container {
+  grid-column: 1 / span 4;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: .5rem;
+  grid-row-gap: .5rem;
+}
+
+.main__figure {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+}
+
+.main__figure-img {
+  width: 100%;
+}
+
+.main__figure-cap {
+  margin-bottom: .5rem;
+}
+
+.main__section-list {
+  grid-column: 1 / span 4;
+  grid-row: 2 / span 2;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 1rem;
+}
+
+.main__section-item {
+  grid-row: auto;
+  display: grid;
+  grid-template-columns: 4;
+  grid-column-gap: .5rem;
+}
+
+.main__section-pic {
+  grid-column: 1;
+  width: 200px;
+}
+
+.main__section-desc {
+  grid-column: 2 / 5;
   margin: 0;
+  display: inline-block;
 }
+
 
 main h3 {
   font-family: "prohibition";
@@ -178,18 +196,7 @@ main h3 {
   margin-bottom: 1rem;
 }
 
-main p {
-  margin-bottom: .5rem;
-}
 
-.figure {
-  font-family: "industry";
-  font-weight: 600;
-}
-
-section {
-  margin-bottom: 1em;
-}
 
 .card {
   margin: 0 1rem 1rem 0;
