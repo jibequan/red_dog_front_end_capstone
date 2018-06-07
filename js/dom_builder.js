@@ -8,7 +8,7 @@ let $ = require("jquery"),
     sb = require("./show_bikes"),
     forms = require("./bike_forms");
 
-let main_content = document.getElementById("main_content");
+let main_content = document.getElementById("main__container");
 let content = {};
 
 content.showBikes = () => {
@@ -32,7 +32,7 @@ content.showService = () => {
   <p>Not on the best terms with the Googs? Not problem. You can still sign up for service as a guest. We’ve got you either way.
   </p>
   <button type="button" class="btn btn-dark" id="guestLogin">Continue as Guest</button>`;
-  
+
   $("#googLogin").click(function(){
     user.logInGoogle()
     .then((result) => {

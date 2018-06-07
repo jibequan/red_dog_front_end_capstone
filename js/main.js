@@ -12,7 +12,7 @@ let $ = require("jquery"),
     response = require("./response");
 
 let main_area = document.getElementById("main_content"),
-	nav = document.getElementById("nav_list"),
+	nav = document.getElementById("nav__list"),
 	bikesNav = document.getElementById("bikes"),
 	partsNav = document.getElementById("parts"),
 	serviceNav = document.getElementById("service"),
