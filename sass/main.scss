@@ -50,6 +50,11 @@ $black-dog: #000000;
   grid-column: span 1;
 }
 
+.nav__item-light--selected {
+  background-color: $black-dog;
+  grid-column: span 1;
+}
+
 .nav__item-label {
   display: flex;
   flex-direction: column;
@@ -60,6 +65,8 @@ $black-dog: #000000;
 .nav__item-label p {
   font-family: "Prohibition", sans-serif;
   font-size: 4rem;
+  height: 100%;
+  width: 100%;
   color: white;
   margin: 0;
 }

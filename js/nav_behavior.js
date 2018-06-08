@@ -1,20 +1,21 @@
 "use strict";
 
 function removeSelected() {
-  let selected = document.getElementsByClassName('item_selected');
-  for (var i = 0; i < selected.length; i++) {
-    selected[i].classList.replace("item_selected", "lights");
+  let nav__items = document.getElementById("nav__list").children;
+  for (let item of nav__items) {
+    for (let child of item.children) {
+      if (child.className === "nav__item-light--selected") {
+        child.className = "nav__item-light";
+      }
+    }
   }
 }
 
 function navSelected(e) {
     removeSelected();
-    let parentDiv = e.target.parentNode;
-    if (parentDiv.classList.contains("lights") == true) {
-      parentDiv.classList.replace("lights", "item_selected");
-    }else if (parentDiv.classList.contains("lights") == false) {
-      let lights = parentDiv.querySelector(".lights");
-      lights.classList.replace("lights", "item_selected");
+    let parts = e.currentTarget.children;
+    for (var i = 1; i < parts.length; i++) {
+      parts[i].classList.replace("nav__item-light", "nav__item-light--selected");
     }
 }
 

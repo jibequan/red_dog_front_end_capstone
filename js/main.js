@@ -20,27 +20,32 @@ let main_area = document.getElementById("main_content"),
 	armyNav = document.getElementById("army");
 
 
-nav.addEventListener("click", (e) => {
-  nav_behavior.navSelected(e);
+// navItems.addEventListener("click", (e) => {
+//   nav_behavior.navSelected(e);
+// });
+
+bikesNav.addEventListener("click", (e) => {
+	nav_behavior.navSelected(e);
+	dom.content.showBikes();
 });
 
-bikesNav.addEventListener("click", () => {
-  dom.content.showBikes();
-});
-
-partsNav.addEventListener("click", () => {
+partsNav.addEventListener("click", (e) => {
+	nav_behavior.navSelected(e);
   dom.content.showParts();
 });
 
-serviceNav.addEventListener("click", () => {
+serviceNav.addEventListener("click", (e) => {
+	nav_behavior.navSelected(e);
   dom.content.showService();
 });
 
-rescueNav.addEventListener("click", () => {
+rescueNav.addEventListener("click", (e) => {
+	nav_behavior.navSelected(e);
   dom.content.showRescue();
 });
 
-armyNav.addEventListener("click", () => {
+armyNav.addEventListener("click", (e) => {
+	nav_behavior.navSelected(e);
   dom.content.showArmy();
 });
 
