@@ -94,7 +94,7 @@ h1 {
   padding-right: 2rem;
 }
 
-.main__container, .main__container--service {
+.main__container, .main__container--bikes, .main__container--parts, .main__container--service, .main__container--rescue, .main__container--army {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto 2fr;
@@ -104,7 +104,7 @@ h1 {
     "main__supporting main__supporting main__supporting main__supporting";
 }
 
-.main__container--service {
+.main__container--bikes, .main__container--parts, .main__container--service, .main__container--rescue, .main__container--army {
   padding: 2rem;
 }
 
