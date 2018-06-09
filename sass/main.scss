@@ -8,31 +8,40 @@ $black-dog: #000000;
 .l-container {
   width: 100%;
   height: 100vh;
-  margin: 0;
+  font-family: "Industry";
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 128px auto;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
+  grid-template-areas:
+    "header header header"
+    "nav main main";
 }
 
+//Header Elements
 .header {
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  width: 100%;
-  height: 128px;
-  padding-left: 2rem;
+  grid-area: header;
   background-color: $red-dog;
   font-family: "prohibition";
-  position: fixed;
+}
+
+.header-text {
+  color: $black-dog;
+}
+
+h1 {
+   a{
+     text-decoration: none;
+     color: inherit;
+     &:hover {text-decoration: none;
+              color: inherit;}
+   }
 }
 
 //Nav elements
-.nav {
-  grid-column: 1;
-  grid-row: 2;
-  // position: fixed;
-  // top: 156px;
+.l-nav {
+  grid-area: nav;
 }
 
 .nav__list{
@@ -69,51 +78,8 @@ $black-dog: #000000;
 .nav__item-label p {
   font-family: "Prohibition", sans-serif;
   font-size: 4rem;
-  // height: 100%;
-  // width: 100%;
   color: white;
   margin: 0;
-}
-
-
-
-//header elements
-
-header h1{
-  color: white;
-  font-size: 6em;
-  margin: auto;
-}
-
-h1 {
-   a{
-     text-decoration: none;
-     color: inherit;
-     &:hover {text-decoration: none;
-              color: inherit;}
-   }
-}
-
-header hr {
-  border-color: white;
-  border-width: .3em;
-  margin: 0;
-}
-
-#address p{
-  font-family: "prohibition";
-  font-size: 2em;
-  color: white;
-  text-align: center;
-  margin: 0;
-}
-
-#address {
-  margin: auto;
-}
-
-.header-text {
-  color: $black-dog;
 }
 
 .item_selected {
@@ -122,48 +88,28 @@ header hr {
   background-color: $black-dog;
 }
 
-
-//Aside Area
-aside {
-  font-family: "prohibition";
-  font-size: 1.5em;
-  color: $black-dog;
-}
-
-.contact_info{
-  font-size: 1rem;
-  background-color: $black-dog;
-  color: white;
-  padding: 1rem;
-  margin: 1rem;
-  overflow-x: auto;
-}
-
 // Main Content Area
 .main {
-  grid-column: 2 / span 2;
-  grid-row: 2;
-  height: 100%;
-  margin-right: 2rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: .5rem;
-  overflow: scroll;
+  grid-area: main;
+  padding-right: 2rem;
 }
 
-.main__container {
-  grid-column: 1 / span 4;
+.main__container, .main__container--service {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto 2fr;
-  grid-column-gap: .5rem;
-  grid-row-gap: 1rem;
-  overflow: scroll;
+  grid-gap: 1rem 1rem;
+  grid-template-areas:
+    "main__header main__header main__header main__header"
+    "main__supporting main__supporting main__supporting main__supporting";
 }
 
-.main__figure {
-  grid-column: 1 / span 4;
-  grid-row: 1;
+.main__container--service {
+  padding: 2rem;
+}
+
+.main__header {
+  grid-area: main__header;
 }
 
 .main__figure-img {
@@ -175,18 +121,17 @@ aside {
   margin: 0;
 }
 
-.main__section-list {
-  grid-column: 1 / span 4;
-  grid-row: 2 / span 2;
+.main__supporting {
+  grid-area: main__supporting;
   display: grid;
-  grid-template-rows: auto minmax(100px, 150px);
+  grid-template-rows: auto;
   grid-row-gap: 1rem;
 }
 
 .main__section-item {
-  grid-row: auto;
+  grid-column: 1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 25% 75%;
   grid-column-gap: 1rem;
 }
 
@@ -196,25 +141,34 @@ aside {
 }
 
 .main__section-desc {
-  grid-column: 2 / 5;
-  margin: 0;
-  display: inline-block;
+  grid-column: 2;
+  width: 100%;
 }
 
+.main__heading, .main__subheading, .main__progress {
+  grid-column: 1 / span 4;
+  // grid-row: 1;
+}
 
-main h3 {
+.main__heading {
+  grid-area: main-heading;
   font-family: "prohibition";
   font-size: 2rem;
   margin-bottom: .5rem;
 }
 
-.subheading {
+.main__subheading {
+  grid-area: main-supporting;
   font-family: "industry";
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
-
+.supporting__card {
+  grid-row: 1;
+  padding-right: 1rem;
+  position: relative;
+}
 
 .card {
   margin: 0 1rem 1rem 0;
@@ -253,8 +207,9 @@ h5.card-title {
 
 //Buttons
 .btn {
-  margin-bottom: 1rem;
-  font-family: "prohibition"
+  font-family: "prohibition";
+  position: absolute;
+  bottom: 0;
 }
 
 .btn-dark {

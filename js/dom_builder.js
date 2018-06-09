@@ -8,7 +8,7 @@ let $ = require("jquery"),
     sb = require("./show_bikes"),
     forms = require("./bike_forms");
 
-let main_content = document.getElementById("main__container");
+let main_content = document.getElementById("main_content");
 let content = {};
 
 content.showBikes = () => {
@@ -23,15 +23,25 @@ content.showParts = () => {
 };
 
 content.showService = () => {
-  main_content.innerHTML = `<h3>Repair and Mod Options</h3>
-  <p class="subheading">Need us to wrench on your bike? If you haven’t had us look at it in the past, give us the lowdown and we can give it a peek.
-  </p>
-  <p>Step 1 -> <span class="disabled">Step 2 -> </span><span class="disabled">Step 3</span></p>
-  <p>Sign in with your Google account and you will be able to track the progress of your repair and revisit past repairs.</p>
-  <button type="button" class="btn btn-dark" id="googLogin">Sign In with Google</button>
-  <p>Not on the best terms with the Googs? Not problem. You can still sign up for service as a guest. We’ve got you either way.
-  </p>
-  <button type="button" class="btn btn-dark" id="guestLogin">Continue as Guest</button>`;
+  main_content.innerHTML = `\
+  <div class="main__container--service">\
+    <div class="main__header">\
+      <h3 class="main__heading">Repair and Mod Options</h3>\
+      <p class="main__subheading">Need us to wrench on your bike? If you haven’t had us look at it in the past, give us the lowdown and we can give it a peek.</p>\
+      <p class="main__progress">Step 1 -> <span class="disabled">Step 2 -> </span><span class="disabled">Step 3</span></p>\
+    </div> <!--main__header-->\
+
+    <div class="main__supporting">\
+      <div class="supporting__card">\
+        <p>Sign in with your Google account and you will be able to track the progress of your repair and revisit past repairs.</p>\
+        <button type="button" class="btn btn-dark" id="googLogin">Sign In with Google</button>\
+      </div>\
+      <div class="supporting__card">\
+        <p>Not on the best terms with the Googs? Not problem. You can still sign up for service as a guest. We’ve got you either way.
+        </p>\
+        <button type="button" class="btn btn-dark" id="guestLogin">Continue as Guest</button>\
+      </div>
+  </div>`;
 
   $("#googLogin").click(function(){
     user.logInGoogle()
