@@ -23,10 +23,19 @@ $black-dog: #000000;
 .header {
   grid-area: header;
   background-color: $red-dog;
-  font-family: "prohibition";
+  padding-left: 2rem;
 }
 
-.header-text {
+.header__heading {
+  font-family: "Prohibition", sans-serif;
+  font-size: 6rem;
+}
+
+.header__heading--white {
+  color: white;
+}
+
+.header__heading--black {
   color: $black-dog;
 }
 
@@ -142,7 +151,6 @@ h1 {
 
 .main__section-desc {
   grid-column: 2;
-  width: 100%;
 }
 
 .main__heading, .main__subheading, .main__progress {
