@@ -143,8 +143,6 @@ h1 {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-gap: 1rem 1rem;
-  justify-content: center;
-  // overflow: scroll;
 }
 
 .main__section-item {
@@ -215,6 +213,10 @@ h5.card-title {
   cursor: pointer;
 }
 
+#single-bike {
+  grid-column: 1;
+}
+
 //Form Elements
 label {
   margin-bottom: .25rem;
@@ -233,7 +235,7 @@ input::placeholder {
   margin-bottom: 1rem;
 }
 
-.form__service-form, .form__edit-form {
+.form__service-form, .form__edit-form, .form__add-form {
   grid-column: 2;
 }
 
