@@ -4,6 +4,11 @@ $red-dog: #FF0202; //#F21818
 $grey-dog: #BFBFBF;
 $black-dog: #000; //#444
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 //Layout
 .l-container {
   width: 100%;
@@ -92,12 +97,6 @@ h1 {
   margin: 0;
 }
 
-.item_selected {
-  margin: 0;
-  padding: 0;
-  background-color: $black-dog;
-}
-
 // Main Content Area
 .main {
   grid-area: main;
@@ -115,7 +114,7 @@ h1 {
 }
 
 .main__container--bikes, .main__container--parts, .main__container--service, .main__container--rescue, .main__container--army {
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
 }
 
 .main__header {
@@ -145,7 +144,7 @@ h1 {
   grid-template-rows: auto;
   grid-gap: 1rem 1rem;
   justify-content: center;
-  overflow: scroll;
+  // overflow: scroll;
 }
 
 .main__section-item {
@@ -180,7 +179,7 @@ h1 {
   grid-area: main-supporting;
   font-family: "industry";
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .supporting__card {
@@ -217,12 +216,37 @@ h5.card-title {
 }
 
 //Form Elements
-.form-row, .form-group, .custom-file {
+label {
+  margin-bottom: .25rem;
+}
+
+input::placeholder {
+  font-size: .75rem;
+}
+
+.form-control {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.custom-file {
   margin-bottom: 1rem;
 }
 
-.form-row label, .form-group label {
-  margin-bottom: .125rem;
+.form__service-form, .form__edit-form {
+  grid-column: 2;
+}
+
+.form__guest-form {
+  grid-column: 1 / span 4;
+}
+
+.form__button-row {
+  margin: 0;
+}
+
+.form__button--margin {
+  margin-right: .5rem;
 }
 
 //Buttons
