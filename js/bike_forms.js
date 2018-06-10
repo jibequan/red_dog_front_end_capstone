@@ -7,6 +7,7 @@ let user = require("./user"),
     response = require("./response");
 
 let main_content = document.getElementById("main_content");
+let gallery = document.getElementById("gallery");
 
 let currentUser = user.getCompleteUser();
 
@@ -18,7 +19,7 @@ let showBikeForm = () => {
         <p class="main__subheading">New ride? Sweet! Just add it in here to make service simple should you ever need it.</p>
       </div>
       <div class="main__supporting--service">
-        <form>
+        <form class="form__add-form">
           <fieldset>
             <legend>Bike Information</legend>
                 <div class="form-group">
@@ -26,7 +27,7 @@ let showBikeForm = () => {
                   <input id="bike-nickname" class="form-control" type="text" placeholder="Nickname">
                 </div>
                 <div class="custom-file">
-                  <label class="custom-file-label" for="customFile">Upload image of your bike</label>
+                  <label class="custom-file-label" for="customFile">Choose file</label>
                   <input type="file" class="custom-file-input" id="customFile">
                 </div>
                 <div class="form-group">
@@ -47,8 +48,10 @@ let showBikeForm = () => {
                 </div>
           </fieldset>
             <!-- Add Bike/Submit Button -->
-              <button type="button" class="btn btn-danger" value="CANCEL">Cancel</button>
-              <button type="button" class="btn btn-dark" id="save_bike" value="ADD BIKE">Add Bike</button>
+            <div class="row justify-content-end form__button-row">
+              <button class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
+              <button id="save_bike" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
+            </div>
         </form>
       </div>
     </div>`;
@@ -219,22 +222,17 @@ let showEditBikeForm = () => {
 };
 
 let requestServiceForm = () => {
-  main_content.innerHTML = `
-    <div class="main__container--service">
-      <div class="main__header">
-        <h3 class="main__heading">Here is your bike.</h3>
-        <p class="main__subheading">Make sure your contact information is correct and let us know what the issue is.</p>
-      </div>
-      <div class="main__supporting--service">
+  let gallery = document.getElementById("gallery");
+  gallery.innerHTML += `
         <form class="form__service-form">
           <fieldset>
             <legend>Contact Information</legend>
-    <!-- First and Last Name -->
+      <!-- First and Last Name -->
               <div class="form-group">
                 <label for="contact-first-name">Name</label>
                 <input id="contact-first-name" class="form-control" type="text" placeholder="${user.getCompleteUser().name}" required>
               </div>
-    <!-- Phone Number -->
+      <!-- Phone Number -->
               <div class="form-row">
                 <div class="form-group col-4">
                   <label for="contact-area-code">Area Code</label>
@@ -245,22 +243,22 @@ let requestServiceForm = () => {
                   <input id="contact-m-number" class="form-control" type="text" placeholder="Telephone Number" required>
                 </div>
               </div>
-    <!-- Email Address -->
+      <!-- Email Address -->
               <div class="form-group">
                 <label for="contact-email">Email Address</label>
                 <input id="contact-email" class="form-control" type="email" placeholder="${user.getCompleteUser().email}" required>
               </div>
-    <!-- First Line of Address -->
+      <!-- First Line of Address -->
               <div class="form-group">
                 <label for="contact-address">Street Address</label>
                 <input id="contact-address" class="form-control" type="address" placeholder="Street Address">
               </div>
-    <!-- Second Line of Address -->
+      <!-- Second Line of Address -->
               <div class="form-group">
                 <label for="contact-sec-address">Apt., Suite, Building, etc.</label>
                 <input id="contact-sec-address" class="form-control" type="address" placeholder="Apt., Suite, Building, etc.">
               </div>
-    <!-- State or Province -->
+      <!-- State or Province -->
               <div class="form-row">
                 <div class="form-group col-6">
                   <label for="contact-city">City</label>
@@ -287,9 +285,7 @@ let requestServiceForm = () => {
             <button type="button" class="btn btn-danger form__button--margin cancel">Cancel</button>
             <button type="button" class="btn btn-dark submit_repair">Submit</button>
           </div>
-        </form>
-      </div>
-    </div>`;
+        </form>`;
 };
 
 module.exports = {showGuestForm, showBikeForm, showTimeForm, showEditBikeForm, requestServiceForm};
