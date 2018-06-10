@@ -34,7 +34,7 @@ function showMyBikes(bikes_data) {
   <div class="main__container--service">\
     <div class="main__header">\
       <h3 class="main__heading">Hey ${user.getCompleteUser().name}. Here are your bikes.</h3>\
-      <p class="subheading">You can additional bikes or request service for one already associated with your account.</p>\
+      <p class="main__subheading">You can additional bikes or request service for one already associated with your account.</p>\
       <button type="button" class="btn btn-dark" id="add_bike">+ Add bike</button>\
     </div>\
     <div id="gallery" class="main__supporting--service"></div>\
@@ -44,7 +44,7 @@ function showMyBikes(bikes_data) {
 
 let showRequestBike = (bike) => {
   main_content.innerHTML = `<h3>Need us to take a look at your ride?</h3>
-                            <p class="subheading">Fill out the information below and we can cook up a quote for you.</p>
+                            <p class="main__subheading">Fill out the information below and we can cook up a quote for you.</p>
                             <div id="gallery" class="row"></div>`;
 
   let bike_card = `<div id="${bike.bike_Id}"class="card col-sm-6" style="margin: 0; border: none">
