@@ -137,6 +137,16 @@ h1 {
   grid-row-gap: 1rem;
 }
 
+.main__supporting--service {
+  grid-area: main__supporting;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 1rem 1rem;
+  justify-content: center;
+  overflow: scroll;
+}
+
 .main__section-item {
   grid-column: 1;
   display: grid;
@@ -179,7 +189,8 @@ h1 {
 }
 
 .card {
-  margin: 0 1rem 1rem 0;
+  width: 100%;
+  grid-row: 1;
 }
 
 .card-body {
@@ -216,8 +227,6 @@ h5.card-title {
 //Buttons
 .btn {
   font-family: "prohibition";
-  position: absolute;
-  bottom: 0;
 }
 
 .btn-dark {
