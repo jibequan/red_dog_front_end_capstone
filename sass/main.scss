@@ -1,33 +1,48 @@
 @import url("https://use.typekit.net/ius6gqc.css");
 
-$red-dog: #FF0202;
+$red-dog: #FF0202; //#F21818
 $grey-dog: #BFBFBF;
-$black-dog: #000000;
+$black-dog: #000; //#444
 
-@mixin clearfix() {
-  &::after {
-    display: block;
-    content: "";
-    clear: both;
-  }
+* {
+  margin: 0;
+  padding: 0;
 }
 
-//General styling
-.element {
-  @include clearfix;
+//Layout
+.l-container {
+  width: 100%;
+  height: 100vh;
+  font-family: "Industry";
+  color: $black-dog;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 128px auto;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-areas:
+    "header header header"
+    "nav main main";
 }
 
-//header elements
-header{
+//Header Elements
+.header {
+  grid-area: header;
   background-color: $red-dog;
-  height: 128px;
-  font-family: "prohibition";
+  padding-left: 2rem;
 }
 
-header h1{
+.header__heading {
+  font-family: "Prohibition", sans-serif;
+  font-size: 6rem;
+}
+
+.header__heading--white {
   color: white;
-  font-size: 6em;
-  margin: auto;
+}
+
+.header__heading--black {
+  color: $black-dog;
 }
 
 h1 {
@@ -39,129 +54,141 @@ h1 {
    }
 }
 
-header hr {
-  border-color: white;
-  border-width: .3em;
-  margin: 0;
-}
-
-#address p{
-  font-family: "prohibition";
-  font-size: 2em;
-  color: white;
-  text-align: center;
-  margin: 0;
-}
-
-#address {
-  margin: auto;
-}
-
-.header-text {
-  color: $black-dog;
-}
-
 //Nav elements
-.sidenav{
-  height: auto;
-  margin-top: .5rem;
-  margin-left: .5rem;
-  margin-right: .5rem;
-  padding: 0;
+.l-nav {
+  grid-area: nav;
+}
+
+.nav__list{
+  display: grid;
+  grid-template-rows: repeat(5, 20%);
+  grid-row-gap: 1rem;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav__item {
+  display: grid;
+  grid-template-columns: 75% 1fr 1fr 1fr;
+  grid-column-gap: .5rem;
+}
+
+.nav__item-label, .nav__item-light {
   background-color: $red-dog;
-  color: white;
-  font-family: "prohibition";
-  font-size: 3em;
+  grid-column: span 1;
 }
 
-.nav>.row {
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
-  border-bottom: .5rem solid white;
-  cursor: pointer;
-}
-
-.nav-item {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.lights {
-  margin: 0;
-  padding: 0;
-}
-
-.item_selected {
-  margin: 0;
-  padding: 0;
+.nav__item-light--selected {
   background-color: $black-dog;
+  grid-column: span 1;
 }
 
-.light {
-  border-left: .5rem solid white;
-  margin: 0;
-  width: 33.33%
+.nav__item-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
 }
 
-//Aside Area
-aside {
-  font-family: "prohibition";
-  font-size: 1.5em;
-  color: $black-dog;
-}
-
-.contact_info{
-  font-size: 1rem;
-  background-color: $black-dog;
+.nav__item-label p {
+  font-family: "Prohibition", sans-serif;
+  font-size: 4rem;
   color: white;
-  padding: 1rem;
-  margin: 1rem;
-  overflow-x: auto;
+  margin: 0;
 }
 
 // Main Content Area
-main {
-  margin: .5rem .5rem 0 .5rem;
-  padding: 0 0 2rem 0;
-  font-family: "industry";
-  color: $black-dog;
-  font-size: 1rem;
-
+.main {
+  grid-area: main;
+  padding-right: 2rem;
 }
 
-#main_content {
+.main__container, .main__container--bikes, .main__container--parts, .main__container--service, .main__container--rescue, .main__container--army {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 2fr;
+  grid-gap: 1rem 1rem;
+  grid-template-areas:
+    "main__header main__header main__header main__header"
+    "main__supporting main__supporting main__supporting main__supporting";
+}
+
+.main__container--bikes, .main__container--parts, .main__container--service, .main__container--rescue, .main__container--army {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.main__header {
+  grid-area: main__header;
+}
+
+.main__figure-img {
+  width: 100%;
+}
+
+.main__figure-cap {
+  grid-row: 1;
   margin: 0;
 }
 
-main h3 {
+.main__supporting {
+  grid-area: main__supporting;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 1rem;
+}
+
+.main__supporting--service {
+  grid-area: main__supporting;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 1rem 1rem;
+}
+
+.main__section-item {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-column-gap: 1rem;
+}
+
+.main__section-pic {
+  grid-column: 1;
+  width: 100%;
+}
+
+.main__section-desc {
+  grid-column: 2;
+}
+
+.main__heading, .main__subheading, .main__progress {
+  grid-column: 1 / span 4;
+  // grid-row: 1;
+}
+
+.main__heading {
+  grid-area: main-heading;
   font-family: "prohibition";
   font-size: 2rem;
   margin-bottom: .5rem;
 }
 
-.subheading {
+.main__subheading {
+  grid-area: main-supporting;
   font-family: "industry";
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
-main p {
-  margin-bottom: .5rem;
-}
-
-.figure {
-  font-family: "industry";
-  font-weight: 600;
-}
-
-section {
-  margin-bottom: 1em;
+.supporting__card {
+  grid-row: 1;
+  padding-right: 1rem;
+  position: relative;
 }
 
 .card {
-  margin: 0 1rem 1rem 0;
+  width: 100%;
+  grid-row: 1;
 }
 
 .card-body {
@@ -186,19 +213,47 @@ h5.card-title {
   cursor: pointer;
 }
 
+#single-bike {
+  grid-column: 1;
+}
+
 //Form Elements
-.form-row, .form-group, .custom-file {
+label {
+  margin-bottom: .25rem;
+}
+
+input::placeholder {
+  font-size: .75rem;
+}
+
+.form-control {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.custom-file {
   margin-bottom: 1rem;
 }
 
-.form-row label, .form-group label {
-  margin-bottom: .125rem;
+.form__service-form, .form__edit-form, .form__add-form {
+  grid-column: 2;
+}
+
+.form__guest-form {
+  grid-column: 1 / span 4;
+}
+
+.form__button-row {
+  margin: 0;
+}
+
+.form__button--margin {
+  margin-right: .5rem;
 }
 
 //Buttons
 .btn {
-  margin-bottom: 1rem;
-  font-family: "prohibition"
+  font-family: "prohibition";
 }
 
 .btn-dark {
