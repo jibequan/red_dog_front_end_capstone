@@ -2,13 +2,14 @@
 
 $red-dog: #FF0202; //#F21818
 $grey-dog: #BFBFBF;
-$black-dog: #000000;
+$black-dog: #000; //#444
 
 //Layout
 .l-container {
   width: 100%;
   height: 100vh;
   font-family: "Industry";
+  color: $black-dog;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 128px auto;
