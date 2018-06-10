@@ -7,9 +7,9 @@ let $ = require("jquery"),
 	user = require("./user"),
 	db = require("./db-interaction"),
 	sb = require("./show_bikes"),
-    dom = require("./dom_builder"),
-    forms = require("./bike_forms"),
-    response = require("./response");
+  dom = require("./dom_builder"),
+  forms = require("./bike_forms"),
+  response = require("./response");
 
 let main_area = document.getElementById("main_content"),
 	nav = document.getElementById("nav__list"),
