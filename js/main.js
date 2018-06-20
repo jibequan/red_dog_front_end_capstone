@@ -134,6 +134,6 @@ $(document).on("click", ".guest_submit_repair", (event) => {
 	response.requestReceivedGuest();
 });
 
-fileUpload.addEventListener('change', (e) => {
-	
-});
+// fileUpload.addEventListener('change', (e) => {
+//
+// });

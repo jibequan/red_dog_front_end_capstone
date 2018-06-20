@@ -5,7 +5,7 @@
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user");
-    
+
 let main_content = document.getElementById("main_content");
 
 // User related //
@@ -30,7 +30,7 @@ let checkFB = (uid) => {
         });
   } else {
     user.setUserFbUglyId(Object.keys(result)[0]);
-    }   
+    }
   });
 };
 
@@ -70,6 +70,25 @@ let getBikes = (uid) => {
 
     bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${uid}"`);
     bikesXHR.send();
+  });
+};
+
+let getRepairs = (bike_Id) => {
+    return new Promise((resolve, reject) => {
+    let repairXHR = new XMLHttpRequest();
+
+    repairXHR.addEventListener("load", function() {
+      let data = JSON.parse(this.responseText);
+      resolve(data);
+    });
+
+    repairXHR.addEventListener("error", function(){
+      var error = repairXHR.statusText;
+      reject(error);
+    });
+
+    repairXHR.open('GET', `${firebase.getFBsettings().databaseURL}/repairs.json?orderBy="bike_Id"&equalTo="${bike_Id}"`);
+    repairXHR.send();
   });
 };
 
@@ -120,7 +139,7 @@ let addBikeId = (result) => {
   let obj = {
     "bike_Id" : bike_Id
   };
-    
+
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
     type: 'PATCH',
@@ -240,7 +259,7 @@ let addRepairId = (result) => {
   let obj = {
     "repair_Id" : repair_Id
   };
-    
+
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/repairs/${repair_Id}.json`,
     type: 'PATCH',
@@ -262,4 +281,4 @@ let addRepair = (repairObj) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
+module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, getRepairs, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};

@@ -7,25 +7,44 @@ let user = require("./user"),
 
 let main_content = document.getElementById("main_content");
 
+function prepRepairs(repair_data) {
+  let repair = Object.keys(repair_data);
+  var comment;
+  repair.forEach((thing) => {
+    if (repair_data[thing].comment) {
+      comment = repair_data[thing].comment;
+      console.log("comment", comment);
+    }
+  });
+  return comment;
+}
+
 function makeBikeGrid(bikes_data) {
   let gallery = document.getElementById("gallery");
   let keys = Object.keys(bikes_data);
+
   keys.forEach((item) => {
-    let bike_card = `\
-      <div id="${bikes_data[item].bike_Id}" class="card">\
-        <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">\
-        <div class="card-body">\
-          <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>\
-          <p class="card-text">Repair History</p>\
-          <div class="list-group">\
-            <a href="#" class="list-group-item">02/14/2018: Cleaned carberator, new chain, fixed signal</a>\
-          </div>\
-          <a href="#" class="btn btn-danger delete_bike">Delete</a>\
-          <a href="#" class="btn btn-secondary edit_bike">Edit</a>\
-          <a href="#" class="btn btn-dark service_bike">Request Service</a>\
-        </div>\
-      </div>`;
-    gallery.innerHTML+= bike_card;
+    db.getRepairs(item)
+      .then((data) => {
+         console.log(prepRepairs(data));
+
+
+        let bike_card = `\
+          <div id="${bikes_data[item].bike_Id}" class="card">\
+            <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">\
+            <div class="card-body">\
+              <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>\
+              <p class="card-text">Repair History</p>\
+              <div class="list-group">\
+                <p></p>\
+              </div>\
+              <a href="#" class="btn btn-danger delete_bike">Delete</a>\
+              <a href="#" class="btn btn-secondary edit_bike">Edit</a>\
+              <a href="#" class="btn btn-dark service_bike">Request Service</a>\
+            </div>\
+          </div>`;
+        gallery.innerHTML+= bike_card;
+    });
   });
 }
 
@@ -43,7 +62,6 @@ function showMyBikes(bikes_data) {
 }
 
 let showRequestBike = (bike) => {
-  console.log("Hello?");
   main_content.innerHTML = `
     <div class="main__container--service">
       <div class="main__header">
