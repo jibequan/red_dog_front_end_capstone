@@ -17,7 +17,8 @@ let main_area = document.getElementById("main_content"),
 	partsNav = document.getElementById("parts"),
 	serviceNav = document.getElementById("service"),
 	rescueNav= document.getElementById("rescue"),
-	armyNav = document.getElementById("army");
+	armyNav = document.getElementById("army"),
+	fileUpload = document.getElementById('customFile');
 
 
 // navItems.addEventListener("click", (e) => {
@@ -131,4 +132,8 @@ $(document).on("click", ".submit_repair", (event) => {
 
 $(document).on("click", ".guest_submit_repair", (event) => {
 	response.requestReceivedGuest();
+});
+
+fileUpload.addEventListener('change', (e) => {
+	
 });
