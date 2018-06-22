@@ -37,7 +37,7 @@ content.showService = () => {
       <div class="main__header">\
         <h3 class="main__heading">Repair and Mod Options</h3>\
         <p class="main__subheading">Need us to wrench on your bike? If you haven’t had us look at it in the past, give us the lowdown and we can give it a peek.</p>\
-        <p class="main__progress">Step 1 -> <span class="disabled">Step 2 -> </span><span class="disabled">Step 3</span></p>\
+        
       </div> <!--main__header-->\
 
       <div class="main__supporting">\

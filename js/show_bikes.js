@@ -39,8 +39,8 @@ function makeBikeGrid(bikes_data) {
           <div id="${bikes_data[item].bike_Id}" class="card">\
             <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">\
             <div class="card-body">\
-              <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>\
-              <p class="card-text">Repair History</p>\
+              <h5 class="card-title">"${bikes_data[item].nickname}"<br>${bikes_data[item].year} ${bikes_data[item].make} ${bikes_data[item].model}</h5>\
+              <p style="font-weight: bold" class="card-text">Repair History</p>\
               <div class="list-group">\
                 <p>${comment}</p>\
               </div>\
