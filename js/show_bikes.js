@@ -22,11 +22,17 @@ function prepRepairs(repair_data) {
 function makeBikeGrid(bikes_data) {
   let gallery = document.getElementById("gallery");
   let keys = Object.keys(bikes_data);
+  let comment = "";
 
   keys.forEach((item) => {
     db.getRepairs(item)
       .then((data) => {
-         console.log(prepRepairs(data));
+        if(prepRepairs(data) == undefined){
+          comment = "";
+        }else {
+          comment = prepRepairs(data);
+        }
+
 
 
         let bike_card = `\
@@ -36,7 +42,7 @@ function makeBikeGrid(bikes_data) {
               <h5 class="card-title">"${bikes_data[item].nickname}" | ${bikes_data[item].year} | ${bikes_data[item].make} | ${bikes_data[item].model}</h5>\
               <p class="card-text">Repair History</p>\
               <div class="list-group">\
-                <p></p>\
+                <p>${comment}</p>\
               </div>\
               <a href="#" class="btn btn-danger delete_bike">Delete</a>\
               <a href="#" class="btn btn-secondary edit_bike">Edit</a>\
