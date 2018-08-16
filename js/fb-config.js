@@ -6,11 +6,13 @@ let firebase = require("firebase/app"),
 
 require("firebase/auth");
 require("firebase/database");
+require("firebase/storage");
 
 var config = {
   apiKey: fbData.apiKey,
   authDomain: fbData.authDomain,
-  databaseURL: fbData.databaseURL
+  databaseURL: fbData.databaseURL,
+  storageBucket: fbData.storageBucket
 };
 
 

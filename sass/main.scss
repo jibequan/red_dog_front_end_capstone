@@ -189,6 +189,7 @@ h1 {
 .card {
   width: 100%;
   grid-row: auto;
+  border: none;
 }
 
 .card-body {
@@ -224,6 +225,10 @@ label {
 
 input::placeholder {
   font-size: .75rem;
+}
+
+.main__supporting-placeholder{
+  grid-column: 1;
 }
 
 .form-control {
@@ -272,4 +277,12 @@ input::placeholder {
 
 .disabled {
   color: $grey-dog;
+}
+
+.card-body {
+  align-items: flex-end;
+}
+
+.delete_bike, .edit_bike, .service_bike {
+  align-self: flex-end;
 }

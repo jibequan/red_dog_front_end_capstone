@@ -19,6 +19,7 @@ let showBikeForm = () => {
         <p class="main__subheading">New ride? Sweet! Just add it in here to make service simple should you ever need it.</p>
       </div>
       <div class="main__supporting--service">
+        <a class="main__supporting-placeholder"href="https://placeholder.com"><img src="http://via.placeholder.com/300x150"></a>
         <form class="form__add-form">
           <fieldset>
             <legend>Bike Information</legend>
@@ -63,7 +64,7 @@ let showGuestForm = () => {
       <div class="main__header">
         <h3 class="main__heading">Setup Service for your bike</h3>
         <p class="main__subheading">Just provide us with your contact information and some for your bike and we'll get things going.</p>
-        <p>Step 1 -> <span class="disabled">Step 2 -> </span><span class="disabled">Step 3</span></p>
+        
       </div>
     <form class="form__guest-form">
       <fieldset>
