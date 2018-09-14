@@ -6,3 +6,6 @@ lib/node_modules/
 js/fb-key.js
 lib/package-lock.json
 package-lock.json
+docs/
+screenshots/
+prototypes/comps/
