@@ -55,6 +55,7 @@ function makeBikeGrid(bikes_data) {
 }
 
 function showMyBikes(bikes_data) {
+  console.log("This is what is passed from getBikes", bikes_data);
   main_content.innerHTML = `\
     <div class="main__container--service">\
       <div class="main__header">\

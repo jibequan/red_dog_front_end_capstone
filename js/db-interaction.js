@@ -7,8 +7,10 @@ let $ = require('jquery'),
     user = require("./user");
 
 let main_content = document.getElementById("main_content");
+var rootRef = firebase.database().ref();
+var dbBikesRef = rootRef.child('bikes');
 
-//Ask Firebase for data in users collection with specific uid
+//Ask Firebase for data in 'users' collection with specific uid
 let askFBForInfo = (uid) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
@@ -64,22 +66,30 @@ let addUser = (newUser) => {
 
 // Bike related//
 let getBikes = (uid) => {
-    return new Promise((resolve, reject) => {
-    let bikesXHR = new XMLHttpRequest();
-
-    bikesXHR.addEventListener("load", function() {
-      let data = JSON.parse(this.responseText);
-      resolve(data);
-    });
-
-    bikesXHR.addEventListener("error", function(){
-      var error = bikesXHR.statusText;
-      reject(error);
-    });
-
-    bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${uid}"`);
-    bikesXHR.send();
+  var bikeData;
+  dbBikesRef.orderByChild('uid').equalTo(uid).on('value', snap => {
+    bikeData = snap.val();
+    console.log(bikeData);
   });
+  return bikeData;
+  // dbBikesRef = firebase.database().ref().child($`bikes/${uid}`);
+
+    // return new Promise((resolve, reject) => {
+    // let bikesXHR = new XMLHttpRequest();
+
+    // bikesXHR.addEventListener("load", function() {
+    //   let data = JSON.parse(this.responseText);
+    //   resolve(data);
+    // });
+
+    // bikesXHR.addEventListener("error", function(){
+    //   var error = bikesXHR.statusText;
+    //   reject(error);
+    // });
+
+    // bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${uid}"`);
+    // bikesXHR.send();
+  // });
 };
 
 let getRepairs = (bike_Id) => {
@@ -133,29 +143,12 @@ let createBike = () => {
 };
 
 let addBike = (bike) => {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/bikes.json`,
-    type: 'POST',
-    data: JSON.stringify(bike),
-    dataType: 'json'
-  }).done((result) => {
-     return result;
-  });
-};
-
-let addBikeId = (result) => {
-  let bike_Id = result.name;
-  let obj = {
-    "bike_Id" : bike_Id
-  };
-
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
-    type: 'PATCH',
-    data: JSON.stringify(obj),
-    dataType: 'json'
-  }).done((result) => {
-    return result;
+  var newBikeRef = dbBikesRef.push();
+  newBikeRef.set(bike);
+  
+  var bikeID = newBikeRef.key;
+  newBikeRef.update({
+    "bikeID": `${bikeID}`
   });
 };
 
@@ -290,4 +283,12 @@ let addRepair = (repairObj) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, getRepairs, createBike, addBike, addBikeId, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
+// var testBike = {
+//   "make": "Honda",
+//   "model": "Rocket",
+//   "year": "1978",
+//   "uid": "VGimDuF6eggNl4C4BYkPGRJ7G102"
+// };
+// addBike(testBike);
+
+module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, getRepairs, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};

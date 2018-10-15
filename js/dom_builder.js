@@ -60,11 +60,12 @@ content.showService = () => {
       //Check uid of current authenticated user against db to see if they exist
       db.checkFB(result.user.uid);
       //If they do, get the bikes associated with that user
-      db.getBikes(result.user.uid)
-      .then((data)=> {
-        // Show bikes associated with user
-        sb.showMyBikes(data);
-      });
+      sb.showMyBikes(db.getBikes(result.user.uid));
+      // .then((data)=> {
+      //   // Show bikes associated with user
+      //   return data;
+      //   // sb.showMyBikes(data);
+      // });
     });
   });
 
