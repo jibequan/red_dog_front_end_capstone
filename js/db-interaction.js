@@ -8,7 +8,7 @@ let $ = require('jquery'),
 
 let main_content = document.getElementById("main_content");
 
-// User related //
+//Ask Firebase for data in users collection with specific uid
 let askFBForInfo = (uid) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
@@ -20,15 +20,24 @@ let askFBForInfo = (uid) => {
 };
 
 let checkFB = (uid) => {
+  //Ask Firebase for data in users collection with specific uid
   askFBForInfo(uid)
   .then((result) => {
+  //User data is returned as object of objects
+    //Create array from properties of parent object
     let data = Object.values(result);
+    //If length of array is 0, no user exists | If length of array is 1, user already exists in "users" collection
     if (data.length === 0){
+      //No existing user: take currentUser info and add to "users" collection in db
       addUser(createUser())
         .then((result) => {
+        //Returned result is object like this ("name": "'ugly Firebase ID'")
+        //Add 'ugly Firebase ID' to completeUser object
         user.setUserFbUglyId(result.name);
         });
   } else {
+    console.log("User already exists", result);
+    //Get 'ugly Firebase ID' for existing user to completeUser object
     user.setUserFbUglyId(Object.keys(result)[0]);
     }
   });
