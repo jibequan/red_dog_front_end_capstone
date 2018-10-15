@@ -6,7 +6,8 @@ let $ = require("jquery"),
     user = require ("./user"),
     db = require("./db-interaction"),
     sb = require("./show_bikes"),
-    forms = require("./bike_forms");
+    forms = require("./bike_forms"),
+    firebase = require("./fb-config");
 
 let main_content = document.getElementById("main_content");
 let content = {};
@@ -53,12 +54,15 @@ content.showService = () => {
     </div>`;
 
   $("#googLogin").click(function(){
+    //Provide means of signing in with Google
     user.logInGoogle()
     .then((result) => {
+      //Check uid of current authenticated user against db to see if they exist
       db.checkFB(result.user.uid);
+      //If they do, get the bikes associated with that user
       db.getBikes(result.user.uid)
       .then((data)=> {
-        // No user data? Change boilerplate text.
+        // Show bikes associated with user
         sb.showMyBikes(data);
       });
     });
