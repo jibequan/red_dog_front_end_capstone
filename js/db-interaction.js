@@ -222,14 +222,7 @@ let editBike = (bike_Id, editBike) => {
 };
 
 let deleteBike = (bike_Id) => {
-  console.log("This is the bike ID deleteBike receives", bike_Id);
   dbBikesRef.child(bike_Id).remove();
-  // $.ajax({
-  //     url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
-  //     method: "DELETE"
-  // }).done((data) => {
-  //   return data;
-  // });
 };
 
 let createRepair = (bid) => {
