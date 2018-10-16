@@ -67,11 +67,11 @@ let addUser = (newUser) => {
 };
 
 // Bike related//
-let getBikes = (uid) => {
-  dbBikesRef.orderByChild('uid').equalTo(uid).once('value')
+let getBikes = (user) => {
+  dbBikesRef.orderByChild('uid').equalTo(user.uid).once('value')
     .then((snap) => {
       var bikeData = snap.val();
-      sb.showMyBikes(bikeData);
+      sb.showMyBikes(bikeData, user);
     });
   };
 
