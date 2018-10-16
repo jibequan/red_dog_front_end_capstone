@@ -1,7 +1,6 @@
 "use strict";
 
-let $ = require("jquery"),
-    forms = require("./bike_forms");
+let $ = require("jquery");
 
 $("#guestLogin").click(function(){
     console.log("clicked on Guest Signin");

@@ -1,22 +1,18 @@
 "use strict";
 
-// console.log("Hello main.js");
-
-let $ = require("jquery"),
-	nav_behavior= require("./nav_behavior"),
-	user = require("./user"),
-	db = require("./db-interaction"),
-	sb = require("./show_bikes"),
-	dom = require("./dom_builder"),
+let $ = require('jquery'),
+	nav_behavior= require('./nav_behavior'),
+	user = require('./user'),
+	db = require('./db-interaction'),
+	sb = require('./show_bikes'),
+	dom = require('./dom_builder'),
 	content = require('./content'),
-	forms = require("./bike_forms"),
-	response = require("./response"),
-	firebase = require("./fb-config"),
+	forms = require('./forms'),
+	response = require('./response'),
+	firebase = require('./fb-config'),
 	authUser = require('./authentication');
 
-let main_area = document.getElementById("main_content"),
-	nav = document.getElementById("nav__list"),
-	bikesNav = document.getElementById("bikes"),
+let bikesNav = document.getElementById('bikes'),
 	partsNav = document.getElementById("parts"),
 	serviceNav = document.getElementById("service"),
 	rescueNav= document.getElementById("rescue"),
@@ -57,7 +53,7 @@ $(document).on("click", "#show_bikes", () => {
 });
 
 $(document).on("click", "#add_bike", () => {
-	forms.showBikeForm();
+	dom.contentToDom(forms.addBikeForm);
 });
 
 $(document).on("click", "#save_bike", () => {
@@ -70,7 +66,7 @@ $(document).on("click", "#save_changes", () => {
 	.then((result) => {
 		return result;
 	});
-	response.bikeUpdated();
+	dom.contentToDom(response.bikeUpdated);
 });
 
 $(document).on("click", "#cancel_changes", () => {
@@ -92,11 +88,11 @@ $(document).on("click", ".cancel", () => {
 $(document).on("click", ".delete_bike", (event) => {
 	let bikeID = db.getBikeID(event);
 	db.deleteBike(bikeID);
-	response.bikeRemoved();
+	dom.contentToDom(response.bikeRemoved);
 });
 
 $(document).on("click", ".edit_bike", (event) => {
-	forms.showEditBikeForm();
+	dom.contentToDom(forms.editBikeForm);
 	bid = db.getBikeID(event);
 });
 
@@ -118,7 +114,7 @@ $(document).on("click", ".submit_repair", (event) => {
 	db.addRepair(db.createRepair(bid))
 	.then((result) => {
 		db.addRepairId(result);
-		response.requestReceived();
+		dom.contentToDom(response.requestReceived);
 	});
 });
 
