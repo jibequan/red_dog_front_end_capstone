@@ -265,12 +265,4 @@ let addRepair = (repairObj) => {
   });
 };
 
-// var testBike = {
-//   "make": "Honda",
-//   "model": "Rocket",
-//   "year": "1978",
-//   "uid": "VGimDuF6eggNl4C4BYkPGRJ7G102"
-// };
-// addBike(testBike);
-
 module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, getRepairs, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
