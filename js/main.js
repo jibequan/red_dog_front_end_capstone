@@ -8,9 +8,11 @@ let $ = require("jquery"),
 	db = require("./db-interaction"),
 	sb = require("./show_bikes"),
 	dom = require("./dom_builder"),
+	content = require('./content'),
 	forms = require("./bike_forms"),
 	response = require("./response"),
-	firebase = require("./fb-config");
+	firebase = require("./fb-config"),
+	authUser = require('./authentication');
 
 let main_area = document.getElementById("main_content"),
 	nav = document.getElementById("nav__list"),
@@ -22,33 +24,29 @@ let main_area = document.getElementById("main_content"),
 	fileUpload = document.getElementById('customFile');
 
 
-// navItems.addEventListener("click", (e) => {
-//   nav_behavior.navSelected(e);
-// });
-
 bikesNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showBikes();
+	dom.contentToDom(content.bikesForSale);
 });
 
 partsNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showParts();
+	dom.contentToDom(content.partsForSale);
 });
 
 serviceNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showService();
+	dom.contentToDom(content.showServiceSignIn);
 });
 
 rescueNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showRescue();
+	dom.contentToDom(content.showRescue);
 });
 
 armyNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showArmy();
+	dom.contentToDom(content.showArmy);
 });
 
 var bid;
@@ -126,4 +124,15 @@ $(document).on("click", ".submit_repair", (event) => {
 
 $(document).on("click", ".guest_submit_repair", (event) => {
 	response.requestReceivedGuest();
+});
+
+$(document).on('click', '#googLogin', (event) => {
+  //Provide means of signing in with Google
+  authUser.logInGoogle()
+  .then((result) => {
+    //Check uid of current authenticated user against db to see if they exist
+    db.checkFB(result.user.uid);
+    //If they do, get the bikes associated with that user
+    db.getBikes(result.user.uid);
+  });
 });
