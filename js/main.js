@@ -1,69 +1,92 @@
 "use strict";
 
-// console.log("Hello main.js");
+let $ = require('jquery'),
+	nav_behavior= require('./nav_behavior'),
+	user = require('./user'),
+	db = require('./db-interaction'),
+	sb = require('./show_bikes'),
+	dom = require('./dom_builder'),
+	content = require('./content'),
+	forms = require('./forms'),
+	response = require('./response'),
+	firebase = require('./fb-config'),
+	authUser = require('./authentication');
 
-let $ = require("jquery"),
-	nav_behavior= require("./nav_behavior"),
-	user = require("./user"),
-	db = require("./db-interaction"),
-	sb = require("./show_bikes"),
-	dom = require("./dom_builder"),
-	forms = require("./bike_forms"),
-	response = require("./response"),
-	firebase = require("./fb-config");
-
-let main_area = document.getElementById("main_content"),
-	nav = document.getElementById("nav__list"),
-	bikesNav = document.getElementById("bikes"),
+let bikesNav = document.getElementById('bikes'),
 	partsNav = document.getElementById("parts"),
 	serviceNav = document.getElementById("service"),
 	rescueNav= document.getElementById("rescue"),
 	armyNav = document.getElementById("army"),
 	fileUpload = document.getElementById('customFile');
 
-
-// navItems.addEventListener("click", (e) => {
-//   nav_behavior.navSelected(e);
-// });
-
+//////////Basic Nav//////////
 bikesNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showBikes();
+	dom.contentToDom(content.bikesForSale);
 });
 
 partsNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showParts();
+	dom.contentToDom(content.partsForSale);
 });
 
 serviceNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showService();
+	dom.contentToDom(content.showServiceSignIn);
 });
 
 rescueNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showRescue();
+	dom.contentToDom(content.showRescue);
 });
 
 armyNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.content.showArmy();
+	dom.contentToDom(content.showArmy);
+});
+
+//////////Sign In Options//////////
+$(document).on('click', '#googLogin', (event) => {
+  //Provide means of signing in with Google
+  authUser.logInGoogle()
+  .then((result) => {
+    //Check uid of current authenticated user against db to see if they exist
+    db.checkFB(result.user.uid);
+    //If they do, get the bikes associated with that user
+    db.getBikes(result.user.uid);
+  });
+});
+
+$(document).on('click', '#guestLogin', (event) => {
+	console.log("clicked on Guest Signin");
+	dom.contentToDom(forms.guestForm);
 });
 
 var bid;
 
+//////////Button Behavior//////////
 $(document).on("click", "#show_bikes", () => {
 	let currentUser = firebase.auth().currentUser.uid;
 	db.getBikes(currentUser);
 });
 
 $(document).on("click", "#add_bike", () => {
-	forms.showBikeForm();
+	dom.contentToDom(forms.addBikeForm);
 });
 
 $(document).on("click", "#save_bike", () => {
 	db.addBike(db.createBike());
+});
+
+$(document).on("click", ".delete_bike", (event) => {
+	let bikeID = db.getBikeID(event);
+	db.deleteBike(bikeID);
+	dom.contentToDom(response.bikeRemoved);
+});
+
+$(document).on("click", ".edit_bike", (event) => {
+	dom.contentToDom(forms.editBikeForm);
+	bid = db.getBikeID(event);
 });
 
 $(document).on("click", "#save_changes", () => {
@@ -72,7 +95,7 @@ $(document).on("click", "#save_changes", () => {
 	.then((result) => {
 		return result;
 	});
-	response.bikeUpdated();
+	dom.contentToDom(response.bikeUpdated);
 });
 
 $(document).on("click", "#cancel_changes", () => {
@@ -89,17 +112,6 @@ $(document).on("click", ".cancel", () => {
 	.then((data) => {
 		sb.showMyBikes(data);
 	});
-});
-
-$(document).on("click", ".delete_bike", (event) => {
-	let bikeID = db.getBikeID(event);
-	db.deleteBike(bikeID);
-	response.bikeRemoved();
-});
-
-$(document).on("click", ".edit_bike", (event) => {
-	forms.showEditBikeForm();
-	bid = db.getBikeID(event);
 });
 
 $(document).on("click", ".service_bike", (event) => {
@@ -120,10 +132,10 @@ $(document).on("click", ".submit_repair", (event) => {
 	db.addRepair(db.createRepair(bid))
 	.then((result) => {
 		db.addRepairId(result);
-		response.requestReceived();
+		dom.contentToDom(response.requestReceived);
 	});
 });
 
 $(document).on("click", ".guest_submit_repair", (event) => {
-	response.requestReceivedGuest();
+	dom.contentToDom(response.requestReceivedGuest);
 });
