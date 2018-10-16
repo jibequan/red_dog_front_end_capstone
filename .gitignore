@@ -9,3 +9,4 @@ package-lock.json
 docs/
 screenshots/
 prototypes/comps/
+.vscode

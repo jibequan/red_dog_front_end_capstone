@@ -1,6 +1,6 @@
 "use strict";
 
-let firebase = require("firebase/app"),
+var firebase = require("firebase/app"),
     fb = require("./fb-key"),
     fbData = fb();
 
@@ -17,7 +17,7 @@ var config = {
 
 
 firebase.getFBsettings = function(){
-	 // console.log("getFBsettings", config);
+  //  console.log("getFBsettings", config);
 	 return config;
 };
 

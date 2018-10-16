@@ -7,9 +7,10 @@ let $ = require("jquery"),
 	user = require("./user"),
 	db = require("./db-interaction"),
 	sb = require("./show_bikes"),
-  dom = require("./dom_builder"),
-  forms = require("./bike_forms"),
-  response = require("./response");
+	dom = require("./dom_builder"),
+	forms = require("./bike_forms"),
+	response = require("./response"),
+	firebase = require("./fb-config");
 
 let main_area = document.getElementById("main_content"),
 	nav = document.getElementById("nav__list"),
@@ -53,11 +54,8 @@ armyNav.addEventListener("click", (e) => {
 var bid;
 
 $(document).on("click", "#show_bikes", () => {
-	let currentUser = user.getCompleteUser().uid;
-	db.getBikes(currentUser)
-	.then((data) => {
-		sb.showMyBikes(data);
-	});
+	let currentUser = firebase.auth().currentUser.uid;
+	db.getBikes(currentUser);
 });
 
 $(document).on("click", "#add_bike", () => {
@@ -65,11 +63,7 @@ $(document).on("click", "#add_bike", () => {
 });
 
 $(document).on("click", "#save_bike", () => {
-	db.addBike(db.createBike())
-	.then((result) => {
-		db.addBikeId(result);
-	});
-	response.bikeAdded();
+	db.addBike(db.createBike());
 });
 
 $(document).on("click", "#save_changes", () => {
