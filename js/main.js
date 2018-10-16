@@ -33,22 +33,22 @@ bikesNav.addEventListener("click", (e) => {
 
 partsNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-  dom.content.showParts();
+	dom.content.showParts();
 });
 
 serviceNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-  dom.content.showService();
+	dom.content.showService();
 });
 
 rescueNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-  dom.content.showRescue();
+	dom.content.showRescue();
 });
 
 armyNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-  dom.content.showArmy();
+	dom.content.showArmy();
 });
 
 var bid;
@@ -127,7 +127,3 @@ $(document).on("click", ".submit_repair", (event) => {
 $(document).on("click", ".guest_submit_repair", (event) => {
 	response.requestReceivedGuest();
 });
-
-// fileUpload.addEventListener('change', (e) => {
-//
-// });
