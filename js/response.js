@@ -1,11 +1,6 @@
 "use strict";
 
-// console.log("Hello response");
-
-let main_content = document.getElementById("main_content");
-
-let bikeAdded = () => {
-  main_content.innerHTML = `\
+const bikeAdded = `\
     <div class="main__container--service">
       <div class="main__header">\
         <h3 class="main__heading">Your bike has been added to your account.</h3>\
@@ -13,10 +8,8 @@ let bikeAdded = () => {
         <button type="button" class="btn btn-dark" id="show_bikes">Back to My Bikes</button>\
       </div>\
     </div>`;
-};
 
-let bikeRemoved = () => {
-  main_content.innerHTML = `\
+const bikeRemoved = `\
     <div class="main__container--service">\
       <div class="main__header">\
         <h3 class="main__heading">This bike has been removed from your account.</h3>\
@@ -24,10 +17,8 @@ let bikeRemoved = () => {
         <button type="button" class="btn btn-dark" id="show_bikes">Back to My Bikes</button>\
     	</div>\
     </div>`;
-};
 
-let bikeUpdated = () => {
-  main_content.innerHTML = `\
+const bikeUpdated = `\
     <div class="main__container--service">\
       <div class="main__header">\
         <h3 class="main__heading">This bike has been updated.</h3>\
@@ -35,10 +26,8 @@ let bikeUpdated = () => {
         <button type="button" class="btn btn-dark" id="show_bikes">Back to My Bikes</button>\
     	</div>\
     </div>`;
-};
 
-let requestReceived = () => {
-  main_content.innerHTML = `\
+const requestReceived = `\
     <div class="main__container--service">\
       <div class="main__header">\
         <h3 class="main__heading">Your request has been successfully sent.</h3>\
@@ -46,16 +35,13 @@ let requestReceived = () => {
         <button type="button" class="btn btn-dark" id="show_bikes">Back to My Bikes</button>\
       </div>\
     </div>`;
-};
 
-let requestReceivedGuest = () => {
-  main_content.innerHTML = `\
+const requestReceivedGuest = `\
     <div class="main__container--service">\
       <div class="main__header">\
         <h3 class="main__heading">Your request has been successfully sent.</h3>\
         <p class="main__subheading">We'll get back to you shortly with a quote and arrange a time to pickup your bike for service.</p>\
       </div>\
     </div>`;
-};
 
 module.exports = {bikeAdded, bikeRemoved, bikeUpdated, requestReceived, requestReceivedGuest};
