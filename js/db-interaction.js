@@ -6,6 +6,7 @@ let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
     sb = require("./show_bikes"),
+    content = require("./dom_builder"),
     response = require("./response");
 
 let main_content = document.getElementById("main_content");
@@ -135,7 +136,7 @@ let addBike = (bike) => {
   newBikeRef.update({
     "bikeID": `${bikeID}`
   }).then((result) => {
-      response.bikeAdded();
+      content.contentToDom(response.bikeAdded);
   });
 };
 
