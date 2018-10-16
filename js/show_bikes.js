@@ -25,18 +25,18 @@ function makeBikeGrid(bikes_data) {
   let comment = "";
 
   keys.forEach((item) => {
-    db.getRepairs(item)
-      .then((data) => {
-        if(prepRepairs(data) == undefined){
-          comment = "";
-        }else {
-          comment = prepRepairs(data);
-        }
+    // db.getRepairs(item)
+    //   .then((data) => {
+    //     if(prepRepairs(data) == undefined){
+    //       comment = "";
+    //     }else {
+    //       comment = prepRepairs(data);
+    //     }
 
 
 
         let bike_card = `\
-          <div id="${bikes_data[item].bike_Id}" class="card">\
+          <div id="${bikes_data[item].bikeID}" class="card">\
             <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">\
             <div class="card-body">\
               <h5 class="card-title">"${bikes_data[item].nickname}"<br>${bikes_data[item].year} ${bikes_data[item].make} ${bikes_data[item].model}</h5>\
@@ -51,11 +51,9 @@ function makeBikeGrid(bikes_data) {
           </div>`;
         gallery.innerHTML+= bike_card;
     });
-  });
-}
+  }
 
 function showMyBikes(bikes_data) {
-  console.log("This is what is passed from getBikes", bikes_data);
   main_content.innerHTML = `\
     <div class="main__container--service">\
       <div class="main__header">\
@@ -65,7 +63,10 @@ function showMyBikes(bikes_data) {
       </div>\
       <div id="gallery" class="main__supporting--service"></div>\
     </div>`;
-  makeBikeGrid(bikes_data);
+  if (!bikes_data) {
+  }else {
+    makeBikeGrid(bikes_data);
+  }
 }
 
 let showRequestBike = (bike) => {
