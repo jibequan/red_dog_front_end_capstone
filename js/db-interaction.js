@@ -4,7 +4,9 @@
 
 let $ = require('jquery'),
     firebase = require("./fb-config"),
-    user = require("./user");
+    user = require("./user"),
+    sb = require("./show_bikes"),
+    response = require("./response");
 
 let main_content = document.getElementById("main_content");
 var rootRef = firebase.database().ref();
@@ -38,7 +40,6 @@ let checkFB = (uid) => {
         user.setUserFbUglyId(result.name);
         });
   } else {
-    console.log("User already exists", result);
     //Get 'ugly Firebase ID' for existing user to completeUser object
     user.setUserFbUglyId(Object.keys(result)[0]);
     }
@@ -66,31 +67,12 @@ let addUser = (newUser) => {
 
 // Bike related//
 let getBikes = (uid) => {
-  var bikeData;
-  dbBikesRef.orderByChild('uid').equalTo(uid).on('value', snap => {
-    bikeData = snap.val();
-    console.log(bikeData);
-  });
-  return bikeData;
-  // dbBikesRef = firebase.database().ref().child($`bikes/${uid}`);
-
-    // return new Promise((resolve, reject) => {
-    // let bikesXHR = new XMLHttpRequest();
-
-    // bikesXHR.addEventListener("load", function() {
-    //   let data = JSON.parse(this.responseText);
-    //   resolve(data);
-    // });
-
-    // bikesXHR.addEventListener("error", function(){
-    //   var error = bikesXHR.statusText;
-    //   reject(error);
-    // });
-
-    // bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes.json?orderBy="uid"&equalTo="${uid}"`);
-    // bikesXHR.send();
-  // });
-};
+  dbBikesRef.orderByChild('uid').equalTo(uid).once('value')
+    .then((snap) => {
+      var bikeData = snap.val();
+      sb.showMyBikes(bikeData);
+    });
+  };
 
 let getRepairs = (bike_Id) => {
     return new Promise((resolve, reject) => {
@@ -131,8 +113,11 @@ let requestBike = (bike_Id) => {
 };
 
 let createBike = () => {
+  //Create empty object for new bike
   let newBike = {};
-  newBike.uid = user.getCompleteUser().uid;
+  //Add uid from currentUser to new bike
+  newBike.uid = firebase.auth().currentUser.uid;
+  //Add values input by user on form, add to newbike
   newBike.nickname = document.getElementById("bike-nickname").value;
   newBike.photo = document.getElementById("customFile").value;
   newBike.year = document.getElementById("bike-year").value;
@@ -149,6 +134,8 @@ let addBike = (bike) => {
   var bikeID = newBikeRef.key;
   newBikeRef.update({
     "bikeID": `${bikeID}`
+  }).then((result) => {
+      response.bikeAdded();
   });
 };
 
@@ -235,12 +222,14 @@ let editBike = (bike_Id, editBike) => {
 };
 
 let deleteBike = (bike_Id) => {
-  $.ajax({
-      url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
-      method: "DELETE"
-  }).done((data) => {
-    return data;
-  });
+  console.log("This is the bike ID deleteBike receives", bike_Id);
+  dbBikesRef.child(bike_Id).remove();
+  // $.ajax({
+  //     url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
+  //     method: "DELETE"
+  // }).done((data) => {
+  //   return data;
+  // });
 };
 
 let createRepair = (bid) => {
