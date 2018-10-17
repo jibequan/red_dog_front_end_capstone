@@ -53,7 +53,7 @@ $(document).on('click', '#googLogin', (event) => {
     //Check uid of current authenticated user against db to see if they exist
     db.checkFB(result.user.uid);
     //If they do, get the bikes associated with that user
-    db.getBikes(result.user.uid);
+    db.getBikes(result.user);
   });
 });
 
@@ -62,11 +62,9 @@ $(document).on('click', '#guestLogin', (event) => {
 	dom.contentToDom(forms.guestForm);
 });
 
-var bid;
-
 //////////Button Behavior//////////
 $(document).on("click", "#show_bikes", () => {
-	let currentUser = firebase.auth().currentUser.uid;
+	let currentUser = firebase.auth().currentUser;
 	db.getBikes(currentUser);
 });
 
@@ -99,20 +97,16 @@ $(document).on("click", "#save_changes", () => {
 });
 
 $(document).on("click", "#cancel_changes", () => {
-	let currentUser = user.getCompleteUser().uid;
-	db.getBikes(currentUser)
-	.then((data) => {
-		sb.showMyBikes(data);
-	});
+	let currentUser = firebase.auth().currentUser;
+	db.getBikes(currentUser.uid);
 });
 
 $(document).on("click", ".cancel", () => {
-	let currentUser = user.getCompleteUser().uid;
-	db.getBikes(currentUser)
-	.then((data) => {
-		sb.showMyBikes(data);
-	});
+	let currentUser = firebase.auth().currentUser;
+	db.getBikes(currentUser);
 });
+
+var bid;
 
 $(document).on("click", ".service_bike", (event) => {
 	bid = db.getBikeID(event);

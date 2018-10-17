@@ -13,6 +13,7 @@ let main_content = document.getElementById("main_content");
 var rootRef = firebase.database().ref();
 var dbBikesRef = rootRef.child('bikes');
 
+//////////Users//////////
 //Ask Firebase for data in 'users' collection with specific uid
 let askFBForInfo = (uid) => {
   return $.ajax({
@@ -66,33 +67,54 @@ let addUser = (newUser) => {
   });
 };
 
-// Bike related//
-let getBikes = (uid) => {
-  dbBikesRef.orderByChild('uid').equalTo(uid).once('value')
-    .then((snap) => {
-      var bikeData = snap.val();
-      sb.showMyBikes(bikeData);
-    });
-  };
+let createUpdatedUser = () => {
+  let additionalUserInfo = {};
 
-let getRepairs = (bike_Id) => {
-    return new Promise((resolve, reject) => {
-    let repairXHR = new XMLHttpRequest();
+  if((document.getElementById("contact-area-code").value !== "") && (document.getElementById("contact-m-number").value !== "")) {
+    additionalUserInfo.phone = document.getElementById("contact-area-code").value + document.getElementById("contact-m-number").value;
+  }
 
-    repairXHR.addEventListener("load", function() {
-      let data = JSON.parse(this.responseText);
-      resolve(data);
-    });
+  if (document.getElementById("contact-address").value !== "") {
+    additionalUserInfo.address1 = document.getElementById("contact-address").value;
+  }
 
-    repairXHR.addEventListener("error", function(){
-      var error = repairXHR.statusText;
-      reject(error);
-    });
+  if (document.getElementById("contact-sec-address").value !== "") {
+    additionalUserInfo.address2 = document.getElementById("contact-sec-address").value;
+  }
 
-    repairXHR.open('GET', `${firebase.getFBsettings().databaseURL}/repairs.json?orderBy="bike_Id"&equalTo="${bike_Id}"`);
-    repairXHR.send();
+  if (document.getElementById("contact-city").value !== "") {
+    additionalUserInfo.city = document.getElementById("contact-city").value;
+  }
+
+  if (document.getElementById("contact-state").value !== "") {
+    additionalUserInfo.state = document.getElementById("contact-state").value;
+  }
+
+  if (document.getElementById("contact-postal").value !== "") {
+    additionalUserInfo.postal = document.getElementById("contact-postal").value;
+  }
+  return additionalUserInfo;
+};
+
+let updateUser = (uid, userObj) => {
+  return $.ajax({
+    url: `${firebase.getFBsettings().databaseURL}/users/${uid}.json`,
+    type: 'PATCH',
+    data: JSON.stringify(userObj),
+    dataType: 'json'
+  }).done((result) => {
+    return result;
   });
 };
+
+//////////Bikes//////////
+let getBikes = (user) => {
+  dbBikesRef.orderByChild('uid').equalTo(user.uid).once('value')
+    .then((snap) => {
+      var bikeData = snap.val();
+      sb.showMyBikes(bikeData, user);
+    });
+  };
 
 let requestBike = (bike_Id) => {
     return new Promise((resolve, reject) => {
@@ -171,46 +193,6 @@ let createEdits = () => {
   return editBike;
 };
 
-let createUpdatedUser = () => {
-  let additionalUserInfo = {};
-
-  if((document.getElementById("contact-area-code").value !== "") && (document.getElementById("contact-m-number").value !== "")) {
-    additionalUserInfo.phone = document.getElementById("contact-area-code").value + document.getElementById("contact-m-number").value;
-  }
-
-  if (document.getElementById("contact-address").value !== "") {
-    additionalUserInfo.address1 = document.getElementById("contact-address").value;
-  }
-
-  if (document.getElementById("contact-sec-address").value !== "") {
-    additionalUserInfo.address2 = document.getElementById("contact-sec-address").value;
-  }
-
-  if (document.getElementById("contact-city").value !== "") {
-    additionalUserInfo.city = document.getElementById("contact-city").value;
-  }
-
-  if (document.getElementById("contact-state").value !== "") {
-    additionalUserInfo.state = document.getElementById("contact-state").value;
-  }
-
-  if (document.getElementById("contact-postal").value !== "") {
-    additionalUserInfo.postal = document.getElementById("contact-postal").value;
-  }
-  return additionalUserInfo;
-};
-
-let updateUser = (uid, userObj) => {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/users/${uid}.json`,
-    type: 'PATCH',
-    data: JSON.stringify(userObj),
-    dataType: 'json'
-  }).done((result) => {
-    return result;
-  });
-};
-
 let editBike = (bike_Id, editBike) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
@@ -226,6 +208,7 @@ let deleteBike = (bike_Id) => {
   dbBikesRef.child(bike_Id).remove();
 };
 
+//////////Repairs//////////
 let createRepair = (bid) => {
   let newRepair = {
     bike_Id: bid,
@@ -266,4 +249,4 @@ let addRepair = (repairObj) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, getRepairs, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
+module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
