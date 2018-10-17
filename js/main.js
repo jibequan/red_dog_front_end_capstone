@@ -4,7 +4,6 @@ let $ = require('jquery'),
 	nav_behavior= require('./nav_behavior'),
 	user = require('./user'),
 	db = require('./db-interaction'),
-	sb = require('./show_bikes'),
 	dom = require('./dom_builder'),
 	content = require('./content'),
 	forms = require('./forms'),
@@ -32,7 +31,13 @@ partsNav.addEventListener("click", (e) => {
 
 serviceNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	dom.contentToDom(content.showServiceSignIn);
+	let currentUser = firebase.auth().currentUser;
+	if (currentUser) {
+		db.getBikes(currentUser);
+	}else{
+		dom.contentToDom(content.showServiceSignIn);
+	}
+
 });
 
 rescueNav.addEventListener("click", (e) => {
@@ -51,7 +56,7 @@ $(document).on('click', '#googLogin', (event) => {
   authUser.logInGoogle()
   .then((result) => {
     //Check uid of current authenticated user against db to see if they exist
-    db.checkFB(result.user.uid);
+    db.checkFB(result);
     //If they do, get the bikes associated with that user
     db.getBikes(result.user);
   });
@@ -112,7 +117,7 @@ $(document).on("click", ".service_bike", (event) => {
 	bid = db.getBikeID(event);
 	db.requestBike(bid)
 	.then((result) => {
-		sb.showRequestBike(result);
+		dom.showRequestBike(result);
 		forms.requestServiceForm();
 	});
 });
