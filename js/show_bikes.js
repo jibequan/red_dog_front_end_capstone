@@ -6,14 +6,15 @@ let dom = require('./dom_builder'),
 function makeBikeGrid(bikes_data) {
   let gallery = document.getElementById("gallery");
   console.log("bikes_data", bikes_data);
-  let keys = Object.keys(bikes_data);
-  console.log("keys?", keys);
+  let keys = (Object.keys(bikes_data));
 
-  keys.forEach((item) => {  
+  keys.forEach((item) => {
     console.log("item", item);
-      // gallery.innerHTML += content.smallCard(item);
-    });
-  }
+    var card = content.smallCard(bikes_data[item]);
+    gallery.innerHTML += card;
+  });
+
+}
 
 function showMyBikes(bikes_data, user) {
   dom.contentToDom(content.myBikes(user));

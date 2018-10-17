@@ -50,13 +50,13 @@ let myBikes = (user) => {
 
 let smallCard = (item) => {
   return `\
-    <div id="${item}" class="card">\
+    <div id="${item.uid}" class="card">\
       <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">\
       <div class="card-body">\
-        <h5 class="card-title">"${item}"<br>${item} ${item} ${item}</h5>\
+        <h5 class="card-title">"${item.nickname}"<br>${item.year} ${item.make} ${item.model}</h5>\
         <p style="font-weight: bold" class="card-text">Repair History</p>\
         <div class="list-group">\
-          <p>${item}</p>\
+          <p>repair</p>\
         </div>\
         <a href="#" class="btn btn-danger delete_bike">Delete</a>\
         <a href="#" class="btn btn-secondary edit_bike">Edit</a>\
