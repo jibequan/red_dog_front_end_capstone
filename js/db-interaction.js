@@ -1,12 +1,9 @@
 "use strict";
 
-// console.log("Hello db-interaction");
-
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
-    sb = require("./show_bikes"),
-    content = require("./dom_builder"),
+    dom = require("./dom_builder"),
     response = require("./response");
 
 let main_content = document.getElementById("main_content");
@@ -112,7 +109,7 @@ let getBikes = (user) => {
   dbBikesRef.orderByChild('uid').equalTo(user.uid).once('value')
     .then((snap) => {
       var bikeData = snap.val();
-      sb.showMyBikes(bikeData, user);
+      dom.showMyBikes(bikeData, user);
     });
   };
 
@@ -158,7 +155,7 @@ let addBike = (bike) => {
   newBikeRef.update({
     "bikeID": `${bikeID}`
   }).then((result) => {
-      content.contentToDom(response.bikeAdded);
+      dom.contentToDom(response.bikeAdded);
   });
 };
 
