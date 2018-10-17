@@ -249,4 +249,4 @@ let addRepair = (repairObj) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, getRepairs, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
+module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
