@@ -1,20 +1,31 @@
 "use strict";
 
-// console.log("Hello db-interaction");
-
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     user = require("./user"),
-    sb = require("./show_bikes"),
-    content = require("./dom_builder"),
+    dom = require("./dom_builder"),
     response = require("./response");
 
 let main_content = document.getElementById("main_content");
 var rootRef = firebase.database().ref();
 var dbBikesRef = rootRef.child('bikes');
+var dbUsersRef = rootRef.child('users');
 
 //////////Users//////////
-//Ask Firebase for data in 'users' collection with specific uid
+let createUser = () => {
+  let currentUser = firebase.auth().currentUser;
+  let userToCheck = {};
+  userToCheck.uid = currentUser.uid;
+  userToCheck.fullName = currentUser.displayName;
+  userToCheck.email = currentUser.email;
+  return userToCheck;
+};
+
+let addUser = (newUser) => {
+  var newUserRef = dbUsersRef.push();
+  newUserRef.set(newUser);
+};
+
 let askFBForInfo = (uid) => {
   return $.ajax({
     url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
@@ -25,45 +36,14 @@ let askFBForInfo = (uid) => {
   });
 };
 
-let checkFB = (uid) => {
-  //Ask Firebase for data in users collection with specific uid
-  askFBForInfo(uid)
+let checkFB = (currentUser) => {
+  var userToCheck = createUser(currentUser);
+  askFBForInfo(userToCheck.uid)
   .then((result) => {
-  //User data is returned as object of objects
-    //Create array from properties of parent object
     let data = Object.values(result);
-    //If length of array is 0, no user exists | If length of array is 1, user already exists in "users" collection
     if (data.length === 0){
-      //No existing user: take currentUser info and add to "users" collection in db
-      addUser(createUser())
-        .then((result) => {
-        //Returned result is object like this ("name": "'ugly Firebase ID'")
-        //Add 'ugly Firebase ID' to completeUser object
-        user.setUserFbUglyId(result.name);
-        });
-  } else {
-    //Get 'ugly Firebase ID' for existing user to completeUser object
-    user.setUserFbUglyId(Object.keys(result)[0]);
+      addUser(userToCheck);
     }
-  });
-};
-
-let createUser = () => {
-  let newUser = {};
-  newUser.uid = user.getUser().uid;
-  newUser.fullName = user.getUser().displayName;
-  newUser.email = user.getUser().email;
-  return newUser;
-};
-
-let addUser = (newUser) => {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/users.json`,
-    type: 'POST',
-    data: JSON.stringify(newUser),
-    dataType: 'json'
-  }).done((fbID) => {
-    return fbID;
   });
 };
 
@@ -112,7 +92,7 @@ let getBikes = (user) => {
   dbBikesRef.orderByChild('uid').equalTo(user.uid).once('value')
     .then((snap) => {
       var bikeData = snap.val();
-      sb.showMyBikes(bikeData, user);
+      dom.showMyBikes(bikeData, user);
     });
   };
 
@@ -158,7 +138,7 @@ let addBike = (bike) => {
   newBikeRef.update({
     "bikeID": `${bikeID}`
   }).then((result) => {
-      content.contentToDom(response.bikeAdded);
+      dom.contentToDom(response.bikeAdded);
   });
 };
 

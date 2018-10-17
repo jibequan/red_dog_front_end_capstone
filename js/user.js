@@ -1,4 +1,5 @@
 "use strict";
+
 let currentUser = null,
 		completeUser = {
 		fbID: null
@@ -10,10 +11,6 @@ function makeCompleteUser(currentUser) {
 	completeUser.uid = currentUser.uid;
 }
 
-function getUser() {
-  return currentUser;
-}
-
 function setUserFbUglyId(fUglyID) {
 	completeUser.fbID = fUglyID;
 }
@@ -22,4 +19,4 @@ function getCompleteUser() {
 	return completeUser;
 }
 
-module.exports = {getUser, setUserFbUglyId, getCompleteUser};
+module.exports = {setUserFbUglyId, getCompleteUser};
