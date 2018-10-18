@@ -6,45 +6,46 @@ let $ = require('jquery'),
     dom = require("./dom_builder"),
     response = require("./response");
 
-let main_content = document.getElementById("main_content");
 var rootRef = firebase.database().ref();
 var dbBikesRef = rootRef.child('bikes');
 var dbUsersRef = rootRef.child('users');
 
 //////////Users//////////
-let createUser = () => {
-  let currentUser = firebase.auth().currentUser;
+let createUser = (authedUser) => {
   let userToCheck = {};
-  userToCheck.uid = currentUser.uid;
-  userToCheck.fullName = currentUser.displayName;
-  userToCheck.email = currentUser.email;
+  userToCheck.uid = authedUser.uid;
+  userToCheck.displayName = authedUser.displayName;
+  userToCheck.email = authedUser.email;
   return userToCheck;
 };
 
 let addUser = (newUser) => {
   var newUserRef = dbUsersRef.push();
   newUserRef.set(newUser);
+
+  //Use below if necessary later
+  // var firebaseID = newUserRef.key;
+  // newUserRef.update({
+  //   "firebaseID": `${firebaseID}`
+  // }).then((result) => {
+  //     dom.contentToDom(response.bikeAdded);
+  // });
 };
 
-let askFBForInfo = (uid) => {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/users.json?orderBy="uid"&equalTo="${uid}"`
-  }).done((resolve) => {
-    return resolve;
-  }).fail((error) => {
-    return error;
-  });
-};
+let askFBForInfo = (userToCheck) => {
+  dbUsersRef.orderByChild('uid').equalTo(userToCheck.uid).once('value', (snap) => {
+    if (snap.val() == null) {
+      addUser(userToCheck);
+      getBikes(userToCheck);
+    }else{
+      getBikes(userToCheck);
+    }
+  });  
+};  
 
 let checkFB = (currentUser) => {
-  var userToCheck = createUser(currentUser);
-  askFBForInfo(userToCheck.uid)
-  .then((result) => {
-    let data = Object.values(result);
-    if (data.length === 0){
-      addUser(userToCheck);
-    }
-  });
+  let userToCheck = createUser(currentUser);
+  askFBForInfo(userToCheck);
 };
 
 let createUpdatedUser = () => {
