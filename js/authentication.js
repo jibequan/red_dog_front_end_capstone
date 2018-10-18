@@ -1,6 +1,7 @@
 "use strict";
-let firebase = require('./fb-config'),
-    provider = new firebase.auth.GoogleAuthProvider();
+let firebase = require('./fb-config');
+
+let provider = new firebase.auth.GoogleAuthProvider();
 
 function logInGoogle() {
   return firebase.auth().signInWithPopup(provider);
@@ -12,11 +13,9 @@ function logOut(){
 
 firebase.auth().onAuthStateChanged(function(user){
 	if (user){
-        console.log("There is a user!");
-		// currentUser = user;
-		// makeCompleteUser(currentUser);
+		console.log("There is a user!");
 	}else{
-		// currentUser = null;
+		console.log("No user yet!");
 	}
 });
 
