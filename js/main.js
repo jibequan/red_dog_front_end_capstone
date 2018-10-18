@@ -31,13 +31,11 @@ partsNav.addEventListener("click", (e) => {
 
 serviceNav.addEventListener("click", (e) => {
 	nav_behavior.navSelected(e);
-	let currentUser = firebase.auth().currentUser;
-	if (currentUser) {
-		db.getBikes(currentUser);
-	}else{
+	if (firebase.auth().currentUser === null) {
 		dom.contentToDom(content.showServiceSignIn);
+	}else {
+		db.checkFB(firebase.auth().currentUser);
 	}
-
 });
 
 rescueNav.addEventListener("click", (e) => {
@@ -55,10 +53,9 @@ $(document).on('click', '#googLogin', (event) => {
   //Provide means of signing in with Google
   authUser.logInGoogle()
   .then((result) => {
+	  let authedUser = result.user;
     //Check uid of current authenticated user against db to see if they exist
-    db.checkFB(result);
-    //If they do, get the bikes associated with that user
-    db.getBikes(result.user);
+		db.checkFB(authedUser);
   });
 });
 
@@ -66,6 +63,14 @@ $(document).on('click', '#guestLogin', (event) => {
 	console.log("clicked on Guest Signin");
 	dom.contentToDom(forms.guestForm);
 });
+
+$(document).on('click', '#googLogout', (event) => {
+	//Provide means of signing out
+	authUser.logOut()
+	.then((result) => {
+		dom.contentToDom(content.showServiceSignIn);		
+	});
+  });
 
 //////////Button Behavior//////////
 $(document).on("click", "#show_bikes", () => {
