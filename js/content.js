@@ -42,6 +42,7 @@ let myBikes = (user) => {
       <div class="main__header">\
         <h3 class="main__heading">Hey ${user.displayName}. Here are your bikes.</h3>\
         <p class="main__subheading">You can additional bikes or request service for one already associated with your account.</p>\
+        <button type="button" class="btn btn-dark" id="googLogout">Sign Out</button>\
         <button type="button" class="btn btn-dark" id="add_bike">+ Add bike</button>\
       </div>\
       <div id="gallery" class="main__supporting--service"></div>\
