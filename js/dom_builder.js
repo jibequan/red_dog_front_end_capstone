@@ -16,7 +16,6 @@ function makeBikeGrid(bikes_data) {
     var card = content.smallCard(bikes_data[item]);
     gallery.innerHTML += card;
   });
-
 }
 
 function showMyBikes(bikes_data, user) {

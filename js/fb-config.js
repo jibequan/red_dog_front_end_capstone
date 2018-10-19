@@ -15,9 +15,7 @@ var config = {
   storageBucket: fbData.storageBucket
 };
 
-
 firebase.getFBsettings = function(){
-  //  console.log("getFBsettings", config);
 	 return config;
 };
 

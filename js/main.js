@@ -143,3 +143,12 @@ $(document).on("click", ".submit_repair", (event) => {
 $(document).on("click", ".guest_submit_repair", (event) => {
 	dom.contentToDom(response.requestReceivedGuest);
 });
+
+$(document).on("change", "#customFile", (e) => {
+	let file = e.target.files[0];
+	var storageRef = firebase.storage().ref('pics/' + file.name);
+	storageRef.put(file)
+		.then((snap) => {
+			console.log("This is the result", snap);
+		});
+});
