@@ -123,7 +123,6 @@ let createBike = () => {
   newBike.uid = firebase.auth().currentUser.uid;
   //Add values input by user on form, add to newbike
   newBike.nickname = document.getElementById("bike-nickname").value;
-  newBike.photo = document.getElementById("customFile").value;
   newBike.year = document.getElementById("bike-year").value;
   newBike.make = document.getElementById("bike-make").value;
   newBike.model = document.getElementById("bike-model").value;
@@ -131,15 +130,64 @@ let createBike = () => {
   return newBike;
 };
 
+let checkForBikePic = () => {
+  if (document.getElementById("customFile").files[0] != "") {
+    return document.getElementById("customFile").files[0];
+  }else{
+    console.log("No file has been added.");
+  }
+};
+
 let addBike = (bike) => {
+  let bikePic = checkForBikePic();
   var newBikeRef = dbBikesRef.push();
   newBikeRef.set(bike);
   
   var bikeID = newBikeRef.key;
-  newBikeRef.update({
-    "bikeID": `${bikeID}`
-  }).then((result) => {
-      dom.contentToDom(response.bikeAdded);
+  let storageRef = firebase.storage().ref(`users/${bike.uid}/${bikeID}/pics/${bikePic.name}`);
+  let uploadTask = storageRef.put(bikePic);
+  // Listen for state changes, errors, and completion of the upload.
+  uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+    function(snapshot) {
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+          console.log('Upload is paused');
+          break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+          console.log('Upload is running');
+          break;
+      }
+    }, function(error) {
+    // A full list of error codes is available at
+    // https://firebase.google.com/docs/storage/web/handle-errors
+    switch (error.code) {
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect error.serverResponse
+        break;
+    }
+  }, function() {
+    // Upload completed successfully, now we can get the download URL
+    uploadTask.snapshot.ref.getDownloadURL()
+    .then(function(downloadURL) {
+      console.log('File available at', downloadURL);
+      newBikeRef.update({
+        "bikeID": `${bikeID}`,
+        "photo": `${downloadURL}`
+      }).then((result) => {
+          dom.contentToDom(response.bikeAdded);
+        });
+    });
   });
 };
 

@@ -52,7 +52,7 @@ let myBikes = (user) => {
 let smallCard = (item) => {
   return `\
     <div id="${item.bikeID}" class="card">\
-      <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Photo of your moped/scooter">\
+      <img class="card-img-top" src=${item.photo} alt="Photo of your moped/scooter">\
       <div class="card-body">\
         <h5 class="card-title">"${item.nickname}"<br>${item.year} ${item.make} ${item.model}</h5>\
         <p style="font-weight: bold" class="card-text">Repair History</p>\
