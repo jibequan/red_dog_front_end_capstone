@@ -167,44 +167,44 @@ const timeForm = `<h3>Nickname | Year | Make | Model</h3>
   </div>`;
 
 const editBikeForm = `\
-    <div class="main__container--service">\
-      <div class="main__header">\
-        <h3 class="main__heading">Update the Info Associated with your Bike.</h3>\
-        <p class="main__subheading">Just change what you like.</p>\
-      </div>\
-      <div class="main__supporting--service">
-        <form class="form__edit-form">
-          <fieldset>
-            <legend>Bike Information</legend>
-              <div class="form-group">
-                <label for="bike-nickname">Nickname</label>
-                <input id="bike-nickname" class="form-control" type="text" placeholder="">
-              </div>
-              <div class="form-group custom-file">
-                <label class="custom-file-label" for="customFile">Choose Image</label>
-                <input type="file" class="custom-file-input" id="customFile">
-              </div>
-              <div class="form-group">
-                  <label for="bike-year">Year</label>
-                  <input id="bike-year" class="form-control" type="text" placeholder="Year">
-              </div>
-              <div class="form-group">
-                <label for="bike-make">Make</label>
-                <input id="bike-make" class="form-control" type="text" placeholder="Make">
-              </div>
-              <div class="form-group">
-                <label for="bike-model">Model</label>
-                <input id="bike-model" class="form-control" type="text" placeholder="Model">
-              </div>
-          </fieldset>
-            <!-- Add Bike/Submit Button -->
-            <div class="row justify-content-end form__button-row">
-              <button type="button" class="btn btn-danger form__button--margin" id="cancel_changes" value="Cancel">Cancel</button>
-              <button type="button" class="btn btn-dark" id="save_changes" value="Save Changes">Save Changes</button>
+  <div class="main__container--service">\
+    <div class="main__header">\
+      <h3 class="main__heading">Update the Info Associated with your Bike.</h3>\
+      <p class="main__subheading">Just change what you like.</p>\
+    </div>\
+    <div class="main__supporting--service">
+      <form class="form__edit-form">
+        <fieldset>
+          <legend>Bike Information</legend>
+            <div class="form-group">
+              <label for="bike-nickname">Nickname</label>
+              <input id="bike-nickname" class="form-control" type="text" placeholder="">
             </div>
-        </form>
-      </div>
-    </div>`;
+            <div class="form-group custom-file">
+              <label class="custom-file-label" for="customFile">Choose Image</label>
+              <input type="file" class="custom-file-input" id="customFile">
+            </div>
+            <div class="form-group">
+                <label for="bike-year">Year</label>
+                <input id="bike-year" class="form-control" type="text" placeholder="Year">
+            </div>
+            <div class="form-group">
+              <label for="bike-make">Make</label>
+              <input id="bike-make" class="form-control" type="text" placeholder="Make">
+            </div>
+            <div class="form-group">
+              <label for="bike-model">Model</label>
+              <input id="bike-model" class="form-control" type="text" placeholder="Model">
+            </div>
+        </fieldset>
+          <!-- Add Bike/Submit Button -->
+          <div class="form__button-row">
+            <button type="button" class="btn btn-danger form__button--margin" id="cancel_changes" value="Cancel">Cancel</button>
+            <button type="button" class="btn btn-dark" id="save_changes" value="Save Changes">Save Changes</button>
+          </div>
+      </form>
+    </div>
+  </div>`;
 
 let requestServiceForm = () => {
   let gallery = document.getElementById("gallery");
