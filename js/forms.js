@@ -5,49 +5,47 @@ let user = require("./user");
 let currentUser = user.getCompleteUser();
 
 const addBikeForm = `\
-                    <div class="main__container--service">\
-                      <div class="main__header">\
-                        <h3 class="main__heading">Add A Bike to Your Account</h3>\
-                        <p class="main__subheading">New ride? Sweet! Just add it in here to make service simple should you ever need it.</p>\
-                      </div>
-                        <div class="main__supporting--service">\
-                          <a class="main__supporting-placeholder"href="https://placeholder.com"><img src="http://via.placeholder.com/300x150"></a>
-                          <form class="form__add-form">
-                            <fieldset>
-                              <legend>Bike Information</legend>
-                                  <div class="form-group">
-                                    <label for="bike-nickname">Nickname</label>
-                                    <input id="bike-nickname" class="form-control" type="text" placeholder="Nickname">
-                                  </div>
-                                  <div class="custom-file">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="bike-year">Year</label>
-                                      <input id="bike-year" class="form-control" type="text" placeholder="Year">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="bike-make">Make</label>
-                                    <input id="bike-make" class="form-control" type="text" placeholder="Make">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="bike-model">Model</label>
-                                    <input id="bike-model" class="form-control" type="text" placeholder="Model">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="bike-comments">Comments</label>
-                                    <textarea id="bike-comments" class="form-control" rows="3" placeholder="Comments"></textarea>
-                                  </div>
-                            </fieldset>
-                              <!-- Add Bike/Submit Button -->
-                              <div class="row justify-content-end form__button-row">
-                                <button class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
-                                <button id="save_bike" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
-                              </div>
-                          </form>
-                        </div>
-                      </div>`;
+  <div class="main__container--service">\
+    <div class="container__header">\
+      <h3>Add A Bike to Your Account</h3>\
+      <p>New ride? Sweet! Just add it in here to make service simple should you ever need it.</p>\
+    </div>
+      <div class="container__supporting--form">\
+        <form class="form__add-form">
+          <fieldset>
+            <legend>Bike Information</legend>
+                <div class="form-group">
+                  <label for="bike-nickname">Nickname</label>
+                  <input id="bike-nickname" class="form-control" type="text" placeholder="Nickname">
+                </div>
+                <div class="custom-file">
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                  <input type="file" class="custom-file-input" id="customFile">
+                </div>
+                <div class="form-group">
+                    <label for="bike-year">Year</label>
+                    <input id="bike-year" class="form-control" type="text" placeholder="Year">
+                </div>
+                <div class="form-group">
+                  <label for="bike-make">Make</label>
+                  <input id="bike-make" class="form-control" type="text" placeholder="Make">
+                </div>
+                <div class="form-group">
+                  <label for="bike-model">Model</label>
+                  <input id="bike-model" class="form-control" type="text" placeholder="Model">
+                </div>
+                <div class="form-group">
+                  <label for="bike-comments">Comments</label>
+                  <textarea id="bike-comments" class="form-control" rows="3" placeholder="Comments"></textarea>
+                </div>
+          </fieldset>
+          <div class="form__button-row">
+            <button class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
+            <button id="save_bike" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
+          </div>
+        </form>
+      </div>
+    </div>`;
 
 const guestForm = `<div class="main__container--service">
       <div class="main__header">
