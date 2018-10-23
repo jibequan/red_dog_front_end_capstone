@@ -78,7 +78,7 @@ $(document).on("click", "#show_bikes", () => {
 	db.getBikes(currentUser);
 });
 
-$(document).on("click", "#add_bike", () => {
+$(document).on("click", "#addBike", () => {
 	dom.contentToDom(forms.addBikeForm);
 });
 
@@ -91,24 +91,26 @@ $(document).on("click", "#addBike--cancel", () => {
 	db.getBikes(currentUser);
 });
 
-$(document).on("click", ".delete_bike", (event) => {
+$(document).on("click", ".deleteBike", (event) => {
 	let bikeID = db.getBikeID(event);
 	db.deleteBike(bikeID);
 	dom.contentToDom(response.bikeRemoved);
 });
 
-$(document).on("click", ".edit_bike", (event) => {
-	dom.contentToDom(forms.editBikeForm);
+$(document).on("click", ".editBike", (event) => {
+	//Grab BikeID from containing element
 	bid = db.getBikeID(event);
+	//Get associated info from Firebase
+
+	//Pass data into form
+	dom.contentToDom(forms.editBikeForm);
 });
+
+var bid;
 
 $(document).on("click", "#save_changes", () => {
 	let editBike = db.createEdits();
-	db.editBike(bid, editBike)
-	.then((result) => {
-		return result;
-	});
-	dom.contentToDom(response.bikeUpdated);
+	db.updateBike(bid, editBike);
 });
 
 $(document).on("click", "#cancel_changes", () => {
@@ -121,9 +123,7 @@ $(document).on("click", ".cancel", () => {
 	db.getBikes(currentUser);
 });
 
-var bid;
-
-$(document).on("click", ".service_bike", (event) => {
+$(document).on("click", ".serviceBike", (event) => {
 	bid = db.getBikeID(event);
 	db.requestBike(bid)
 	.then((result) => {
