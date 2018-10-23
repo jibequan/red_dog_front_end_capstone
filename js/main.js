@@ -119,11 +119,9 @@ $(document).on("click", "#updateBike--cancel", () => {
 
 $(document).on("click", ".serviceBike", (event) => {
 	bid = db.getBikeID(event);
-	db.requestBike(bid)
-	.then((result) => {
-		dom.showRequestBike(result);
-		forms.requestServiceForm();
-	});
+	dom.contentToDom(content.requestService);
+	db.getBikeDetails(bid);
+	forms.requestServiceForm();
 });
 
 $(document).on("click", ".submit_repair", (event) => {
