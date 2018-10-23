@@ -109,8 +109,7 @@ $(document).on("click", ".editBike", (event) => {
 var bid;
 
 $(document).on("click", "#updateBike--save", () => {
-	let editBike = db.createEdits();
-	db.updateBike(bid, editBike);
+	db.updateBike(bid);
 });
 
 $(document).on("click", "#updateBike--cancel", () => {
@@ -118,18 +117,11 @@ $(document).on("click", "#updateBike--cancel", () => {
 	db.getBikes(currentUser);
 });
 
-$(document).on("click", ".cancel", () => {
-	let currentUser = firebase.auth().currentUser;
-	db.getBikes(currentUser);
-});
-
 $(document).on("click", ".serviceBike", (event) => {
 	bid = db.getBikeID(event);
-	db.requestBike(bid)
-	.then((result) => {
-		dom.showRequestBike(result);
-		forms.requestServiceForm();
-	});
+	dom.contentToDom(content.requestService);
+	db.getBikeDetails(bid);
+	forms.requestServiceForm();
 });
 
 $(document).on("click", ".submit_repair", (event) => {

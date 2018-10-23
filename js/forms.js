@@ -210,8 +210,9 @@ const updateBikeForm = `\
   </div>`;
 
 let requestServiceForm = () => {
-  let gallery = document.getElementById("gallery");
-  gallery.innerHTML += `
+  console.log("Did this run?");
+  let container = document.getElementById("requestService");
+  container.innerHTML += `
         <form class="form__service-form">
           <fieldset>
             <legend>Contact Information</legend>

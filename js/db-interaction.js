@@ -92,27 +92,16 @@ let updateUser = (uid, userObj) => {
 let getBikes = (user) => {
   dbBikesRef.orderByChild('uid').equalTo(user.uid).once('value')
     .then((snap) => {
-      var bikeData = snap.val();
-      dom.showMyBikes(bikeData, user);
+      let bikesData = snap.val();
+      dom.showMyBikes(bikesData, user);
     });
   };
 
-let requestBike = (bike_Id) => {
-    return new Promise((resolve, reject) => {
-    let bikesXHR = new XMLHttpRequest();
-
-    bikesXHR.addEventListener("load", function() {
-      let data = JSON.parse(this.responseText);
-      resolve(data);
-    });
-
-    bikesXHR.addEventListener("error", function(){
-      var error = bikesXHR.statusText;
-      reject(error);
-    });
-
-    bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`);
-    bikesXHR.send();
+let getBikeDetails = (bike_Id) => {
+  dbBikesRef.orderByChild('bikeID').equalTo(bike_Id).once('value')
+  .then((snap) => {
+    let bikeData = snap.val();
+    dom.makeBikeDetails(bikeData);
   });
 };
 
@@ -236,9 +225,12 @@ let createEdits = () => {
   return editedBike;
 };
 
-let editBike = (bike_Id, editedBike) => {
-  dbBikesRef(`${bike_Id}`).set({
-    editedBike
+let updateBike = (bike_Id) => {
+  let editedBike = createEdits();
+  let existingBikeRef = dbBikesRef.child(bike_Id);
+  existingBikeRef.update(editedBike)
+  .then((result) => {
+    dom.contentToDom(response.bikeUpdated);
   });
 };
 
@@ -287,4 +279,22 @@ let addRepair = (repairObj) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
+module.exports = {
+  askFBForInfo, 
+  checkFB,
+  createUser,
+  addUser,
+  createUpdatedUser,
+  updateUser,
+  getBikes,
+  createBike,
+  addBike,
+  deleteBike,
+  getBikeID,
+  createEdits,
+  updateBike,
+  getBikeDetails,
+  createRepair,
+  addRepair,
+  addRepairId
+};
