@@ -81,9 +81,9 @@ let largeCard = (bike) => {
 
 const requestService = `\
     <div class="main__container--service">\
-      <div class="main__header">\
-        <h3 class="main__heading">Need us to take a look at your ride?</h3>\
-        <p class="main__subheading">Fill out the information below and we can cook up a quote for you.</p>\
+      <div class="container__header">\
+        <h3>Need us to take a look at your ride?</h3>\
+        <p>Fill out the information below and we can cook up a quote for you.</p>\
       </div>\
       <div id="gallery" class="main__supporting--service">\
         <div id="single-bike"></div>\
