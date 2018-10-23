@@ -103,19 +103,19 @@ $(document).on("click", ".editBike", (event) => {
 	//Get associated info from Firebase
 
 	//Pass data into form
-	dom.contentToDom(forms.editBikeForm);
+	dom.contentToDom(forms.updateBikeForm);
 });
 
 var bid;
 
-$(document).on("click", "#save_changes", () => {
+$(document).on("click", "#updateBike--save", () => {
 	let editBike = db.createEdits();
 	db.updateBike(bid, editBike);
 });
 
-$(document).on("click", "#cancel_changes", () => {
+$(document).on("click", "#updateBike--cancel", () => {
 	let currentUser = firebase.auth().currentUser;
-	db.getBikes(currentUser.uid);
+	db.getBikes(currentUser);
 });
 
 $(document).on("click", ".cancel", () => {
