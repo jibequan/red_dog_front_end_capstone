@@ -140,55 +140,69 @@ let checkForBikePic = () => {
 
 let addBike = (bike) => {
   let bikePic = checkForBikePic();
-  var newBikeRef = dbBikesRef.push();
-  newBikeRef.set(bike);
-  
-  var bikeID = newBikeRef.key;
-  let storageRef = firebase.storage().ref(`users/${bike.uid}/${bikeID}/pics/${bikePic.name}`);
-  let uploadTask = storageRef.put(bikePic);
-  // Listen for state changes, errors, and completion of the upload.
-  uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-    function(snapshot) {
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-      switch (snapshot.state) {
-        case firebase.storage.TaskState.PAUSED: // or 'paused'
-          console.log('Upload is paused');
-          break;
-        case firebase.storage.TaskState.RUNNING: // or 'running'
-          console.log('Upload is running');
-          break;
-      }
-    }, function(error) {
-    // A full list of error codes is available at
-    // https://firebase.google.com/docs/storage/web/handle-errors
-    switch (error.code) {
-      case 'storage/unauthorized':
-        // User doesn't have permission to access the object
-        break;
-
-      case 'storage/canceled':
-        // User canceled the upload
-        break;
-
-      case 'storage/unknown':
-        // Unknown error occurred, inspect error.serverResponse
-        break;
-    }
-  }, function() {
-    // Upload completed successfully, now we can get the download URL
-    uploadTask.snapshot.ref.getDownloadURL()
-    .then(function(downloadURL) {
-      console.log('File available at', downloadURL);
+  if (!bikePic) {
+    let newBikeRef = dbBikesRef.push();
+    let bikeID = newBikeRef.key;
+    newBikeRef.set(bike)
+    .then((result) => {
       newBikeRef.update({
         "bikeID": `${bikeID}`,
-        "photo": `${downloadURL}`
+        "photo": `"https://via.placeholder.com/300x150"`
       }).then((result) => {
           dom.contentToDom(response.bikeAdded);
-        });
     });
   });
+  }else{
+    let newBikeRef = dbBikesRef.push();
+    newBikeRef.set(bike);
+    
+    let bikeID = newBikeRef.key;
+    let storageRef = firebase.storage().ref(`users/${bike.uid}/${bikeID}/pics/${bikePic.name}`);
+    let uploadTask = storageRef.put(bikePic);
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+      function(snapshot) {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED: // or 'paused'
+            console.log('Upload is paused');
+            break;
+          case firebase.storage.TaskState.RUNNING: // or 'running'
+            console.log('Upload is running');
+            break;
+        }
+      }, function(error) {
+      // A full list of error codes is available at
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case 'storage/unauthorized':
+          // User doesn't have permission to access the object
+          break;
+  
+        case 'storage/canceled':
+          // User canceled the upload
+          break;
+  
+        case 'storage/unknown':
+          // Unknown error occurred, inspect error.serverResponse
+          break;
+      }
+    }, function() {
+      // Upload completed successfully, now we can get the download URL
+      uploadTask.snapshot.ref.getDownloadURL()
+      .then(function(downloadURL) {
+        console.log('File available at', downloadURL);
+        newBikeRef.update({
+          "bikeID": `${bikeID}`,
+          "photo": `${downloadURL}`
+        }).then((result) => {
+            dom.contentToDom(response.bikeAdded);
+          });
+      });
+    });
+  }
 };
 
 let getBikeID = (event) => {
