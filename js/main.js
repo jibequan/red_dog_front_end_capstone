@@ -109,16 +109,10 @@ $(document).on("click", ".editBike", (event) => {
 var bid;
 
 $(document).on("click", "#updateBike--save", () => {
-	let editBike = db.createEdits();
-	db.updateBike(bid, editBike);
+	db.updateBike(bid);
 });
 
 $(document).on("click", "#updateBike--cancel", () => {
-	let currentUser = firebase.auth().currentUser;
-	db.getBikes(currentUser);
-});
-
-$(document).on("click", ".cancel", () => {
 	let currentUser = firebase.auth().currentUser;
 	db.getBikes(currentUser);
 });

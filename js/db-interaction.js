@@ -236,9 +236,12 @@ let createEdits = () => {
   return editedBike;
 };
 
-let editBike = (bike_Id, editedBike) => {
-  dbBikesRef(`${bike_Id}`).set({
-    editedBike
+let updateBike = (bike_Id) => {
+  let editedBike = createEdits();
+  let existingBikeRef = dbBikesRef.child(bike_Id);
+  existingBikeRef.update(editedBike)
+  .then((result) => {
+    dom.contentToDom(response.bikeUpdated);
   });
 };
 
@@ -287,4 +290,22 @@ let addRepair = (repairObj) => {
   });
 };
 
-module.exports = {askFBForInfo, checkFB, createUser, addUser, createUpdatedUser, updateUser, getBikes, createBike, addBike, deleteBike, getBikeID, createEdits, editBike, requestBike, createRepair, addRepair, addRepairId};
+module.exports = {
+  askFBForInfo, 
+  checkFB,
+  createUser,
+  addUser,
+  createUpdatedUser,
+  updateUser,
+  getBikes,
+  createBike,
+  addBike,
+  deleteBike,
+  getBikeID,
+  createEdits,
+  updateBike,
+  requestBike,
+  createRepair,
+  addRepair,
+  addRepairId
+};
