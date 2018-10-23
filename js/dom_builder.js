@@ -18,6 +18,16 @@ function makeBikeGrid(bikes_data) {
   });
 }
 
+function makeBikeDetails(bike_data) {
+  let container = document.getElementById("bikeDetails");
+  let keys = (Object.keys(bike_data));
+
+  keys.forEach((item) => {
+    var card = content.largeCard(bike_data[item]);
+    container.innerHTML = card;
+  });
+}
+
 function showMyBikes(bikes_data, user) {
   contentToDom(content.myBikes(user));
   if (!bikes_data) {
@@ -29,8 +39,14 @@ function showMyBikes(bikes_data, user) {
 
 let showRequestBike = (bike) => {  
   contentToDom(content.requestService);
-  let bikeDetails = document.getElementById("single-bike");
-  bikeDetails.innerHTML = content.largeCard(bike);
+  let container = document.getElementById("container__supporting");
+  container.innerHTML = content.largeCard(bike);
 };
 
-module.exports = {contentToDom, makeBikeGrid, showMyBikes, showRequestBike};
+module.exports = {
+  contentToDom,
+  makeBikeGrid,
+  makeBikeDetails,
+  showMyBikes,
+  showRequestBike
+};
