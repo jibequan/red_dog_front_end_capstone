@@ -69,7 +69,7 @@ let largeCard = (bike) => {
   return `\
     <div id="${bike.bikeID}"class="card gallery__card--large">
       <h5 class="card-title">"${bike.nickname}" | ${bike.year} | ${bike.make} | ${bike.model}</h5>
-      <img class="card-img-top" src="http://via.placeholder.com/300x200" alt="Photo of your moped/scooter">
+      <img class="card-img-top" src="${bike.photo}" alt="Photo of your moped/scooter">
       <div class="card-body" style="border: 1px solid rgba(0, 0, 0, .125); padding: 0 1rem 0 1rem; border-radius: .25rem;">
         <p class="card-text">Repair History</p>
         <div class="list-group">
@@ -85,8 +85,10 @@ const requestService = `\
         <h3>Need us to take a look at your ride?</h3>\
         <p>Fill out the information below and we can cook up a quote for you.</p>\
       </div>\
-      <div id="gallery" class="main__supporting--service">\
-        <div id="single-bike"></div>\
+      <div class="container__supporting">\
+       <div id="bikeDetails"></div>
+       <div id="requestService"></div>
+        
       </div>\
     </div>`;
 
