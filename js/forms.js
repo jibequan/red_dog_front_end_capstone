@@ -44,8 +44,8 @@ const addBikeForm = `\
               <input type="file" class="custom-file-input" id="customFile">
             </div>
             <div class="button-row">
-              <button class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
-              <button id="save_bike" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
+              <button id="addBike--cancel"class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
+              <button id="addBike--save" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
             </div>
           </fieldset>          
         </form>
@@ -169,7 +169,7 @@ const timeForm = `<h3>Nickname | Year | Make | Model</h3>
     </div>
   </div>`;
 
-const editBikeForm = `\
+const updateBikeForm = `\
   <div class="main__container--service">\
     <div class="container__header">\
       <h3>Update the Info Associated with your Bike.</h3>\
@@ -202,8 +202,8 @@ const editBikeForm = `\
         </fieldset>
           <!-- Add Bike/Submit Button -->
           <div class="form__button-row">
-            <button type="button" class="btn btn-danger form__button--margin" id="cancel_changes" value="Cancel">Cancel</button>
-            <button type="button" class="btn btn-dark" id="save_changes" value="Save Changes">Save Changes</button>
+            <button type="button" class="btn btn-danger form__button--margin" id="updateBike--cancel" value="Cancel">Cancel</button>
+            <button type="button" class="btn btn-dark" id="updateBike--save" value="Save Changes">Save Changes</button>
           </div>
       </form>
     </div>
@@ -276,4 +276,10 @@ let requestServiceForm = () => {
         </form>`;
 };
 
-module.exports = {guestForm, addBikeForm, timeForm, editBikeForm, requestServiceForm};
+module.exports = {
+  guestForm,
+  addBikeForm,
+  timeForm,
+  updateBikeForm,
+  requestServiceForm
+};

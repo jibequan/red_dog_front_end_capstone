@@ -42,7 +42,7 @@ let myBikes = (user) => {
         <h3>Hey ${user.displayName}. Here are your bikes.</h3>\
         <p>You can additional bikes or request service for one already associated with your account.</p>\
         <button type="button" class="btn btn-dark" id="googLogout">Sign Out</button>\
-        <button type="button" class="btn btn-dark" id="add_bike">+ Add bike</button>\
+        <button type="button" class="btn btn-dark" id="addBike">+ Add bike</button>\
       </div>\
       <div id="gallery" class="main__supporting--service"></div>\
     </div>`;
@@ -58,9 +58,9 @@ let smallCard = (item) => {
         <div class="list-group">\
           <p>repair</p>\
         </div>\
-        <a href="#" class="btn btn-danger delete_bike">Delete</a>\
-        <a href="#" class="btn btn-secondary edit_bike">Edit</a>\
-        <a href="#" class="btn btn-dark service_bike">Request Service</a>\
+        <a href="#" class="btn btn-danger deleteBike">Delete</a>\
+        <a href="#" class="btn btn-secondary editBike">Edit</a>\
+        <a href="#" class="btn btn-dark serviceBike">Request Service</a>\
       </div>\
     </div>`;
 };
