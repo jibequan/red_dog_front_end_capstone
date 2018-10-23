@@ -92,27 +92,16 @@ let updateUser = (uid, userObj) => {
 let getBikes = (user) => {
   dbBikesRef.orderByChild('uid').equalTo(user.uid).once('value')
     .then((snap) => {
-      var bikeData = snap.val();
-      dom.showMyBikes(bikeData, user);
+      let bikesData = snap.val();
+      dom.showMyBikes(bikesData, user);
     });
   };
 
-let requestBike = (bike_Id) => {
-    return new Promise((resolve, reject) => {
-    let bikesXHR = new XMLHttpRequest();
-
-    bikesXHR.addEventListener("load", function() {
-      let data = JSON.parse(this.responseText);
-      resolve(data);
-    });
-
-    bikesXHR.addEventListener("error", function(){
-      var error = bikesXHR.statusText;
-      reject(error);
-    });
-
-    bikesXHR.open('GET', `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`);
-    bikesXHR.send();
+let getBikeDetails = (bike_Id) => {
+  dbBikesRef.orderByChild('bikeID').equalTo(bike_Id).once('value')
+  .then((snap) => {
+    let bikeData = snap.val();
+    dom.makeBikeDetails(bikeData);
   });
 };
 
@@ -304,7 +293,7 @@ module.exports = {
   getBikeID,
   createEdits,
   updateBike,
-  requestBike,
+  getBikeDetails,
   createRepair,
   addRepair,
   addRepairId
