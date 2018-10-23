@@ -211,40 +211,35 @@ let getBikeID = (event) => {
 };
 
 let createEdits = () => {
-  let editBike = {};
+  let editedBike = {};
 
   if (document.getElementById("bike-nickname").value !== "") {
-    editBike.nickname = document.getElementById("bike-nickname").value;
+    editedBike.nickname = document.getElementById("bike-nickname").value;
   }
 
     if (document.getElementById("customFile").value !== "") {
-    editBike.photo = document.getElementById("customFile").value;
+    editedBike.photo = document.getElementById("customFile").value;
   }
 
     if (document.getElementById("bike-year").value !== "") {
-    editBike.year = document.getElementById("bike-year").value;
+    editedBike.year = document.getElementById("bike-year").value;
   }
 
     if (document.getElementById("bike-make").value !== "") {
-    editBike.make = document.getElementById("bike-make").value;
+    editedBike.make = document.getElementById("bike-make").value;
   }
 
     if (document.getElementById("bike-model").value !== "") {
-    editBike.model = document.getElementById("bike-model").value;
+    editedBike.model = document.getElementById("bike-model").value;
   }
 
-  return editBike;
+  return editedBike;
 };
 
-let editBike = (bike_Id, editBike) => {
-  return $.ajax({
-    url: `${firebase.getFBsettings().databaseURL}/bikes/${bike_Id}.json`,
-    type: 'PATCH',
-    data: JSON.stringify(editBike),
-    dataType: 'json'
-  }).done((result) => {
-    return result;
-    });
+let editBike = (bike_Id, editedBike) => {
+  dbBikesRef(`${bike_Id}`).set({
+    editedBike
+  });
 };
 
 let deleteBike = (bike_Id) => {
