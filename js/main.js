@@ -82,8 +82,13 @@ $(document).on("click", "#add_bike", () => {
 	dom.contentToDom(forms.addBikeForm);
 });
 
-$(document).on("click", "#save_bike", () => {
+$(document).on("click", "#addBike--save", () => {
 	db.addBike(db.createBike());
+});
+
+$(document).on("click", "#addBike--cancel", () => {
+	let currentUser = firebase.auth().currentUser;
+	db.getBikes(currentUser);
 });
 
 $(document).on("click", ".delete_bike", (event) => {

@@ -44,8 +44,8 @@ const addBikeForm = `\
               <input type="file" class="custom-file-input" id="customFile">
             </div>
             <div class="button-row">
-              <button class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
-              <button id="save_bike" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
+              <button id="addBike--cancel"class="btn btn-danger form__button--margin" type="button" value="CANCEL">Cancel</button>
+              <button id="addBike--save" class="btn btn-dark" type="button" value="ADD BIKE">Add Bike</button>
             </div>
           </fieldset>          
         </form>
