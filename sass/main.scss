@@ -32,6 +32,7 @@ $black-dog: #000; //#444
   padding-left: 2rem;
   position: fixed;
   top: 0;
+  z-index: 3;
   width: 100%;
   &__heading {
     font-family: "Prohibition", sans-serif;
@@ -146,9 +147,26 @@ $black-dog: #000; //#444
         margin-right: 1rem;
       }
       &--form {
-        display: flex;
-        div:first-of-type {
-          margin-right: 1rem;
+        form {
+          display: flex;
+          justify-content: space-between;
+          fieldset:first-of-type {
+            margin-right: 1rem;
+          }
+          fieldset {
+            width: 50%;
+            .photo-preview {
+              width: 100%;
+              height: 150px;              
+              margin: 4.5rem 0 1rem 0;
+              color: $black-dog;
+              background-color: $grey-dog;              
+            }
+          }
+          .button-row {
+            display: flex;
+            justify-content: flex-end;
+          }
         }
       }
     }
