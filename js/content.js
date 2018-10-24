@@ -87,8 +87,7 @@ const requestService = `\
       </div>\
       <div class="container__supporting">\
        <div id="bikeDetails"></div>
-       <div id="requestService"></div>
-        
+       <div id="requestService"></div>\        
       </div>\
     </div>`;
 
@@ -108,4 +107,14 @@ const showArmy = `\
     </div>\
   </div>`;
 
-module.exports = {bikesForSale, partsForSale, showServiceSignIn, myBikes, requestService, smallCard, largeCard, showRescue, showArmy};
+module.exports = {
+  bikesForSale,
+  partsForSale,
+  showServiceSignIn,
+  myBikes,
+  requestService,
+  smallCard,
+  largeCard,
+  showRescue,
+  showArmy
+};
