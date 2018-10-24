@@ -143,8 +143,47 @@ $black-dog: #000; //#444
   &__container--service {
     .container__supporting {
       display: flex;
-      div:first-of-type {
-        margin-right: 1rem;
+      h5 {
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        font-family: "Prohibition", sans-serif;
+      }
+      .supporting__element {
+        width: 50%;
+        .element__header {
+          margin-bottom: 1rem;
+        }
+        .element__image {
+          height: 150px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .element__list{
+          border: 1px solid $black-dog;
+          list-style-type: none;
+          li{
+            background-color: lightgrey;
+            padding: .5rem;
+            p {
+              margin: 0;
+              &:first-of-type {
+                color: red;
+              }
+            }
+          }
+          a{
+            color: $black-dog;
+          }
+          li:nth-child(odd){
+            background-color: white;;
+          }
+          &--repairs {
+            @extend .element__list;
+          }
+        }
       }
       &--form {
         form {
