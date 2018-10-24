@@ -15,8 +15,7 @@ let bikesNav = document.getElementById('bikes'),
 	partsNav = document.getElementById("parts"),
 	serviceNav = document.getElementById("service"),
 	rescueNav= document.getElementById("rescue"),
-	armyNav = document.getElementById("army"),
-	fileUpload = document.getElementById('customFile');
+	armyNav = document.getElementById("army");
 
 //////////Basic Nav//////////
 bikesNav.addEventListener("click", (e) => {

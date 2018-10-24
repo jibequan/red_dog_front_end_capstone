@@ -210,7 +210,6 @@ const updateBikeForm = `\
   </div>`;
 
 let requestServiceForm = () => {
-  console.log("Did this run?");
   let container = document.getElementById("requestService");
   container.innerHTML += `
         <form class="form__service-form">

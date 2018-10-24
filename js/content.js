@@ -105,9 +105,14 @@ const requestService = `\
         <p>Fill out the information below and we can cook up a quote for you.</p>\
       </div>\
       <div class="container__supporting">\
+<<<<<<< HEAD
        <div id="bikeDetails" class="supporting__element"></div>
        <div id="requestService" class="supporting__element"></div>
         
+=======
+       <div id="bikeDetails"></div>
+       <div id="requestService"></div>\        
+>>>>>>> master
       </div>\
     </div>`;
 
@@ -127,4 +132,14 @@ const showArmy = `\
     </div>\
   </div>`;
 
-module.exports = {bikesForSale, partsForSale, showServiceSignIn, myBikes, requestService, smallCard, largeCard, showRescue, showArmy};
+module.exports = {
+  bikesForSale,
+  partsForSale,
+  showServiceSignIn,
+  myBikes,
+  requestService,
+  smallCard,
+  largeCard,
+  showRescue,
+  showArmy
+};
