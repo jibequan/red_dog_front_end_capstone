@@ -67,15 +67,34 @@ let smallCard = (item) => {
 
 let largeCard = (bike) => {
   return `\
-    <div id="${bike.bikeID}"class="card gallery__card--large">
-      <h5 class="card-title">"${bike.nickname}" | ${bike.year} | ${bike.make} | ${bike.model}</h5>
-      <img class="card-img-top" src="${bike.photo}" alt="Photo of your moped/scooter">
-      <div class="card-body" style="border: 1px solid rgba(0, 0, 0, .125); padding: 0 1rem 0 1rem; border-radius: .25rem;">
-        <p class="card-text">Repair History</p>
-        <div class="list-group">
-          <a href="#" class="list-group-item">02/14/2018: Cleaned carberator, new chain, fixed signal</a>
-        </div>
-      </div>
+    <div id="${bike.bikeID}">\
+    <div class="element__header">
+      <h5>"${bike.nickname}" | ${bike.year} ${bike.make} ${bike.model}</h5>\
+      <div class="element__image">
+        <img src="${bike.photo}" alt="Photo of your moped/scooter">\      
+    </div>    
+    </div>
+      <h5>Repair History</h5>
+      <ul class="element__list--repairs">
+        <a href="#">
+          <li>
+            <p>02/14/2018</p>
+            <p>Cleaned carberator, new chain, fixed signal</p>
+          </li>
+          <li>
+            <p>02/14/2018</p>
+            <p>Cleaned carberator, new chain, fixed signal</p>
+          </li>
+          <li>
+            <p>02/14/2018</p>
+            <p>Cleaned carberator, new chain, fixed signal</p>
+          </li>
+          <li>
+            <p>02/14/2018</p>
+            <p>Cleaned carberator, new chain, fixed signal</p>
+          </li>
+        </a>
+      </ul>
     </div>`;
 };
 
@@ -86,8 +105,8 @@ const requestService = `\
         <p>Fill out the information below and we can cook up a quote for you.</p>\
       </div>\
       <div class="container__supporting">\
-       <div id="bikeDetails"></div>
-       <div id="requestService"></div>
+       <div id="bikeDetails" class="supporting__element"></div>
+       <div id="requestService" class="supporting__element"></div>
         
       </div>\
     </div>`;
