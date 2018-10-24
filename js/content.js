@@ -105,14 +105,9 @@ const requestService = `\
         <p>Fill out the information below and we can cook up a quote for you.</p>\
       </div>\
       <div class="container__supporting">\
-<<<<<<< HEAD
        <div id="bikeDetails" class="supporting__element"></div>
        <div id="requestService" class="supporting__element"></div>
         
-=======
-       <div id="bikeDetails"></div>
-       <div id="requestService"></div>\        
->>>>>>> master
       </div>\
     </div>`;
 
