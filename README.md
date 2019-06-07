@@ -1,5 +1,5 @@
 # Red Dog Moped
-The goal of this project is to create a simple repair process for customers of a small Nashville based moped/scooter shop. It should provide a means of requesting service for their bikes, a way to to monitor a repair's progress, and a way to track a bikes repair history.
+The goal of this project is to create a simple repair process for customers of a small Nashville-based moped/scooter shop. It should provide a means of requesting service for their bikes, a way to to monitor a repair's progress, and a way to track a bikes repair history.
 
 [Link to prototype](https://www.behance.net/gallery/70572063/Red-Dog-Moped)
 
